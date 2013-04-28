@@ -34,7 +34,6 @@ public interface KTableClickInterceptionListener {
 	 *         the purpose of selection. <code>false</code> if normal processing
 	 *         of the click shall continue.
 	 */
-	public boolean cellClicked(int col, int row, Rectangle cellRect, int x,
-			int y, int button, KTable table);
+	public boolean cellClicked(int col, int row, Rectangle cellRect, int x, int y, int button, KTable table);
 
 }

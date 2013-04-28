@@ -74,33 +74,26 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 	public static final int SIGN_CHECK = 1 << 29;
 
 	/** Indicator for a checked entry / true boolean decision */
-	public static final Image IMAGE_CHECKED = SWTX.loadImageResource(
-			Display.getCurrent(), "/icons/checked.gif");
+	public static final Image IMAGE_CHECKED = SWTX.loadImageResource(Display.getCurrent(), "/icons/checked.gif");
 
 	/** Indicator for an unchecked entry / false boolean decision */
-	public static final Image IMAGE_UNCHECKED = SWTX.loadImageResource(
-			Display.getCurrent(), "/icons/unchecked.gif");
+	public static final Image IMAGE_UNCHECKED = SWTX.loadImageResource(Display.getCurrent(), "/icons/unchecked.gif");
 
 	/**
 	 * Indicator for an checked entry / true boolean decision that is currently
 	 * clicked.
 	 */
-	public static final Image IMAGE_CHECKED_CLICKED = SWTX.loadImageResource(
-			Display.getCurrent(), "/icons/checked_clicked.gif");
+	public static final Image IMAGE_CHECKED_CLICKED = SWTX.loadImageResource(Display.getCurrent(), "/icons/checked_clicked.gif");
 
 	/**
 	 * Indicator for an unchecked entry / false boolean decision that is
 	 * currently clicked.
 	 */
-	public static final Image IMAGE_UNCHECKED_CLICKED = SWTX.loadImageResource(
-			Display.getCurrent(), "/icons/unchecked_clicked.gif");
+	public static final Image IMAGE_UNCHECKED_CLICKED = SWTX.loadImageResource(Display.getCurrent(), "/icons/unchecked_clicked.gif");
 
-	public static final Color COLOR_FILL = new Color(Display.getDefault(), 206,
-			206, 206);
-	public static final Color BORDER_DARK = new Color(Display.getDefault(), 90,
-			90, 57);
-	public static final Color BORDER_LIGHT = new Color(Display.getDefault(),
-			156, 156, 123);
+	public static final Color COLOR_FILL = new Color(Display.getDefault(), 206, 206, 206);
+	public static final Color BORDER_DARK = new Color(Display.getDefault(), 90, 90, 57);
+	public static final Color BORDER_LIGHT = new Color(Display.getDefault(), 156, 156, 123);
 
 	/**
 	 * Creates a cellrenderer that shows boolean values with the given style.
@@ -130,8 +123,7 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 	 * de.kupzog.ktable.KTableCellRenderer#getOptimalWidth(org.eclipse.swt.graphics
 	 * .GC, int, int, java.lang.Object, boolean)
 	 */
-	public int getOptimalWidth(GC gc, int col, int row, Object content,
-			boolean fixed, KTableModel model) {
+	public int getOptimalWidth(GC gc, int col, int row, Object content, boolean fixed, KTableModel model) {
 		return IMAGE_CHECKED.getBounds().x + 6;
 	}
 
@@ -141,26 +133,21 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 	 * @see de.kupzog.ktable.KTableCellRenderer#drawCell(GC, Rectangle, int,
 	 *      int, Object, boolean, boolean, boolean, KTableModel)
 	 */
-	public void drawCell(GC gc, Rectangle rect, int col, int row,
-			Object content, boolean focus, boolean fixed, boolean clicked,
-			KTableModel model) {
+	public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, boolean focus, boolean fixed, boolean clicked, KTableModel model) {
 
 		// draw focus sign:
 		if (focus && (m_Style & INDICATION_FOCUS) != 0) {
-			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY,
-					COLOR_LINE_LIGHTGRAY);
+			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY, COLOR_LINE_LIGHTGRAY);
 			drawCheckableImage(gc, rect, content, COLOR_BGFOCUS, clicked);
 			gc.drawFocus(rect.x, rect.y, rect.width, rect.height);
 
 		} else if (focus && (m_Style & INDICATION_FOCUS_ROW) != 0) {
 
-			rect = drawDefaultSolidCellLine(gc, rect, COLOR_BGROWFOCUS,
-					COLOR_BGROWFOCUS);
+			rect = drawDefaultSolidCellLine(gc, rect, COLOR_BGROWFOCUS, COLOR_BGROWFOCUS);
 			drawCheckableImage(gc, rect, content, COLOR_BGROWFOCUS, clicked);
 
 		} else {
-			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY,
-					COLOR_LINE_LIGHTGRAY);
+			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY, COLOR_LINE_LIGHTGRAY);
 			drawCheckableImage(gc, rect, content, getBackground(), clicked);
 		}
 
@@ -176,8 +163,7 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 	 * NOTE: Default is drawing directly (no images used) because this seems to
 	 * be at least 2-3 times faster than painting an image! (tested: WinXP)
 	 */
-	protected void drawCheckableImage(GC gc, Rectangle rect, Object content,
-			Color bgColor, boolean clicked) {
+	protected void drawCheckableImage(GC gc, Rectangle rect, Object content, Color bgColor, boolean clicked) {
 		// draw content as image:
 		if ((m_Style & SIGN_IMAGE) != 0) {
 			if (!(content instanceof Boolean)) {
@@ -228,13 +214,11 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 	 * @param image
 	 * @param backgroundColor
 	 */
-	protected void drawImage(GC gc, Rectangle rect, Image image,
-			Color backgroundColor) {
+	protected void drawImage(GC gc, Rectangle rect, Image image, Color backgroundColor) {
 		gc.setBackground(backgroundColor);
 		gc.setForeground(backgroundColor);
 		gc.fillRectangle(rect);
-		SWTX.drawTextImage(gc, "", getAlignment(), image, getAlignment(),
-				rect.x + 3, rect.y, rect.width - 3, rect.height);
+		SWTX.drawTextImage(gc, "", getAlignment(), image, getAlignment(), rect.x + 3, rect.y, rect.width - 3, rect.height);
 	}
 
 	/**
@@ -268,8 +252,7 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 	 *            The color of the box drawn (with of without checked mark).
 	 *            Used when a click indication is desired.
 	 */
-	protected void drawCheckedSymbol(GC gc, Rectangle rect, boolean checked,
-			Color bgColor, Color fillColor) {
+	protected void drawCheckedSymbol(GC gc, Rectangle rect, boolean checked, Color bgColor, Color fillColor) {
 		// clear background:
 		gc.setBackground(bgColor);
 		gc.fillRectangle(rect);
@@ -281,15 +264,12 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 		gc.drawLine(bound.x, bound.y, bound.x + bound.width, bound.y);
 		gc.drawLine(bound.x, bound.y, bound.x, bound.y + bound.height);
 		gc.setForeground(BORDER_DARK);
-		gc.drawLine(bound.x + bound.width, bound.y + 1, bound.x + bound.width,
-				bound.y + bound.height - 1);
-		gc.drawLine(bound.x, bound.y + bound.height, bound.x + bound.width,
-				bound.y + bound.height);
+		gc.drawLine(bound.x + bound.width, bound.y + 1, bound.x + bound.width, bound.y + bound.height - 1);
+		gc.drawLine(bound.x, bound.y + bound.height, bound.x + bound.width, bound.y + bound.height);
 
 		if (!bgColor.equals(fillColor)) {
 			gc.setBackground(fillColor);
-			gc.fillRectangle(bound.x + 1, bound.y + 1, bound.width - 1,
-					bound.height - 1);
+			gc.fillRectangle(bound.x + 1, bound.y + 1, bound.width - 1, bound.height - 1);
 		}
 
 		if (checked) // draw a check symbol:
@@ -307,35 +287,25 @@ public class CheckableCellRenderer extends DefaultCellRenderer {
 		if ((m_Style & SIGN_X) != 0) { // Draw a X
 			gc.setForeground(BORDER_LIGHT);
 
-			gc.drawLine(bound.x + 3, bound.y + 2, bound.x - 2 + bound.width,
-					bound.y - 3 + bound.height);
-			gc.drawLine(bound.x + 2, bound.y + 3, bound.x - 3 + bound.width,
-					bound.y - 2 + bound.height);
+			gc.drawLine(bound.x + 3, bound.y + 2, bound.x - 2 + bound.width, bound.y - 3 + bound.height);
+			gc.drawLine(bound.x + 2, bound.y + 3, bound.x - 3 + bound.width, bound.y - 2 + bound.height);
 
-			gc.drawLine(bound.x + 3, bound.y - 2 + bound.height, bound.x - 2
-					+ bound.width, bound.y + 3);
-			gc.drawLine(bound.x + 2, bound.y - 3 + bound.height, bound.x - 3
-					+ bound.width, bound.y + 2);
+			gc.drawLine(bound.x + 3, bound.y - 2 + bound.height, bound.x - 2 + bound.width, bound.y + 3);
+			gc.drawLine(bound.x + 2, bound.y - 3 + bound.height, bound.x - 3 + bound.width, bound.y + 2);
 
 			gc.setForeground(COLOR_TEXT);
 
-			gc.drawLine(bound.x + 2, bound.y + 2, bound.x - 2 + bound.width,
-					bound.y - 2 + bound.height);
-			gc.drawLine(bound.x + 2, bound.y - 2 + bound.height, bound.x - 2
-					+ bound.width, bound.y + 2);
+			gc.drawLine(bound.x + 2, bound.y + 2, bound.x - 2 + bound.width, bound.y - 2 + bound.height);
+			gc.drawLine(bound.x + 2, bound.y - 2 + bound.height, bound.x - 2 + bound.width, bound.y + 2);
 		} else { // Draw a check sign
 			gc.setForeground(getForeground());
 
-			gc.drawLine(bound.x + 2, bound.y + bound.height - 4, bound.x + 4,
-					bound.y + bound.height - 2);
-			gc.drawLine(bound.x + 2, bound.y + bound.height - 5, bound.x + 5,
-					bound.y + bound.height - 3);
-			gc.drawLine(bound.x + 2, bound.y + bound.height - 6, bound.x + 4,
-					bound.y + bound.height - 4);
+			gc.drawLine(bound.x + 2, bound.y + bound.height - 4, bound.x + 4, bound.y + bound.height - 2);
+			gc.drawLine(bound.x + 2, bound.y + bound.height - 5, bound.x + 5, bound.y + bound.height - 3);
+			gc.drawLine(bound.x + 2, bound.y + bound.height - 6, bound.x + 4, bound.y + bound.height - 4);
 
 			for (int i = 1; i < 4; i++)
-				gc.drawLine(bound.x + 2 + i, bound.y + bound.height - 3,
-						bound.x + bound.width - 2, bound.y + 1 + i);
+				gc.drawLine(bound.x + 2 + i, bound.y + bound.height - 3, bound.x + bound.width - 2, bound.y + 1 + i);
 		}
 	}
 

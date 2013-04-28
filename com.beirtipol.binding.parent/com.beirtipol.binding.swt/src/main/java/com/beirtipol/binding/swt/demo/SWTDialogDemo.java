@@ -37,8 +37,7 @@ public class SWTDialogDemo extends SWTAbstractPresentableComposite<Presenter> {
 		// Widgets
 		{
 			btnOpenDialog = new Button(this, SWT.NONE);
-			btnOpenDialog.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT,
-					false, false, 1, 1));
+			btnOpenDialog.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 1, 1));
 			dialog = new Dialog(getShell()) {
 			};
 

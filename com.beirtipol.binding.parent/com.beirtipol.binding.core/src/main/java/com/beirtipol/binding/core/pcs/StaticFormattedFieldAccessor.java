@@ -9,8 +9,7 @@ public class StaticFormattedFieldAccessor<T> {
 	private final FormattedFieldAccessor<T> fieldAccessor;
 	private final StringStack path;
 
-	public StaticFormattedFieldAccessor(ItemBinder<T> formatter,
-			StringStack path) {
+	public StaticFormattedFieldAccessor(ItemBinder<T> formatter, StringStack path) {
 		this.path = path;
 		fieldAccessor = new FormattedFieldAccessor<T>(formatter);
 	}
@@ -27,11 +26,9 @@ public class StaticFormattedFieldAccessor<T> {
 		return matchesEvent(path, event);
 	}
 
-	public static boolean matchesEvent(StringStack path,
-			PropertyChangeEvent event) {
+	public static boolean matchesEvent(StringStack path, PropertyChangeEvent event) {
 		if (event instanceof NestedPropertyChangeEvent) {
-			return path.equals(((NestedPropertyChangeEvent) event)
-					.getPropertyPath());
+			return path.equals(((NestedPropertyChangeEvent) event).getPropertyPath());
 		} else {
 			return path.toString().equals(event.getPropertyName());
 		}

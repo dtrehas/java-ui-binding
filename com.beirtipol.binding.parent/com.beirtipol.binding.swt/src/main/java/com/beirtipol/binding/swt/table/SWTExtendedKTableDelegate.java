@@ -25,8 +25,7 @@ public class SWTExtendedKTableDelegate extends SWTKTableDelegate {
 
 	private final IExtendedTableBinder myExtendedTableBinder;
 
-	public SWTExtendedKTableDelegate(KTable myTable,
-			IExtendedTableBinder myTableBinder) {
+	public SWTExtendedKTableDelegate(KTable myTable, IExtendedTableBinder myTableBinder) {
 		super(myTable, myTableBinder);
 		myExtendedTableBinder = myTableBinder;
 	}
@@ -36,17 +35,14 @@ public class SWTExtendedKTableDelegate extends SWTKTableDelegate {
 		CellType cellType = getCellType(col, row);
 		if (cellType == CellType.DATA) {
 			Point point = createRelativePointFromAbs(cellType, col, row);
-			final IBasicBinder<?> binder = myExtendedTableBinder
-					.getDataCellBinder(point.x, point.y);
+			final IBasicBinder<?> binder = myExtendedTableBinder.getDataCellBinder(point.x, point.y);
 			if (binder instanceof ITextBinder) {
 				if (((ITextBinder) binder).isEnabled()) {
 					return new KTableCellEditorText2() {
 						@Override
-						public void open(KTable table, int col, int row,
-								Rectangle rect) {
+						public void open(KTable table, int col, int row, Rectangle rect) {
 							super.open(table, col, row, rect);
-							m_Text.setText(((ITextBinder) binder)
-									.getTextFromModel());
+							m_Text.setText(((ITextBinder) binder).getTextFromModel());
 							m_Text.selectAll();
 							m_Text.setVisible(true);
 							m_Text.setFocus();
@@ -72,47 +68,29 @@ public class SWTExtendedKTableDelegate extends SWTKTableDelegate {
 			CellType cellType = getCellType(col, row);
 			if (cellType == CellType.DATA) {
 				Point point = createRelativePointFromAbs(cellType, col, row);
-				final IBasicBinder<?> binder = myExtendedTableBinder
-						.getDataCellBinder(point.x, point.y);
+				final IBasicBinder<?> binder = myExtendedTableBinder.getDataCellBinder(point.x, point.y);
 				if (binder instanceof ICheckBoxBinder) {
-					return new CheckableCellRenderer(
-							DefaultCellRenderer.INDICATION_CLICKED
-									| DefaultCellRenderer.INDICATION_FOCUS);
+					return new CheckableCellRenderer(DefaultCellRenderer.INDICATION_CLICKED | DefaultCellRenderer.INDICATION_FOCUS);
 				} else if (binder instanceof ITextBinder) {
 					if (((ITextBinder) binder).isEnabled()) {
-						TextCellRenderer result = new TextCellRenderer(
-								DefaultCellRenderer.STYLE_FLAT
-										| DefaultCellRenderer.INDICATION_FOCUS);
-						result.setBackground(ColorConverter
-								.convert(((ITextBinder) binder).getBackground()));
-						result.setForeground(ColorConverter
-								.convert(((ITextBinder) binder).getForeground()));
+						TextCellRenderer result = new TextCellRenderer(DefaultCellRenderer.STYLE_FLAT | DefaultCellRenderer.INDICATION_FOCUS);
+						result.setBackground(ColorConverter.convert(((ITextBinder) binder).getBackground()));
+						result.setForeground(ColorConverter.convert(((ITextBinder) binder).getForeground()));
 						return result;
 					} else {
-						return new FixedCellRenderer(
-								DefaultCellRenderer.STYLE_FLAT
-										| DefaultCellRenderer.INDICATION_FOCUS);
+						return new FixedCellRenderer(DefaultCellRenderer.STYLE_FLAT | DefaultCellRenderer.INDICATION_FOCUS);
 					}
 				} else if (binder instanceof IComboBinder) {
 					if (((IComboBinder) binder).isEnabled()) {
-						TextCellRenderer result = new TextCellRenderer(
-								DefaultCellRenderer.STYLE_FLAT
-										| DefaultCellRenderer.INDICATION_FOCUS);
-						result.setBackground(ColorConverter
-								.convert(((IComboBinder) binder)
-										.getBackground()));
-						result.setForeground(ColorConverter
-								.convert(((IComboBinder) binder)
-										.getForeground()));
+						TextCellRenderer result = new TextCellRenderer(DefaultCellRenderer.STYLE_FLAT | DefaultCellRenderer.INDICATION_FOCUS);
+						result.setBackground(ColorConverter.convert(((IComboBinder) binder).getBackground()));
+						result.setForeground(ColorConverter.convert(((IComboBinder) binder).getForeground()));
 						return result;
 					} else {
-						return new FixedCellRenderer(
-								DefaultCellRenderer.STYLE_FLAT
-										| DefaultCellRenderer.INDICATION_FOCUS);
+						return new FixedCellRenderer(DefaultCellRenderer.STYLE_FLAT | DefaultCellRenderer.INDICATION_FOCUS);
 					}
 				} else if (binder instanceof IButtonBinder) {
-					ButtonCellRenderer result = new ButtonCellRenderer(
-							binder.isEnabled());
+					ButtonCellRenderer result = new ButtonCellRenderer(binder.isEnabled());
 					return result;
 				}
 			}

@@ -23,8 +23,7 @@ public class RowHeaderTable extends JFrame {
 
 		TableModel tm = new AbstractTableModel() {
 			String data[] = { "", "a", "b", "c", "d", "e" };
-			String headers[] = { "Row #", "Column 1", "Column 2", "Column 3",
-					"Column 4", "Column 5" };
+			String headers[] = { "Row #", "Column 1", "Column 2", "Column 3", "Column 4", "Column 5" };
 
 			public int getColumnCount() {
 				return data.length;
@@ -107,8 +106,7 @@ public class RowHeaderTable extends JFrame {
 		// pane keeps them in sync
 		JScrollPane jsp = new JScrollPane(jt);
 		jsp.setRowHeader(jv);
-		jsp.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER,
-				headerColumn.getTableHeader());
+		jsp.setCorner(ScrollPaneConstants.UPPER_LEFT_CORNER, headerColumn.getTableHeader());
 		getContentPane().add(jsp, BorderLayout.CENTER);
 	}
 

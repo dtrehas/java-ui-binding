@@ -8,8 +8,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JComponent;
 
 public class SwingComponentHelper {
-	public static void linkEnabled(JComponent watcher,
-			final JComponent... actor) {
+	public static void linkEnabled(JComponent watcher, final JComponent... actor) {
 		watcher.addPropertyChangeListener(new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
@@ -29,8 +28,7 @@ public class SwingComponentHelper {
 		});
 	}
 
-	public static void linkVisibility(final JComponent watcher,
-			final JComponent... actor) {
+	public static void linkVisibility(final JComponent watcher, final JComponent... actor) {
 		watcher.addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentShown(ComponentEvent e) {
@@ -55,8 +53,7 @@ public class SwingComponentHelper {
 		}
 	}
 
-	public static void linkForeground(final JComponent watcher,
-			final JComponent... actor) {
+	public static void linkForeground(final JComponent watcher, final JComponent... actor) {
 		watcher.addPropertyChangeListener(new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent event) {

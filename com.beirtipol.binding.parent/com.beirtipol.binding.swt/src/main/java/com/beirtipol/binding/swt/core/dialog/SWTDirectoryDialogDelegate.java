@@ -38,8 +38,7 @@ public class SWTDirectoryDialogDelegate implements IDirectoryDialogDelegate {
 	@Override
 	public void setBinder(DirectoryDialogBinder binder) {
 		if (this.binder != null) {
-			throw new IllegalStateException(
-					"This delegate already has a binder attached and cannot be changed.");
+			throw new IllegalStateException("This delegate already has a binder attached and cannot be changed.");
 		}
 		this.binder = binder;
 	}

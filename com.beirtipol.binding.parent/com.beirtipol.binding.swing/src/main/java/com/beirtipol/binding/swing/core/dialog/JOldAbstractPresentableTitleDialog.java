@@ -12,8 +12,7 @@ import com.beirtipol.binding.core.binders.dialog.ValidationException;
 import com.beirtipol.binding.core.binders.dialog.ValidationWarningException;
 
 @SuppressWarnings({ "serial" })
-public abstract class JOldAbstractPresentableTitleDialog<T extends IOldDialogPresenter>
-		extends JAbstractTitleDialog {
+public abstract class JOldAbstractPresentableTitleDialog<T extends IOldDialogPresenter> extends JAbstractTitleDialog {
 	private IValidator validator;
 
 	/**
@@ -46,8 +45,7 @@ public abstract class JOldAbstractPresentableTitleDialog<T extends IOldDialogPre
 	 * @param relativeToComponent
 	 * @param modal
 	 */
-	public JOldAbstractPresentableTitleDialog(Component relativeToComponent,
-			boolean modal) {
+	public JOldAbstractPresentableTitleDialog(Component relativeToComponent, boolean modal) {
 		super(relativeToComponent, modal);
 	}
 

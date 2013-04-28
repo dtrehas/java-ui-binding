@@ -3,8 +3,7 @@ package com.beirtipol.binding.core.binders.component;
 import com.beirtipol.binding.core.binders.AbstractBinder;
 import com.beirtipol.binding.core.delegates.IComponentDelegate;
 
-public class ComponentBinder extends AbstractBinder<IComponentDelegate>
-		implements IComponentBinder {
+public class ComponentBinder extends AbstractBinder<IComponentDelegate> implements IComponentBinder {
 	@Override
 	public void updateUI() {
 		final IComponentDelegate delegate = getDelegate();

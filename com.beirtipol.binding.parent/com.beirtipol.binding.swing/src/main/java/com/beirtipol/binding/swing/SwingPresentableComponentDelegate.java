@@ -3,12 +3,10 @@ package com.beirtipol.binding.swing;
 import com.beirtipol.binding.core.binders.IPresenter;
 import com.beirtipol.binding.core.delegates.IPresentableComponentDelegate;
 
-public class SwingPresentableComponentDelegate<T extends IPresenter> extends
-		SwingComponentDelegate implements IPresentableComponentDelegate<T> {
+public class SwingPresentableComponentDelegate<T extends IPresenter> extends SwingComponentDelegate implements IPresentableComponentDelegate<T> {
 	private AbstractPresentableSwingPanel<T> component;
 
-	public SwingPresentableComponentDelegate(
-			AbstractPresentableSwingPanel<T> component) {
+	public SwingPresentableComponentDelegate(AbstractPresentableSwingPanel<T> component) {
 		super(component.getSwingComponent());
 		this.component = component;
 	}

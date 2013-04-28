@@ -34,9 +34,7 @@ public abstract class KTableNoScrollModel extends KTableSortedModel {
 
 		// initialize with % values.
 		for (int i = 0; i < getColumnCount(); i++) {
-			super.setColumnWidth(
-					i,
-					(int) ((getInitialColumnWidth(i) / (double) weightSum) * FACTOR));
+			super.setColumnWidth(i, (int) ((getInitialColumnWidth(i) / (double) weightSum) * FACTOR));
 		}
 		int pts = 0;
 		for (int i = 0; i < getColumnCount(); i++)
@@ -90,17 +88,13 @@ public abstract class KTableNoScrollModel extends KTableSortedModel {
 		int tableWidth = _table.getClientArea().width;
 		double percent = (value + 1) / (double) tableWidth;
 		if (col == getColumnCount() - 1) {
-			int weightsum = super.getColumnWidth(col)
-					+ super.getColumnWidth(col - 1);
+			int weightsum = super.getColumnWidth(col) + super.getColumnWidth(col - 1);
 			super.setColumnWidth(col, (int) (percent * FACTOR));
-			super.setColumnWidth(col - 1, weightsum
-					- ((int) (percent * FACTOR)));
+			super.setColumnWidth(col - 1, weightsum - ((int) (percent * FACTOR)));
 		} else {
-			int weightsum = super.getColumnWidth(col)
-					+ super.getColumnWidth(col + 1);
+			int weightsum = super.getColumnWidth(col) + super.getColumnWidth(col + 1);
 			super.setColumnWidth(col, (int) (percent * FACTOR));
-			super.setColumnWidth(col + 1, weightsum
-					- ((int) (percent * FACTOR)));
+			super.setColumnWidth(col + 1, weightsum - ((int) (percent * FACTOR)));
 		}
 	}
 }

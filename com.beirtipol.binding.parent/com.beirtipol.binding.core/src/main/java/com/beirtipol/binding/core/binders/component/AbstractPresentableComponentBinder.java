@@ -7,9 +7,7 @@ import com.beirtipol.binding.core.binders.IPresenter;
 import com.beirtipol.binding.core.delegates.IComponentDelegate;
 import com.beirtipol.binding.core.delegates.IPresentableComponentDelegate;
 
-public abstract class AbstractPresentableComponentBinder<T extends IPresenter>
-		extends AbstractBinder<IPresentableComponentDelegate<T>> implements
-		IPresentableComponentBinder<T> {
+public abstract class AbstractPresentableComponentBinder<T extends IPresenter> extends AbstractBinder<IPresentableComponentDelegate<T>> implements IPresentableComponentBinder<T> {
 	@Override
 	public void updateUI() {
 		final IPresentableComponentDelegate<T> delegate = getDelegate();

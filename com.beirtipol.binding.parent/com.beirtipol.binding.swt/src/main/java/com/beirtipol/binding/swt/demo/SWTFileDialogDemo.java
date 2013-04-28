@@ -27,8 +27,7 @@ import com.beirtipol.binding.swt.SWTTextDelegate;
 import com.beirtipol.binding.swt.core.dialog.SWTFileDialogDelegate;
 import com.beirtipol.binding.swt.demo.SWTFileDialogDemo.Presenter;
 
-public class SWTFileDialogDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTFileDialogDemo extends SWTAbstractPresentableComposite<Presenter> {
 	private Button btnChooseFile;
 	private SWTButtonDelegate chooseFileDelegate;
 	private Text txtChosenFile;
@@ -46,20 +45,17 @@ public class SWTFileDialogDemo extends
 		// Widgets
 		{
 			txtChosenFile = new Text(this, SWT.BORDER);
-			txtChosenFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT,
-					true, false, 1, 1));
+			txtChosenFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, true, false, 1, 1));
 
 			btnChooseFile = new Button(this, SWT.NONE);
-			btnChooseFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT,
-					false, false, 1, 1));
+			btnChooseFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 1, 1));
 
 		}
 		// Delegates
 		{
 			chooseFileDelegate = new SWTButtonDelegate(btnChooseFile);
 			chosenTextDelegate = new SWTTextDelegate(txtChosenFile);
-			fileChooserDelegate = new SWTFileDialogDelegate(new FileDialog(
-					getShell()));
+			fileChooserDelegate = new SWTFileDialogDelegate(new FileDialog(getShell()));
 		}
 	}
 
@@ -142,8 +138,7 @@ public class SWTFileDialogDemo extends
 
 					@Override
 					public String getTextFromModel() {
-						return chosenFile == null ? "" : chosenFile
-								.getAbsolutePath();
+						return chosenFile == null ? "" : chosenFile.getAbsolutePath();
 					}
 				};
 			}

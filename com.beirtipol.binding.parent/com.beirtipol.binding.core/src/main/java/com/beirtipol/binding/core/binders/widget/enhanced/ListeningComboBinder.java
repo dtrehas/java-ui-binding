@@ -10,8 +10,7 @@ import com.beirtipol.binding.core.util.ItemBinder;
 import com.beirtipol.binding.core.util.StringStack;
 
 @SuppressWarnings("rawtypes")
-public abstract class ListeningComboBinder extends AbstractComboBinder
-		implements IListeningBinder {
+public abstract class ListeningComboBinder extends AbstractComboBinder implements IListeningBinder {
 	private final IStaticObjectFormattedAccessor accessor;
 	private final BinderChangeSupport binderChangeSupport;
 

@@ -95,13 +95,11 @@ public class KTableCellEditorText2 extends KTableCellEditor {
 	 */
 	protected void onTraverse(TraverseEvent e) {
 		if (e.keyCode == SWT.ARROW_LEFT) {
-			if (m_Text.getCaretPosition() == 0
-					&& m_Text.getSelectionCount() == 0)
+			if (m_Text.getCaretPosition() == 0 && m_Text.getSelectionCount() == 0)
 				super.onTraverse(e);
 			// handel the event within the text widget!
 		} else if (e.keyCode == SWT.ARROW_RIGHT) {
-			if (m_Text.getCaretPosition() == m_Text.getText().length()
-					&& m_Text.getSelectionCount() == 0)
+			if (m_Text.getCaretPosition() == m_Text.getText().length() && m_Text.getSelectionCount() == 0)
 				super.onTraverse(e);
 			// handle the event within the text widget!
 		} else
@@ -122,8 +120,7 @@ public class KTableCellEditorText2 extends KTableCellEditor {
 	 * overridden from superclass
 	 */
 	public void setBounds(Rectangle rect) {
-		super.setBounds(new Rectangle(rect.x, rect.y + (rect.height - 15) / 2
-				+ 1, rect.width, 15));
+		super.setBounds(new Rectangle(rect.x, rect.y + (rect.height - 15) / 2 + 1, rect.width, 15));
 	}
 
 	/*

@@ -20,8 +20,7 @@ import com.beirtipol.binding.swt.SWTCheckBoxDelegate;
 import com.beirtipol.binding.swt.SWTTextDelegate;
 import com.beirtipol.binding.swt.demo.SWTCheckboxAndTextBinderDemo.Presenter;
 
-public class SWTCheckboxAndTextBinderDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTCheckboxAndTextBinderDemo extends SWTAbstractPresentableComposite<Presenter> {
 	private Button btnEnabled;
 	private SWTCheckBoxDelegate btnEnabledDelegate;
 	private Text text;
@@ -38,12 +37,10 @@ public class SWTCheckboxAndTextBinderDemo extends
 		// Widgets
 		{
 			btnEnabled = new Button(this, SWT.CHECK);
-			btnEnabled.setLayoutData(new GridData(SWT.FILL, SWT.LEFT, true,
-					false, 1, 1));
+			btnEnabled.setLayoutData(new GridData(SWT.FILL, SWT.LEFT, true, false, 1, 1));
 
 			text = new Text(this, SWT.BORDER);
-			text.setLayoutData(new GridData(SWT.FILL, SWT.LEFT, true, false, 1,
-					1));
+			text.setLayoutData(new GridData(SWT.FILL, SWT.LEFT, true, false, 1, 1));
 		}
 		// Delegates
 		{
@@ -116,8 +113,7 @@ public class SWTCheckboxAndTextBinderDemo extends
 		Shell shell = new Shell(display);
 		shell.setText("SWT");
 		shell.setLayout(new FillLayout());
-		SWTCheckboxAndTextBinderDemo comp = new SWTCheckboxAndTextBinderDemo(
-				shell, SWT.NONE);
+		SWTCheckboxAndTextBinderDemo comp = new SWTCheckboxAndTextBinderDemo(shell, SWT.NONE);
 		Presenter presenter = comp.new Presenter();
 		comp.setPresenter(presenter);
 		shell.open();

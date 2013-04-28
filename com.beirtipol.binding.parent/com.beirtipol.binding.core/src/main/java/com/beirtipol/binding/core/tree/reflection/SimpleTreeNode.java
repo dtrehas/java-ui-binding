@@ -5,8 +5,7 @@ import java.util.List;
 import com.beirtipol.binding.core.tree.ITreeNode;
 
 public class SimpleTreeNode extends BasicReflectionTreeNode {
-	public SimpleTreeNode(ITreeNode parent, String name, Object model,
-			BasicReflectionTreeNodeIDContext idContext) {
+	public SimpleTreeNode(ITreeNode parent, String name, Object model, BasicReflectionTreeNodeIDContext idContext) {
 		super(parent, name, model, idContext);
 	}
 

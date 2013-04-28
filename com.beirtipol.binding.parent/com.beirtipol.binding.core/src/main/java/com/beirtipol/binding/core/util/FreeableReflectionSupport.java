@@ -28,8 +28,7 @@ public class FreeableReflectionSupport {
 	@SuppressWarnings("rawtypes")
 	public static void free(Object parent, IdentityArrayList<Object> objects) {
 		if (parent != null) {
-			List<Field> declaredFields = ReflectionUtils
-					.getAllDeclaredFields(parent.getClass());
+			List<Field> declaredFields = ReflectionUtils.getAllDeclaredFields(parent.getClass());
 
 			for (Field field : declaredFields) {
 				if ("this$0".equals(field.getName())) {

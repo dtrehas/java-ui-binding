@@ -11,8 +11,7 @@ import com.beirtipol.binding.core.binders.dialog.AbstractFileDialogBinder;
  *            The type of FileBasedBinder to be used.
  */
 @SuppressWarnings("rawtypes")
-public interface IFileBasedDialogDelegate<B extends AbstractFileDialogBinder>
-		extends IDialogDelegate {
+public interface IFileBasedDialogDelegate<B extends AbstractFileDialogBinder> extends IDialogDelegate {
 	void setFilterPath(String filterPath);
 
 	void setBinder(B binder);

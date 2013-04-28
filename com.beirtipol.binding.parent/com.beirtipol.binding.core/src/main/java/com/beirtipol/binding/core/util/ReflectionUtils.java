@@ -53,8 +53,7 @@ public class ReflectionUtils {
 		// Super classes
 		Class<?> superclass = clazz.getSuperclass();
 		while (superclass != null) {
-			List<Field> superClassFields = Arrays.asList(superclass
-					.getDeclaredFields());
+			List<Field> superClassFields = Arrays.asList(superclass.getDeclaredFields());
 
 			result.addAll(superClassFields);
 
@@ -85,8 +84,7 @@ public class ReflectionUtils {
 		// Super classes
 		Class<?> superclass = clazz.getSuperclass();
 		while (superclass != null) {
-			List<Method> superClassFields = Arrays.asList(superclass
-					.getDeclaredMethods());
+			List<Method> superClassFields = Arrays.asList(superclass.getDeclaredMethods());
 
 			result.addAll(superClassFields);
 
@@ -98,8 +96,7 @@ public class ReflectionUtils {
 		return result;
 	}
 
-	public static Field getDeclaredField(Object obj, String fieldName)
-			throws NoSuchFieldException {
+	public static Field getDeclaredField(Object obj, String fieldName) throws NoSuchFieldException {
 		if (obj == null) {
 			return null;
 		} else {
@@ -107,37 +104,30 @@ public class ReflectionUtils {
 		}
 	}
 
-	public static Field getDeclaredField(Class<?> clazz, String fieldName)
-			throws NoSuchFieldException {
+	public static Field getDeclaredField(Class<?> clazz, String fieldName) throws NoSuchFieldException {
 		Field result = null;
 		HashMap<String, Field> map = getAllDeclaredFieldsMap(clazz);
 
 		result = map.get(fieldName);
 		if (result == null) {
-			throw new NoSuchFieldException("The field '" + fieldName
-					+ "' does not exists for '" + clazz.getSimpleName()
-					+ "' or any of its superclasses");
+			throw new NoSuchFieldException("The field '" + fieldName + "' does not exists for '" + clazz.getSimpleName() + "' or any of its superclasses");
 		}
 		return result;
 	}
 
-	public static Method getDeclaredMethod(Class<?> clazz, String methodName)
-			throws NoSuchFieldException {
+	public static Method getDeclaredMethod(Class<?> clazz, String methodName) throws NoSuchFieldException {
 		Method result = null;
 		HashMap<String, Method> map = getAllDeclaredMethodsMap(clazz);
 
 		result = map.get(methodName);
 		if (result == null) {
-			throw new NoSuchFieldException("The method '" + methodName
-					+ "' does not exists for '" + clazz.getSimpleName()
-					+ "' or any of its superclasses");
+			throw new NoSuchFieldException("The method '" + methodName + "' does not exists for '" + clazz.getSimpleName() + "' or any of its superclasses");
 		}
 		return result;
 	}
 
 	public static HashMap<String, Field> getAllDeclaredFieldsMap(Class<?> clazz) {
-		HashMap<String, Field> map = DECLARED_FIELDS_BY_CLASS_BY_NAME
-				.get(clazz);
+		HashMap<String, Field> map = DECLARED_FIELDS_BY_CLASS_BY_NAME.get(clazz);
 		if (map == null) {
 			map = new HashMap<String, Field>();
 
@@ -152,10 +142,8 @@ public class ReflectionUtils {
 		return map;
 	}
 
-	public static HashMap<String, Method> getAllDeclaredMethodsMap(
-			Class<?> clazz) {
-		HashMap<String, Method> map = DECLARED_METHODS_BY_CLASS_BY_NAME
-				.get(clazz);
+	public static HashMap<String, Method> getAllDeclaredMethodsMap(Class<?> clazz) {
+		HashMap<String, Method> map = DECLARED_METHODS_BY_CLASS_BY_NAME.get(clazz);
 		if (map == null) {
 			map = new HashMap<String, Method>();
 

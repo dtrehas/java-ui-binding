@@ -12,11 +12,9 @@ import org.slf4j.LoggerFactory;
 
 public class EnumUtils {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(EnumUtils.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(EnumUtils.class);
 
-	public static String valuesAsReadableString(
-			Class<? extends Enum<?>> enumType) {
+	public static String valuesAsReadableString(Class<? extends Enum<?>> enumType) {
 		String[] enumValues = valuesAsStrings(enumType);
 		return Arrays.toString(enumValues);
 	}
@@ -53,8 +51,7 @@ public class EnumUtils {
 
 	}
 
-	public static List<String> valuesAsStringList(
-			Class<? extends Enum<?>> enumType) {
+	public static List<String> valuesAsStringList(Class<? extends Enum<?>> enumType) {
 		List<String> result = new ArrayList<String>();
 		for (int i = 0; i < enumType.getEnumConstants().length; i++) {
 			result.add(enumType.getEnumConstants()[i].toString());
@@ -95,11 +92,9 @@ public class EnumUtils {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T parse(Class<T> enumClass,
-			String stringToParse) {
+	public static <T extends Enum<?>> T parse(Class<T> enumClass, String stringToParse) {
 		try {
-			Method parseMethod = enumClass.getDeclaredMethod("parse",
-					String.class);
+			Method parseMethod = enumClass.getDeclaredMethod("parse", String.class);
 			if (parseMethod != null) {
 				parseMethod.setAccessible(true);
 
@@ -117,8 +112,7 @@ public class EnumUtils {
 		return null;
 	}
 
-	public static <T extends Enum<?>> T parse(Class<T> enumClass,
-			Object objToParse) {
+	public static <T extends Enum<?>> T parse(Class<T> enumClass, Object objToParse) {
 		if (objToParse != null) {
 			return parse(enumClass, objToParse.toString());
 		}
@@ -126,11 +120,9 @@ public class EnumUtils {
 		return null;
 	}
 
-	public static <T extends Enum<?>> T findFirstMatching(Class<T> enumClass,
-			String stringToParse) {
+	public static <T extends Enum<?>> T findFirstMatching(Class<T> enumClass, String stringToParse) {
 		for (T value : enumClass.getEnumConstants()) {
-			if (value.toString().toUpperCase()
-					.startsWith(stringToParse.toUpperCase())) {
+			if (value.toString().toUpperCase().startsWith(stringToParse.toUpperCase())) {
 				return value;
 			}
 		}

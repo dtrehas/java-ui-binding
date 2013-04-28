@@ -20,8 +20,7 @@ public class FieldAccessor<T> {
 			try {
 				return (T) getter.invoke(bom, (Object[]) null);
 			} catch (Exception e) {
-				throw new RuntimeException("Unable to set field '" + fieldName
-						+ "' on object '" + bomClazz.getName() + "'", e);
+				throw new RuntimeException("Unable to set field '" + fieldName + "' on object '" + bomClazz.getName() + "'", e);
 			}
 		} else {
 			Object innerBom = getInner(bom, fieldName);
@@ -38,8 +37,7 @@ public class FieldAccessor<T> {
 			try {
 				setter.invoke(bom, value);
 			} catch (Exception e) {
-				throw new RuntimeException("Unable to set field '" + fieldName
-						+ "' on object '" + bomClazz.getName() + "'", e);
+				throw new RuntimeException("Unable to set field '" + fieldName + "' on object '" + bomClazz.getName() + "'", e);
 			}
 		} else {
 			Object innerBom = getInner(bom, fieldName);
@@ -54,23 +52,19 @@ public class FieldAccessor<T> {
 		try {
 			innerBom = method.invoke(bom, (Object[]) null);
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to get field '" + fieldName
-					+ "' from object '" + bomClazz.getName() + "'", e);
+			throw new RuntimeException("Unable to get field '" + fieldName + "' from object '" + bomClazz.getName() + "'", e);
 		}
 		return innerBom;
 	}
 
-	private Method getMethod(Object bom, String fieldName,
-			BindableMethod.Type methodType) {
+	private Method getMethod(Object bom, String fieldName, BindableMethod.Type methodType) {
 		Class<? extends Object> bomClazz = bom.getClass();
 		List<Method> methods = ReflectionUtils.getAllDeclaredMethods(bomClazz);
-		Iterable<Method> applicableMethods = Iterables.filter(methods,
-				new BindableMethodPredicate(fieldName, methodType));
+		Iterable<Method> applicableMethods = Iterables.filter(methods, new BindableMethodPredicate(fieldName, methodType));
 		if (applicableMethods.iterator().hasNext()) {
 			return applicableMethods.iterator().next();
 		}
-		throw new RuntimeException(methodType + " method not found for field '"
-				+ fieldName + "' on object '" + bomClazz.getName() + "'");
+		throw new RuntimeException(methodType + " method not found for field '" + fieldName + "' on object '" + bomClazz.getName() + "'");
 	}
 
 	private class BindableMethodPredicate implements Predicate<Method> {
@@ -84,8 +78,7 @@ public class FieldAccessor<T> {
 
 		@Override
 		public boolean apply(Method input) {
-			BindableMethod bindableAnnotation = input
-					.getAnnotation(BindableMethod.class);
+			BindableMethod bindableAnnotation = input.getAnnotation(BindableMethod.class);
 			if (bindableAnnotation != null) {
 				boolean result = type == bindableAnnotation.type();
 				result &= field.equals(bindableAnnotation.fieldName());

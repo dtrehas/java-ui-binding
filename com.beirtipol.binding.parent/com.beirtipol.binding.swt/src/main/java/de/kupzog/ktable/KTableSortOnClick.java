@@ -23,8 +23,7 @@ public class KTableSortOnClick extends KTableCellSelectionAdapter {
 			KTableSortedModel model = (KTableSortedModel) m_Table.getModel();
 
 			// implement the sorting when clicking on the header.
-			if (row < model.getFixedHeaderRowCount()
-					&& col >= model.getFixedHeaderColumnCount()) {
+			if (row < model.getFixedHeaderRowCount() && col >= model.getFixedHeaderColumnCount()) {
 				int type = KTableSortComparator.SORT_UP;
 				if (model.getSortColumn() == col) {
 					if (model.getSortState() == KTableSortComparator.SORT_UP) {

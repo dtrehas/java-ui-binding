@@ -38,8 +38,7 @@ public class SwingContentAssist {
 		this(textField, null);
 	}
 
-	public SwingContentAssist(final JTextField textField,
-			IContentAssistProvider contentProvider) {
+	public SwingContentAssist(final JTextField textField, IContentAssistProvider contentProvider) {
 		this.textField = textField;
 		this.contentProvider = contentProvider;
 
@@ -86,15 +85,13 @@ public class SwingContentAssist {
 			public void keyReleased(KeyEvent e) {
 				// Ignore key events if the list is being edited
 				if (assistPopup.isVisible()) {
-					if (e.getKeyCode() == KeyEvent.VK_UP
-							|| e.getKeyCode() == KeyEvent.VK_DOWN) {
+					if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
 						return;
 					}
 
 					populateAndFilter();
 				} else {
-					if (((e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) == KeyEvent.CTRL_DOWN_MASK)
-							&& e.getKeyCode() == KeyEvent.VK_SPACE) {
+					if (((e.getModifiersEx() & KeyEvent.CTRL_DOWN_MASK) == KeyEvent.CTRL_DOWN_MASK) && e.getKeyCode() == KeyEvent.VK_SPACE) {
 						showMenu();
 					} else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 						showMenu();
@@ -103,8 +100,7 @@ public class SwingContentAssist {
 							return;
 						}
 
-						char[] activationKeys = contentProvider
-								.getActivationKeys();
+						char[] activationKeys = contentProvider.getActivationKeys();
 						for (char key : activationKeys) {
 							if (key == e.getKeyChar()) {
 								showMenu();
@@ -121,32 +117,20 @@ public class SwingContentAssist {
 			public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
 				startingCaretPos = getCurrentCaretPos();
 
-				textField.registerKeyboardAction(acceptAction,
-						KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0),
-						JComponent.WHEN_FOCUSED);
-				textField.registerKeyboardAction(hidePopupAction,
-						KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0),
-						JComponent.WHEN_FOCUSED);
-				textField.registerKeyboardAction(downAction,
-						KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0),
-						JComponent.WHEN_FOCUSED);
-				textField.registerKeyboardAction(upAction,
-						KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0),
-						JComponent.WHEN_FOCUSED);
+				textField.registerKeyboardAction(acceptAction, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_FOCUSED);
+				textField.registerKeyboardAction(hidePopupAction, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_FOCUSED);
+				textField.registerKeyboardAction(downAction, KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0), JComponent.WHEN_FOCUSED);
+				textField.registerKeyboardAction(upAction, KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0), JComponent.WHEN_FOCUSED);
 			}
 
 			@Override
 			public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 				startingCaretPos = -1;
 
-				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(
-						KeyEvent.VK_ENTER, 0));
-				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(
-						KeyEvent.VK_ESCAPE, 0));
-				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(
-						KeyEvent.VK_DOWN, 0));
-				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(
-						KeyEvent.VK_UP, 0));
+				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0));
+				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0));
+				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(KeyEvent.VK_DOWN, 0));
+				textField.unregisterKeyboardAction(KeyStroke.getKeyStroke(KeyEvent.VK_UP, 0));
 			}
 
 			@Override
@@ -160,8 +144,7 @@ public class SwingContentAssist {
 		list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String selectedValue = ObjectUtils.toString(list
-						.getSelectedValue());
+				String selectedValue = ObjectUtils.toString(list.getSelectedValue());
 				acceptValue(selectedValue);
 			}
 		});
@@ -172,8 +155,7 @@ public class SwingContentAssist {
 			return;
 		}
 
-		String[] allowedValues = contentProvider.getSuggestions(
-				textField.getText(), textField.getCaretPosition());
+		String[] allowedValues = contentProvider.getSuggestions(textField.getText(), textField.getCaretPosition());
 
 		list.setListData(allowedValues);
 
@@ -193,8 +175,7 @@ public class SwingContentAssist {
 
 		int xPos = 0;
 		try {
-			int pos = Math.min(textField.getCaret().getDot(),
-					getCurrentCaretPos());
+			int pos = Math.min(textField.getCaret().getDot(), getCurrentCaretPos());
 			xPos = textField.getUI().modelToView(textField, pos).x;
 		} catch (BadLocationException e) {
 			e.printStackTrace();
@@ -230,8 +211,7 @@ public class SwingContentAssist {
 			if (startingCaretPos < currentCaretPos) {
 				for (int i = startingCaretPos; i < currentCaretPos; i++) {
 					char typedChar = str.charAt(i);
-					for (char activationKey : contentProvider
-							.getActivationKeys()) {
+					for (char activationKey : contentProvider.getActivationKeys()) {
 						if (activationKey == typedChar) {
 							startingCaretPos = i + 1;
 							break;
@@ -262,23 +242,15 @@ public class SwingContentAssist {
 		boolean foundTextToReplaceBeforeTheStartingPoint = false;
 		int indexOfLastCharBeforeInsertionPoint = startingCaretPos - 1;
 		if (indexOfLastCharBeforeInsertionPoint > 0) {
-			char lastCharBeforeInsertionPoint = str.toString().toUpperCase()
-					.charAt(indexOfLastCharBeforeInsertionPoint);
+			char lastCharBeforeInsertionPoint = str.toString().toUpperCase().charAt(indexOfLastCharBeforeInsertionPoint);
 			String upperCaseTextToAppend = textToAppend.toUpperCase();
-			int indexOfLastCharInInsertionText = upperCaseTextToAppend
-					.indexOf(lastCharBeforeInsertionPoint);
+			int indexOfLastCharInInsertionText = upperCaseTextToAppend.indexOf(lastCharBeforeInsertionPoint);
 			if (indexOfLastCharInInsertionText != -1) {
-				int startOfMatchingString = startingCaretPos - 1
-						- indexOfLastCharInInsertionText;
-				String partOfTextThatMatchedTheNewInput = str.substring(
-						startOfMatchingString, startingCaretPos);
-				if (upperCaseTextToAppend
-						.startsWith(partOfTextThatMatchedTheNewInput
-								.toUpperCase())) {
-					str.replace(startOfMatchingString, startingCaretPos,
-							textToAppend);
-					caretEndingPos = startOfMatchingString
-							+ textToAppend.length();
+				int startOfMatchingString = startingCaretPos - 1 - indexOfLastCharInInsertionText;
+				String partOfTextThatMatchedTheNewInput = str.substring(startOfMatchingString, startingCaretPos);
+				if (upperCaseTextToAppend.startsWith(partOfTextThatMatchedTheNewInput.toUpperCase())) {
+					str.replace(startOfMatchingString, startingCaretPos, textToAppend);
+					caretEndingPos = startOfMatchingString + textToAppend.length();
 					foundTextToReplaceBeforeTheStartingPoint = true;
 				}
 			}
@@ -307,8 +279,7 @@ public class SwingContentAssist {
 	private final Action acceptAction = new AbstractAction() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String selectedValue = ObjectUtils
-					.toString(list.getSelectedValue());
+			String selectedValue = ObjectUtils.toString(list.getSelectedValue());
 			acceptValue(selectedValue);
 		}
 	};

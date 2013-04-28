@@ -29,8 +29,7 @@ public class SwingDirectoryDialogDelegate implements IDirectoryDialogDelegate {
 	public void openDialog() {
 		int result = dialog.showDialog(parent, "Select");
 		File file = dialog.getSelectedFile();
-		if (binder != null && file != null
-				&& result == JFileChooser.APPROVE_OPTION) {
+		if (binder != null && file != null && result == JFileChooser.APPROVE_OPTION) {
 			binder.onClose(file);
 		}
 	}

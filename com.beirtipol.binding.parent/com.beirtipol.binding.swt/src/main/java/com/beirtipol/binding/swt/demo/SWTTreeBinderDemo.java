@@ -21,8 +21,7 @@ import com.beirtipol.binding.swt.SWTAbstractPresentableComposite;
 import com.beirtipol.binding.swt.SWTTreeDelegate;
 import com.beirtipol.binding.swt.demo.SWTTreeBinderDemo.Presenter;
 
-public class SWTTreeBinderDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTTreeBinderDemo extends SWTAbstractPresentableComposite<Presenter> {
 
 	private TreeViewer treeViewer;
 	private SWTTreeDelegate delegate;
@@ -86,8 +85,7 @@ public class SWTTreeBinderDemo extends
 		shell.setText("SWT");
 		shell.setLayout(new FillLayout());
 		SWTTreeBinderDemo comp = new SWTTreeBinderDemo(shell, SWT.NONE);
-		ITypedTreeNode treeNode = TreeNodeFactory.createTreeNode(null,
-				"Display", display, new BasicReflectionTreeNodeIDContext());
+		ITypedTreeNode treeNode = TreeNodeFactory.createTreeNode(null, "Display", display, new BasicReflectionTreeNodeIDContext());
 		Presenter presenter = comp.new Presenter(treeNode);
 		comp.setPresenter(presenter);
 		shell.open();

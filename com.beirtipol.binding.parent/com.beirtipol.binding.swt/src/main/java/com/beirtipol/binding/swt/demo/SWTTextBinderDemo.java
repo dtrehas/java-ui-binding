@@ -17,8 +17,7 @@ import com.beirtipol.binding.swt.SWTAbstractPresentableComposite;
 import com.beirtipol.binding.swt.SWTTextDelegate;
 import com.beirtipol.binding.swt.demo.SWTTextBinderDemo.Presenter;
 
-public class SWTTextBinderDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTTextBinderDemo extends SWTAbstractPresentableComposite<Presenter> {
 	private Text txtFirst;
 	private Text txtLast;
 	private Text txtFull;
@@ -37,31 +36,25 @@ public class SWTTextBinderDemo extends
 		// Widgets
 		{
 			Label lblNewLabel = new Label(this, SWT.NONE);
-			lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
-					false, false, 1, 1));
+			lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 			lblNewLabel.setText("First:");
 
 			txtFirst = new Text(this, SWT.BORDER);
-			txtFirst.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-					false, 1, 1));
+			txtFirst.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 			Label lblLast = new Label(this, SWT.NONE);
-			lblLast.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-					false, 1, 1));
+			lblLast.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 			lblLast.setText("Last:");
 
 			txtLast = new Text(this, SWT.BORDER);
-			txtLast.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-					false, 1, 1));
+			txtLast.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 			Label lblNewLabel_1 = new Label(this, SWT.NONE);
-			lblNewLabel_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
-					false, false, 1, 1));
+			lblNewLabel_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 			lblNewLabel_1.setText("Full:");
 
 			txtFull = new Text(this, SWT.BORDER);
-			txtFull.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-					false, 1, 1));
+			txtFull.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		}
 		// Delegates
 		{

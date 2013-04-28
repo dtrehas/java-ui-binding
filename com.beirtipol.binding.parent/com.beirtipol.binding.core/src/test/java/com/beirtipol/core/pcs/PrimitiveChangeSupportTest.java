@@ -8,13 +8,12 @@ import com.beirtipol.binding.core.pcs.BindableMethod;
 import com.beirtipol.binding.core.pcs.BindableMethod.Type;
 import com.beirtipol.binding.core.pcs.IBindable;
 import com.beirtipol.binding.core.pcs.NestedPropertyChangeSupport;
-import com.beirtipol.binding.core.pcs.PCSReflectiveTest;
 
 public class PrimitiveChangeSupportTest implements IBindable {
-	private PropertyChangeSupport	changeSupport;
+	private PropertyChangeSupport changeSupport;
 
-	public static final String		FLD_NAME	= "name";
-	private long					name;
+	public static final String FLD_NAME = "name";
+	private long name;
 
 	@Override
 	public PropertyChangeSupport changeSupport() {

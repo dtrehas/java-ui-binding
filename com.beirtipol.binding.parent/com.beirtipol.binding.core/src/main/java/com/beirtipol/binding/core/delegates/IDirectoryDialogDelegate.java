@@ -9,6 +9,5 @@ import com.beirtipol.binding.core.binders.dialog.DirectoryDialogBinder;
  * @author O041484
  * 
  */
-public interface IDirectoryDialogDelegate extends
-		IFileBasedDialogDelegate<DirectoryDialogBinder> {
+public interface IDirectoryDialogDelegate extends IFileBasedDialogDelegate<DirectoryDialogBinder> {
 }

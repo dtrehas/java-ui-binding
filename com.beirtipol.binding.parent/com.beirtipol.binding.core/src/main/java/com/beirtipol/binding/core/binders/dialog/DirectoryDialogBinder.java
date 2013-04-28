@@ -9,6 +9,5 @@ import com.beirtipol.binding.core.delegates.IDirectoryDialogDelegate;
  * @author O041484
  * 
  */
-public abstract class DirectoryDialogBinder extends
-		AbstractFileDialogBinder<IDirectoryDialogDelegate> {
+public abstract class DirectoryDialogBinder extends AbstractFileDialogBinder<IDirectoryDialogDelegate> {
 }

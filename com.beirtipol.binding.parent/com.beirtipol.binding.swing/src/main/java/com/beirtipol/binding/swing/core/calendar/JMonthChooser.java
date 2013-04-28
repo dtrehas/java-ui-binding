@@ -48,8 +48,7 @@ import javax.swing.event.ChangeListener;
  * @version $LastChangedRevision: 100 $
  * @version $LastChangedDate: 2006-06-04 14:36:06 +0200 (So, 04 Jun 2006) $
  */
-public class JMonthChooser extends JPanel implements ItemListener,
-		ChangeListener {
+public class JMonthChooser extends JPanel implements ItemListener, ChangeListener {
 	private static final long serialVersionUID = -2028361332231218527L;
 
 	/** true, if the month chooser has a spinner component */
@@ -109,8 +108,7 @@ public class JMonthChooser extends JPanel implements ItemListener,
 
 				public Dimension getPreferredSize() {
 					Dimension size = super.getPreferredSize();
-					return new Dimension(size.width,
-							textField.getPreferredSize().height);
+					return new Dimension(size.width, textField.getPreferredSize().height);
 				}
 			};
 			spinner.addChangeListener(this);
@@ -155,8 +153,7 @@ public class JMonthChooser extends JPanel implements ItemListener,
 	 *            the change event.
 	 */
 	public void stateChanged(ChangeEvent e) {
-		SpinnerNumberModel model = (SpinnerNumberModel) ((JSpinner) e
-				.getSource()).getModel();
+		SpinnerNumberModel model = (SpinnerNumberModel) ((JSpinner) e.getSource()).getModel();
 		int value = model.getNumber().intValue();
 		boolean increase = (value > oldSpinnerValue) ? true : false;
 		oldSpinnerValue = value;

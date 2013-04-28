@@ -33,13 +33,11 @@ public class SwingDateChooserDelegate extends SwingTextDelegate {
              */
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				binder.setTextIntoModel(((JTextField) dateChooser
-						.getDateEditor()).getText());
+				binder.setTextIntoModel(((JTextField) dateChooser.getDateEditor()).getText());
 			}
 		};
 
-		dateChooser.getDateEditor().addPropertyChangeListener("date",
-				propChangeListener);
+		dateChooser.getDateEditor().addPropertyChangeListener("date", propChangeListener);
 	}
 
 	@Override
@@ -77,10 +75,8 @@ public class SwingDateChooserDelegate extends SwingTextDelegate {
 
 	@Override
 	public void free() {
-		if (dateChooser != null && dateChooser.getDateEditor() != null
-				&& propChangeListener != null) {
-			dateChooser.getDateEditor().removePropertyChangeListener("date",
-					propChangeListener);
+		if (dateChooser != null && dateChooser.getDateEditor() != null && propChangeListener != null) {
+			dateChooser.getDateEditor().removePropertyChangeListener("date", propChangeListener);
 		}
 
 		super.free();

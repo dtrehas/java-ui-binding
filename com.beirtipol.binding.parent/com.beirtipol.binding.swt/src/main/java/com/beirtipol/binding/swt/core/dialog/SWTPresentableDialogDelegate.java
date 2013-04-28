@@ -5,8 +5,7 @@ import org.eclipse.swt.widgets.Display;
 import com.beirtipol.binding.core.binders.IPresenter;
 import com.beirtipol.binding.core.delegates.IPresentableDialogDelegate;
 
-public class SWTPresentableDialogDelegate<P extends IPresenter> extends
-		SWTDialogDelegate implements IPresentableDialogDelegate<P> {
+public class SWTPresentableDialogDelegate<P extends IPresenter> extends SWTDialogDelegate implements IPresentableDialogDelegate<P> {
 
 	private final SWTPresentableDialog<P> dialog;
 

@@ -11,16 +11,14 @@ import javax.swing.text.PlainDocument;
 public class JAutoTextField extends JTextField {
 	class AutoDocument extends PlainDocument {
 		@Override
-		public void replace(int i, int j, String s, AttributeSet attributeset)
-				throws BadLocationException {
+		public void replace(int i, int j, String s, AttributeSet attributeset) throws BadLocationException {
 			super.remove(i, j);
 			insertString(i, s, attributeset);
 			setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 
 		@Override
-		public void insertString(int i, String s, AttributeSet attributeset)
-				throws BadLocationException {
+		public void insertString(int i, String s, AttributeSet attributeset) throws BadLocationException {
 			if (s == null || "".equals(s)) {
 				return;
 			}
@@ -106,8 +104,7 @@ public class JAutoTextField extends JTextField {
 		for (int i = 0; i < dataList.size(); i++) {
 			String s1 = dataList.get(i).toString();
 			if (s1 != null) {
-				if (!isCaseSensitive
-						&& s1.toLowerCase().startsWith(s.toLowerCase())) {
+				if (!isCaseSensitive && s1.toLowerCase().startsWith(s.toLowerCase())) {
 					return s1;
 				}
 				if (isCaseSensitive && s1.startsWith(s)) {

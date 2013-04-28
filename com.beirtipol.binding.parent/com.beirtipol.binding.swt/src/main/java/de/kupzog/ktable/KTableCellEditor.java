@@ -287,8 +287,7 @@ public abstract class KTableCellEditor {
 	 *            The statemask from the causing event.
 	 * @return Returns true if the editor activation should happen.
 	 */
-	public boolean isApplicable(int eventType, KTable table, int col, int row,
-			Point clickLocation, String keyInput, int stateMask) {
+	public boolean isApplicable(int eventType, KTable table, int col, int row, Point clickLocation, String keyInput, int stateMask) {
 		return true;
 	}
 

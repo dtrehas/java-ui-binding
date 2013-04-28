@@ -9,8 +9,7 @@ import com.beirtipol.binding.core.tree.ITreeNode;
 public class MapTreeNode extends BasicReflectionTreeNode {
 	private final Map<?, ?> model;
 
-	public MapTreeNode(ITreeNode parent, String name, Map<?, ?> model,
-			BasicReflectionTreeNodeIDContext idContext) {
+	public MapTreeNode(ITreeNode parent, String name, Map<?, ?> model, BasicReflectionTreeNodeIDContext idContext) {
 		super(parent, name, model, idContext);
 		this.model = model;
 	}

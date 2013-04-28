@@ -27,8 +27,7 @@ public class SWTTreeTableDelegate extends SWTBaseTreeDelegate<ITreeTableBinder> 
 	}
 
 	private ITreeNode[] getSelection() {
-		StructuredSelection selection = (StructuredSelection) getViewer()
-				.getSelection();
+		StructuredSelection selection = (StructuredSelection) getViewer().getSelection();
 		List<ITreeNode> nodes = new ArrayList<ITreeNode>();
 		for (Object o : selection.toArray()) {
 			nodes.add((ITreeNode) o);
@@ -41,8 +40,7 @@ public class SWTTreeTableDelegate extends SWTBaseTreeDelegate<ITreeTableBinder> 
 		this.binder = binder;
 		int idx = 0;
 		for (String s : binder.getColumnHeaders()) {
-			TreeColumn trclmnName = new TreeColumn(getViewer().getTree(),
-					SWT.NONE);
+			TreeColumn trclmnName = new TreeColumn(getViewer().getTree(), SWT.NONE);
 			trclmnName.setWidth(binder.getInitialColumnWidthFor(idx++));
 			trclmnName.setText(s);
 		}

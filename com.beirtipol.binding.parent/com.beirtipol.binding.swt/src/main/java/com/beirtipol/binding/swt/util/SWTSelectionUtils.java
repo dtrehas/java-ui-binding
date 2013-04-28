@@ -27,8 +27,7 @@ public final class SWTSelectionUtils {
 		return returnValue;
 	}
 
-	public static IStructuredSelection getStructuredSelection(
-			ISelectionProvider provider) {
+	public static IStructuredSelection getStructuredSelection(ISelectionProvider provider) {
 		IStructuredSelection structuredSelection = new StructuredSelection();
 
 		if (provider != null) {

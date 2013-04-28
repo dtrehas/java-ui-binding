@@ -34,8 +34,7 @@ import com.beirtipol.binding.core.delegates.IDelegate;
 
 public class SwingComboDelegate implements IComboDelegate {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(SwingComboDelegate.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(SwingComboDelegate.class);
 	protected JComboBox combo;
 
 	private final boolean editable;
@@ -94,11 +93,9 @@ public class SwingComboDelegate implements IComboDelegate {
 					return;
 				}
 
-				JComponent scrollPane = (JComponent) ((JPopupMenu) comp)
-						.getComponent(0);
+				JComponent scrollPane = (JComponent) ((JPopupMenu) comp).getComponent(0);
 				Dimension size = new Dimension();
-				size.width = Math.max(box.getPreferredSize().width,
-						box.getSize().width - 2);
+				size.width = Math.max(box.getPreferredSize().width, box.getSize().width - 2);
 				size.height = scrollPane.getPreferredSize().height;
 				scrollPane.setPreferredSize(size);
 				scrollPane.setMaximumSize(size);
@@ -134,9 +131,7 @@ public class SwingComboDelegate implements IComboDelegate {
 		propListener = new PropertyChangeListener() {
 			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
-				if (combo.getEditor() != null
-						&& myEditorComponent != combo.getEditor()
-								.getEditorComponent()) {
+				if (combo.getEditor() != null && myEditorComponent != combo.getEditor().getEditorComponent()) {
 					/*
 					 * The Key/Focus listeners will only be added to the
 					 * editorComponent if it is editable, otherwise the
@@ -145,14 +140,10 @@ public class SwingComboDelegate implements IComboDelegate {
 					if (SwingComboDelegate.this.editable) {
 						if (myEditorComponent != null) {
 							myEditorComponent.removeKeyListener(myKeyListener);
-							myEditorComponent
-									.removeFocusListener(myFocusAdapter);
+							myEditorComponent.removeFocusListener(myFocusAdapter);
 						}
-						LOGGER.info("The editor has changed on a SwingComboDelegate for combo: "
-								+ combo.hashCode()
-								+ ". Adding the keyListener and focusListener again.");
-						myEditorComponent = combo.getEditor()
-								.getEditorComponent();
+						LOGGER.info("The editor has changed on a SwingComboDelegate for combo: " + combo.hashCode() + ". Adding the keyListener and focusListener again.");
+						myEditorComponent = combo.getEditor().getEditorComponent();
 						myEditorComponent.addKeyListener(myKeyListener);
 						myEditorComponent.addFocusListener(myFocusAdapter);
 					}
@@ -178,8 +169,7 @@ public class SwingComboDelegate implements IComboDelegate {
 	private String find(String textToFind, Object[] allowedValues) {
 		String parsedValue = null;
 
-		if (textToFind != null && textToFind.trim().length() > 0
-				&& allowedValues != null) {
+		if (textToFind != null && textToFind.trim().length() > 0 && allowedValues != null) {
 			textToFind = textToFind.toUpperCase();
 
 			for (Object allowedValue : allowedValues) {
@@ -299,8 +289,7 @@ public class SwingComboDelegate implements IComboDelegate {
 					ignoreEvents = true;
 					int item = -1;
 					for (item = 0; item != combo.getItemCount(); item++) {
-						if (combo.getItemAt(item) != null
-								&& ((String) combo.getItemAt(item)).equals(o)) {
+						if (combo.getItemAt(item) != null && ((String) combo.getItemAt(item)).equals(o)) {
 							break;
 						}
 					}
@@ -381,8 +370,7 @@ public class SwingComboDelegate implements IComboDelegate {
 	public void addFocusListener(final IComboBinder binder) {
 		myFocusAdapter = new MyFocusListener();
 		if (editable) {
-			combo.getEditor().getEditorComponent()
-					.addFocusListener(myFocusAdapter);
+			combo.getEditor().getEditorComponent().addFocusListener(myFocusAdapter);
 		} else {
 			combo.addFocusListener(myFocusAdapter);
 		}
@@ -403,9 +391,7 @@ public class SwingComboDelegate implements IComboDelegate {
 	private class MyEditorComponentKeyListener extends KeyAdapter {
 		@Override
 		public void keyReleased(KeyEvent e) {
-			if (e.getKeyCode() != KeyEvent.VK_ENTER
-					&& e.getKeyCode() != KeyEvent.VK_DELETE
-					&& e.getKeyCode() != KeyEvent.VK_ESCAPE) {
+			if (e.getKeyCode() != KeyEvent.VK_ENTER && e.getKeyCode() != KeyEvent.VK_DELETE && e.getKeyCode() != KeyEvent.VK_ESCAPE) {
 				JTextField editor = ((JTextField) e.getSource());
 
 				String selectedText = editor.getSelectedText();
@@ -419,14 +405,12 @@ public class SwingComboDelegate implements IComboDelegate {
 				if (StringUtils.isNotBlank(selectedText)) {
 					int lengthOfSelected = selectedText.length();
 					int potentialEntireLength = textEnteredSoFar.length();
-					textEnteredSoFar = textEnteredSoFar.substring(0,
-							potentialEntireLength - lengthOfSelected);
+					textEnteredSoFar = textEnteredSoFar.substring(0, potentialEntireLength - lengthOfSelected);
 				}
 
 				String value = "";
 				if (basicBinder != null && basicBinder instanceof IComboBinder) {
-					value = find(textEnteredSoFar,
-							((IComboBinder) basicBinder).getAvailableItems());
+					value = find(textEnteredSoFar, ((IComboBinder) basicBinder).getAvailableItems());
 
 					if (value == null && !valueFromText.equals("")) {
 						value = valueFromText;
@@ -456,8 +440,7 @@ public class SwingComboDelegate implements IComboDelegate {
 	@Override
 	public void free() {
 		if (combo != null) {
-			combo.getEditor().getEditorComponent()
-					.removeFocusListener(myFocusAdapter);
+			combo.getEditor().getEditorComponent().removeFocusListener(myFocusAdapter);
 
 			if (propListener != null) {
 				combo.removePropertyChangeListener("editor", propListener);

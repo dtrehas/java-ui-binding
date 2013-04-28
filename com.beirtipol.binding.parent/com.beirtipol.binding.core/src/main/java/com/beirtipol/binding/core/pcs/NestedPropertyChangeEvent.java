@@ -10,8 +10,7 @@ import com.beirtipol.binding.core.util.StringStack;
 public class NestedPropertyChangeEvent extends PropertyChangeEvent {
 	private final PropertyChangeEvent sourceEvent;
 
-	public NestedPropertyChangeEvent(Object source, String propertyName,
-			Object oldValue, Object newValue, PropertyChangeEvent sourceEvent) {
+	public NestedPropertyChangeEvent(Object source, String propertyName, Object oldValue, Object newValue, PropertyChangeEvent sourceEvent) {
 		super(source, propertyName, oldValue, newValue);
 		this.sourceEvent = sourceEvent;
 	}
@@ -23,8 +22,7 @@ public class NestedPropertyChangeEvent extends PropertyChangeEvent {
 	public PropertyChangeEvent getRootEvent() {
 		PropertyChangeEvent rootEvent = this;
 		while (rootEvent instanceof NestedPropertyChangeEvent) {
-			PropertyChangeEvent innerSourceEvent = ((NestedPropertyChangeEvent) rootEvent)
-					.getSourceEvent();
+			PropertyChangeEvent innerSourceEvent = ((NestedPropertyChangeEvent) rootEvent).getSourceEvent();
 			if (innerSourceEvent == null) {
 				break;
 			}
@@ -38,8 +36,7 @@ public class NestedPropertyChangeEvent extends PropertyChangeEvent {
 		path.add(getPropertyName());
 		PropertyChangeEvent rootEvent = this;
 		while (rootEvent instanceof NestedPropertyChangeEvent) {
-			PropertyChangeEvent innerSourceEvent = ((NestedPropertyChangeEvent) rootEvent)
-					.getSourceEvent();
+			PropertyChangeEvent innerSourceEvent = ((NestedPropertyChangeEvent) rootEvent).getSourceEvent();
 			if (innerSourceEvent == null) {
 				break;
 			}

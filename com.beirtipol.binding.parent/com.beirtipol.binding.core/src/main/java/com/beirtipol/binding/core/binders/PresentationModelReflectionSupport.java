@@ -25,8 +25,7 @@ public class PresentationModelReflectionSupport {
 	 * @param c
 	 */
 	public static void updateUI(Object c) {
-		List<Field> declaredFields = ReflectionUtils.getAllDeclaredFields(c
-				.getClass());
+		List<Field> declaredFields = ReflectionUtils.getAllDeclaredFields(c.getClass());
 
 		for (Field field : declaredFields) {
 			if ("this$0".equals(field.getName())) {

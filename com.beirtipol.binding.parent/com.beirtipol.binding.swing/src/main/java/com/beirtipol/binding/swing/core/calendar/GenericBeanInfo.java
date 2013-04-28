@@ -59,8 +59,7 @@ public class GenericBeanInfo extends SimpleBeanInfo {
 		}
 
 		if (registerLocaleEditor) {
-			PropertyEditorManager.registerEditor(Locale.class,
-					LocaleEditor.class);
+			PropertyEditorManager.registerEditor(Locale.class, LocaleEditor.class);
 		}
 	}
 

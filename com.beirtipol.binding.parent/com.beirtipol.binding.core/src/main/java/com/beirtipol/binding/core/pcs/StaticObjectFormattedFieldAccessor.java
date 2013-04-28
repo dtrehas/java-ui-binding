@@ -6,21 +6,17 @@ import com.beirtipol.binding.core.util.IFreeable;
 import com.beirtipol.binding.core.util.ItemBinder;
 import com.beirtipol.binding.core.util.StringStack;
 
-public class StaticObjectFormattedFieldAccessor<T> implements IFreeable,
-		IStaticObjectFormattedAccessor<T> {
+public class StaticObjectFormattedFieldAccessor<T> implements IFreeable, IStaticObjectFormattedAccessor<T> {
 	private final StaticFormattedFieldAccessor<T> accessor;
 	private Object bom;
 
-	public StaticObjectFormattedFieldAccessor(Object bom,
-			ItemBinder<T> formatter, StringStack path) {
+	public StaticObjectFormattedFieldAccessor(Object bom, ItemBinder<T> formatter, StringStack path) {
 		accessor = new StaticFormattedFieldAccessor<T>(formatter, path);
 		this.bom = bom;
 	}
 
-	public StaticObjectFormattedFieldAccessor(Object bom,
-			ItemBinder<T> formatter, String... path) {
-		accessor = new StaticFormattedFieldAccessor<T>(formatter,
-				new StringStack(path));
+	public StaticObjectFormattedFieldAccessor(Object bom, ItemBinder<T> formatter, String... path) {
+		accessor = new StaticFormattedFieldAccessor<T>(formatter, new StringStack(path));
 		this.bom = bom;
 	}
 

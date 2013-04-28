@@ -88,10 +88,8 @@ public class SWTCalendar extends Composite {
 				header.setLayout(gridLayout);
 			}
 
-			final RepeatingButton prevMonthButton = new RepeatingButton(header,
-					SWT.ARROW | SWT.LEFT | SWT.CENTER | (style & SWT.FLAT));
-			prevMonthButton.setLayoutData(new GridData(
-					GridData.VERTICAL_ALIGN_FILL));
+			final RepeatingButton prevMonthButton = new RepeatingButton(header, SWT.ARROW | SWT.LEFT | SWT.CENTER | (style & SWT.FLAT));
+			prevMonthButton.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL));
 			prevMonthButton.setRepeatDelay(100);
 			prevMonthButton.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -101,8 +99,7 @@ public class SWTCalendar extends Composite {
 			});
 
 			final Composite composite = new Composite(header, SWT.NONE);
-			composite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL
-					| GridData.HORIZONTAL_ALIGN_CENTER));
+			composite.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_CENTER));
 			{
 				final GridLayout gridLayout = new GridLayout();
 				gridLayout.numColumns = 2;
@@ -124,8 +121,7 @@ public class SWTCalendar extends Composite {
 			});
 
 			yearChooser = new Spinner(composite, SWT.BORDER);
-			yearChooser
-					.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL));
+			yearChooser.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL));
 			yearChooser.setMinimum(1);
 			yearChooser.setMaximum(9999);
 			yearChooser.setIncrement(1);
@@ -142,10 +138,8 @@ public class SWTCalendar extends Composite {
 				}
 			});
 
-			final RepeatingButton nextMonthButton = new RepeatingButton(header,
-					SWT.ARROW | SWT.RIGHT | SWT.CENTER | (style & SWT.FLAT));
-			nextMonthButton.setLayoutData(new GridData(
-					GridData.VERTICAL_ALIGN_FILL));
+			final RepeatingButton nextMonthButton = new RepeatingButton(header, SWT.ARROW | SWT.RIGHT | SWT.CENTER | (style & SWT.FLAT));
+			nextMonthButton.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL));
 			nextMonthButton.setRepeatDelay(100);
 			nextMonthButton.addSelectionListener(new SelectionAdapter() {
 				@Override
@@ -156,8 +150,7 @@ public class SWTCalendar extends Composite {
 		}
 
 		{
-			dayChooser = new SWTDayChooser(this, SWT.BORDER
-					| (style & RED_WEEKEND));
+			dayChooser = new SWTDayChooser(this, SWT.BORDER | (style & RED_WEEKEND));
 			GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 			gridData.horizontalSpan = 3;
 			dayChooser.setLayoutData(gridData);

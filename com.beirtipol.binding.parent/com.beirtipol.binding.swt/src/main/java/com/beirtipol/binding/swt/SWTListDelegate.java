@@ -48,8 +48,7 @@ public class SWTListDelegate implements IListDelegate {
 	}
 
 	private List<?> getSelection() {
-		StructuredSelection selection = (StructuredSelection) list
-				.getSelection();
+		StructuredSelection selection = (StructuredSelection) list.getSelection();
 		return Arrays.asList(selection.toArray());
 	}
 
@@ -105,8 +104,7 @@ public class SWTListDelegate implements IListDelegate {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				list.getList()
-						.setBackground(ColorConverter.convert(background));
+				list.getList().setBackground(ColorConverter.convert(background));
 			}
 		});
 	}
@@ -126,8 +124,7 @@ public class SWTListDelegate implements IListDelegate {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				list.getList()
-						.setForeground(ColorConverter.convert(textColour));
+				list.getList().setForeground(ColorConverter.convert(textColour));
 			}
 		});
 	}

@@ -20,8 +20,7 @@ import com.beirtipol.binding.swt.core.dialog.SWTPresentableDialog;
 import com.beirtipol.binding.swt.core.dialog.SWTPresentableDialogDelegate;
 import com.beirtipol.binding.swt.demo.SWTPresentableDialogDemo.Presenter;
 
-public class SWTPresentableDialogDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTPresentableDialogDemo extends SWTAbstractPresentableComposite<Presenter> {
 	private Button btnOpenDialog;
 	private SWTButtonDelegate openDialogDelegate;
 	private SWTPresentableDialogDelegate<SWTButtonBinderDemo.Presenter> dialogDelegate;
@@ -38,16 +37,14 @@ public class SWTPresentableDialogDemo extends
 		// Widgets
 		{
 			btnOpenDialog = new Button(this, SWT.NONE);
-			btnOpenDialog.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT,
-					true, false, 1, 1));
+			btnOpenDialog.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, true, false, 1, 1));
 			dialog = new ButtonDemoDialog(getShell());
 
 		}
 		// Delegates
 		{
 			openDialogDelegate = new SWTButtonDelegate(btnOpenDialog);
-			dialogDelegate = new SWTPresentableDialogDelegate<SWTButtonBinderDemo.Presenter>(
-					dialog);
+			dialogDelegate = new SWTPresentableDialogDelegate<SWTButtonBinderDemo.Presenter>(dialog);
 		}
 	}
 
@@ -57,8 +54,7 @@ public class SWTPresentableDialogDemo extends
 		presenter.getDialogBinder().setDelegate(dialogDelegate);
 	}
 
-	class ButtonDemoDialog extends
-			SWTPresentableDialog<SWTButtonBinderDemo.Presenter> {
+	class ButtonDemoDialog extends SWTPresentableDialog<SWTButtonBinderDemo.Presenter> {
 		private SWTButtonBinderDemo swtButtonBinderDemo;
 
 		protected ButtonDemoDialog(Shell parentShell) {
@@ -122,8 +118,7 @@ public class SWTPresentableDialogDemo extends
 		Shell shell = new Shell(display);
 		shell.setText("SWT");
 		shell.setLayout(new FillLayout());
-		SWTPresentableDialogDemo comp = new SWTPresentableDialogDemo(shell,
-				SWT.NONE);
+		SWTPresentableDialogDemo comp = new SWTPresentableDialogDemo(shell, SWT.NONE);
 		Presenter presenter = comp.new Presenter();
 		comp.setPresenter(presenter);
 		shell.open();

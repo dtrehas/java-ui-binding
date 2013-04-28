@@ -12,10 +12,8 @@ import java.util.Set;
  * 
  * @author O041484
  */
-public abstract class AbstractPresenter implements IPresenter,
-		PropertyChangeListener {
-	protected PropertyChangeSupport binderChangeSupport = new PropertyChangeSupport(
-			this);
+public abstract class AbstractPresenter implements IPresenter, PropertyChangeListener {
+	protected PropertyChangeSupport binderChangeSupport = new PropertyChangeSupport(this);
 
 	protected Set<PropertyChangeEvent> currentTransaction = new HashSet<PropertyChangeEvent>();
 

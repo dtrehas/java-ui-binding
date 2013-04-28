@@ -67,8 +67,7 @@ public class KTableCellEditorCheckbox extends KTableCellEditor {
 		if (save) {
 			Object o = m_Model.getContentAt(m_Col, m_Row);
 			if (!(o instanceof Boolean))
-				throw new ClassCastException(
-						"CheckboxCellEditor needs a Boolean content!");
+				throw new ClassCastException("CheckboxCellEditor needs a Boolean content!");
 
 			boolean newVal = !((Boolean) o).booleanValue();
 

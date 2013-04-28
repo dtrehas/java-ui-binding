@@ -299,8 +299,7 @@ public abstract class KTableDefaultModel implements KTableModel {
 	 *         otherwise.
 	 */
 	public boolean isHeaderCell(int col, int row) {
-		return col < getFixedHeaderColumnCount()
-				|| row < getFixedHeaderRowCount();
+		return col < getFixedHeaderColumnCount() || row < getFixedHeaderRowCount();
 	}
 
 	/**

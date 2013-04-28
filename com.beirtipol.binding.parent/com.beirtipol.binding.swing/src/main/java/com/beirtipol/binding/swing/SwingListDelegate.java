@@ -110,11 +110,8 @@ public class SwingListDelegate implements IListDelegate {
 	public void setItemBinder(final ItemBinder converter) {
 		list.setCellRenderer(new DefaultListCellRenderer() {
 			@Override
-			public Component getListCellRendererComponent(JList list,
-					Object value, int index, boolean isSelected,
-					boolean cellHasFocus) {
-				JLabel label = (JLabel) super.getListCellRendererComponent(
-						list, value, index, isSelected, cellHasFocus);
+			public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+				JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 				label.setText(converter.convert(value));
 				Color background = converter.getBackground(value);
 				Color foreground = converter.getForeground(value);
@@ -182,8 +179,7 @@ public class SwingListDelegate implements IListDelegate {
 			@Override
 			public void run() {
 				list.setVisible(visible);
-				if (list.getParent() != null
-						&& list.getParent().getParent() instanceof JScrollPane) {
+				if (list.getParent() != null && list.getParent().getParent() instanceof JScrollPane) {
 					list.getParent().getParent().setVisible(visible);
 				}
 			}

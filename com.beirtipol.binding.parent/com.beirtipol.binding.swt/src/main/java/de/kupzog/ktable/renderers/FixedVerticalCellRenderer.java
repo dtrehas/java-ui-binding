@@ -51,8 +51,7 @@ public class FixedVerticalCellRenderer extends FixedCellRenderer {
 	 */
 	public FixedVerticalCellRenderer(int style) {
 		super(style);
-		setAlignment(SWTX.ALIGN_HORIZONTAL_RIGHT | SWTX.ALIGN_VERTICAL_BOTTOM
-				| SWTX.WRAP);
+		setAlignment(SWTX.ALIGN_HORIZONTAL_RIGHT | SWTX.ALIGN_VERTICAL_BOTTOM | SWTX.WRAP);
 	}
 
 	/*
@@ -62,10 +61,8 @@ public class FixedVerticalCellRenderer extends FixedCellRenderer {
 	 * de.kupzog.ktable.KTableCellRenderer#getOptimalWidth(org.eclipse.swt.graphics
 	 * .GC, int, int, java.lang.Object, boolean)
 	 */
-	public int getOptimalWidth(GC gc, int col, int row, Object content,
-			boolean fixed, KTableModel model) {
-		String text = SWTX.wrapText(gc, content.toString(),
-				model.getRowHeight(row) - 6);
+	public int getOptimalWidth(GC gc, int col, int row, Object content, boolean fixed, KTableModel model) {
+		String text = SWTX.wrapText(gc, content.toString(), model.getRowHeight(row) - 6);
 		int w = SWTX.getCachedStringExtent(gc, text).y;
 		w += 6;
 		return w;
@@ -85,8 +82,7 @@ public class FixedVerticalCellRenderer extends FixedCellRenderer {
 	 * @param backColor
 	 *            The background color to use.
 	 */
-	protected void drawCellContent(GC gc, Rectangle rect, String text,
-			Image img, Color textColor, Color backColor) {
+	protected void drawCellContent(GC gc, Rectangle rect, String text, Image img, Color textColor, Color backColor) {
 		applyFont(gc);
 		drawVerticalCellContent(gc, rect, text, img, textColor, backColor);
 		resetFont(gc);

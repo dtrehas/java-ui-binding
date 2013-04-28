@@ -6,9 +6,7 @@ import com.beirtipol.binding.core.binders.AbstractBinder;
 import com.beirtipol.binding.core.delegates.IMultiplePresentableComponentDelegate;
 
 @SuppressWarnings("rawtypes")
-public abstract class AbstractMultiplePresentableComponentBinder extends
-		AbstractBinder<IMultiplePresentableComponentDelegate> implements
-		IMultiplePresentableComponentBinder {
+public abstract class AbstractMultiplePresentableComponentBinder extends AbstractBinder<IMultiplePresentableComponentDelegate> implements IMultiplePresentableComponentBinder {
 	@Override
 	public void updateUI() {
 		if (delegate != null) {

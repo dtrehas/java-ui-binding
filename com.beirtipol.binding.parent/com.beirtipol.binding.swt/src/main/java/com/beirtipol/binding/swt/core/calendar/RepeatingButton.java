@@ -122,8 +122,7 @@ public class RepeatingButton extends Button {
 	}
 
 	private void buttonPressed(int stateMask, int time) {
-		SelectionListener[] listeners = new SelectionListener[selectionListeners
-				.size()];
+		SelectionListener[] listeners = new SelectionListener[selectionListeners.size()];
 		selectionListeners.toArray(listeners);
 		for (int i = 0; i < listeners.length; i++) {
 			SelectionListener l = listeners[i];

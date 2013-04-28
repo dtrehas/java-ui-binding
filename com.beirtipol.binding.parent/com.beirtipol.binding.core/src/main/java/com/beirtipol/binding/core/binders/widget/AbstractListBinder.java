@@ -5,8 +5,7 @@ import java.util.List;
 
 import com.beirtipol.binding.core.delegates.IListDelegate;
 
-public abstract class AbstractListBinder<T> extends
-		AbstractWidgetBinder<IListDelegate> implements IListBinder<T> {
+public abstract class AbstractListBinder<T> extends AbstractWidgetBinder<IListDelegate> implements IListBinder<T> {
 
 	@Override
 	public void updateUI() {

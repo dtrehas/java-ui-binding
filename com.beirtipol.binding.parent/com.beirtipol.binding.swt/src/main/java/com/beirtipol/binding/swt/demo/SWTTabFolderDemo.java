@@ -29,8 +29,7 @@ import com.beirtipol.binding.swt.SWTPresentableComponentDelegate;
 import com.beirtipol.binding.swt.SWTTabFolderDelegate;
 import com.beirtipol.binding.swt.demo.SWTTabFolderDemo.Presenter;
 
-public class SWTTabFolderDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTTabFolderDemo extends SWTAbstractPresentableComposite<Presenter> {
 
 	private CTabFolder tabFolder;
 	private Button btnNewTab;
@@ -50,22 +49,17 @@ public class SWTTabFolderDemo extends
 			btnNewTab.setText("+");
 
 			tabFolder = new CTabFolder(this, SWT.BORDER | SWT.CLOSE);
-			tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
-					true, 1, 1));
-			tabFolder.setSelectionBackground(Display.getCurrent()
-					.getSystemColor(
-							SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
+			tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+			tabFolder.setSelectionBackground(Display.getCurrent().getSystemColor(SWT.COLOR_TITLE_INACTIVE_BACKGROUND_GRADIENT));
 		}
 		{
 			newTabDelegate = new SWTButtonDelegate(btnNewTab);
 			tabFolderDelegate = new SWTTabFolderDelegate(tabFolder) {
 
 				@Override
-				protected SWTPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(
-						IPresentableComponentBinder<? extends IPresenter> binder) {
+				protected SWTPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(IPresentableComponentBinder<? extends IPresenter> binder) {
 					if (binder.getPresenter() instanceof SWTTextBinderDemo.Presenter) {
-						return new SWTPresentableComponentDelegate<SWTTextBinderDemo.Presenter>(
-								new SWTTextBinderDemo(tabFolder, SWT.NONE));
+						return new SWTPresentableComponentDelegate<SWTTextBinderDemo.Presenter>(new SWTTextBinderDemo(tabFolder, SWT.NONE));
 					}
 					return null;
 				}
@@ -103,8 +97,7 @@ public class SWTTabFolderDemo extends
 					@Override
 					public void handlePressed() {
 						currentTabs.add(new AbstractTabItemBinder() {
-							SWTTextBinderDemo.Presenter presenter = new SWTTextBinderDemo.Presenter(
-									new SWTTextBinderDemo.Person());
+							SWTTextBinderDemo.Presenter presenter = new SWTTextBinderDemo.Presenter(new SWTTextBinderDemo.Person());
 							private AbstractPresentableComponentBinder<SWTTextBinderDemo.Presenter> compBinder;
 
 							@Override

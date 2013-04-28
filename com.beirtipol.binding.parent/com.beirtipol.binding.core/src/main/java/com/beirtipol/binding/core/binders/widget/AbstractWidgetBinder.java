@@ -6,8 +6,7 @@ import com.beirtipol.binding.core.binders.AbstractBinder;
 import com.beirtipol.binding.core.binders.IColorModel;
 import com.beirtipol.binding.core.delegates.IDelegate;
 
-public abstract class AbstractWidgetBinder<Delegate extends IDelegate> extends
-		AbstractBinder<Delegate> {
+public abstract class AbstractWidgetBinder<Delegate extends IDelegate> extends AbstractBinder<Delegate> {
 	protected IColorModel colorModel;
 
 	public IColorModel getColorModel() {

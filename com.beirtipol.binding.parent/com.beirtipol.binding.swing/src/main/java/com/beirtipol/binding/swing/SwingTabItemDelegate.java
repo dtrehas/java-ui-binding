@@ -13,14 +13,12 @@ import com.beirtipol.binding.core.binders.component.ITabItemBinder;
 import com.beirtipol.binding.core.delegates.IPresentableComponentDelegate;
 import com.beirtipol.binding.core.delegates.ITabItemDelegate;
 
-public class SwingTabItemDelegate<T extends IPresenter> implements
-		ITabItemDelegate, IPresentableComponentDelegate<T> {
+public class SwingTabItemDelegate<T extends IPresenter> implements ITabItemDelegate, IPresentableComponentDelegate<T> {
 	private String tabTitle = "";
 	private JTabbedPane tabPane;
 	private AbstractPresentableSwingPanel<T> tabComponent;
 
-	public SwingTabItemDelegate(String tabTitle, JTabbedPane tabPane,
-			AbstractPresentableSwingPanel<T> tabComponent) {
+	public SwingTabItemDelegate(String tabTitle, JTabbedPane tabPane, AbstractPresentableSwingPanel<T> tabComponent) {
 		this.tabPane = tabPane;
 		this.tabComponent = tabComponent;
 		this.tabTitle = tabTitle;
@@ -64,8 +62,7 @@ public class SwingTabItemDelegate<T extends IPresenter> implements
 				if (StringUtils.equals(tabTitle, text)) {
 					return;
 				}
-				final int tabToChangeIndex = tabPane
-						.indexOfComponent(tabComponent.getSwingComponent());
+				final int tabToChangeIndex = tabPane.indexOfComponent(tabComponent.getSwingComponent());
 				final int selectedTabIndex = tabPane.getSelectedIndex();
 
 				if (selectedTabIndex == -1 || tabToChangeIndex == -1) {

@@ -43,9 +43,7 @@ public class SwingFileDialogDelegate implements IFileDialogDelegate {
 						// Not happy with this at all. But seems the easiest way
 						// to make it compatible with SWT's version, which seems
 						// like a more sensible standard.
-						return f.isDirectory()
-								|| f.getName().endsWith(
-										entry.getValue().substring(1));
+						return f.isDirectory() || f.getName().endsWith(entry.getValue().substring(1));
 					}
 				});
 			}
@@ -67,8 +65,7 @@ public class SwingFileDialogDelegate implements IFileDialogDelegate {
 	public void openDialog() {
 		int result = dialog.showDialog(parent, "Select");
 		File file = dialog.getSelectedFile();
-		if (binder != null && file != null
-				&& result == JFileChooser.APPROVE_OPTION) {
+		if (binder != null && file != null && result == JFileChooser.APPROVE_OPTION) {
 			binder.onClose(file);
 		}
 	}

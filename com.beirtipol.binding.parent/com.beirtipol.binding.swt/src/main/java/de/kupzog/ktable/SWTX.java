@@ -140,8 +140,7 @@ public class SWTX {
 		return new Point(p.x, p.y);
 	}
 
-	public static int drawTextVerticalAlign(GC gc, String text, int textAlign,
-			int x, int y, int w, int h) {
+	public static int drawTextVerticalAlign(GC gc, String text, int textAlign, int x, int y, int w, int h) {
 		if (text == null)
 			text = "";
 
@@ -173,8 +172,7 @@ public class SWTX {
 			}
 		}
 		//
-		int textDrawFlags = SWT.DRAW_DELIMITER | SWT.DRAW_TAB
-				| SWT.DRAW_TRANSPARENT;
+		int textDrawFlags = SWT.DRAW_DELIMITER | SWT.DRAW_TAB | SWT.DRAW_TRANSPARENT;
 		if ((textAlign & ALIGN_VERTICAL_MASK) == ALIGN_VERTICAL_TOP) {
 			gc.drawText(text, x, y, textDrawFlags);
 			// gc.fillRectangle(x, y + textSize.y, textSize.x, h - textSize.y);
@@ -188,8 +186,7 @@ public class SWTX {
 			// gc.fillRectangle(x, y + yOffset + textSize.y, textSize.x, h -
 			// (yOffset + textSize.y));
 		} else
-			throw new SWTException("Unknown alignment for text: "
-					+ (textAlign & ALIGN_VERTICAL_MASK));
+			throw new SWTException("Unknown alignment for text: " + (textAlign & ALIGN_VERTICAL_MASK));
 
 		gc.setClipping(oldClip);
 		return textSize.x;
@@ -212,12 +209,10 @@ public class SWTX {
 		// img.dispose();
 	}
 
-	public static void drawImageVerticalAlign(GC gc, Image image,
-			int imageAlign, int x, int y, int h) {
+	public static void drawImageVerticalAlign(GC gc, Image image, int imageAlign, int x, int y, int h) {
 		if (image == null)
 			return;
-		Point imageSize = new Point(image.getBounds().width,
-				image.getBounds().height);
+		Point imageSize = new Point(image.getBounds().width, image.getBounds().height);
 		//
 		if ((imageAlign & ALIGN_VERTICAL_MASK) == ALIGN_VERTICAL_TOP) {
 			drawTransparentImage(gc, image, x, y);
@@ -238,17 +233,14 @@ public class SWTX {
 			// (yOffset + imageSize.y));
 			return;
 		}
-		throw new SWTException("Unknown alignment for image: "
-				+ (imageAlign & ALIGN_VERTICAL_MASK));
+		throw new SWTException("Unknown alignment for image: " + (imageAlign & ALIGN_VERTICAL_MASK));
 	}
 
-	public static void drawTextImage(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h) {
+	public static void drawTextImage(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h) {
 		Point textSize = getCachedStringExtent(gc, text);
 		Point imageSize;
 		if (image != null)
-			imageSize = new Point(image.getBounds().width,
-					image.getBounds().height);
+			imageSize = new Point(image.getBounds().width, image.getBounds().height);
 		else
 			imageSize = new Point(0, 0);
 
@@ -256,13 +248,11 @@ public class SWTX {
 		 * Rectangle oldClipping = gc.getClipping(); gc.setClipping(x, y, w, h);
 		 */
 		try {
-			if ((image == null)
-					&& ((textAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_CENTER)) {
+			if ((image == null) && ((textAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_CENTER)) {
 				Point p = getCachedStringExtent(gc, text);
 				int offset = (w - p.x) / 2;
 				if (offset > 0) {
-					drawTextVerticalAlign(gc, text, textAlign, x + offset, y,
-							w, h);
+					drawTextVerticalAlign(gc, text, textAlign, x + offset, y, w, h);
 					// gc.fillRectangle(x, y, offset, h);
 					// gc.fillRectangle(x + offset + p.x, y, w - (offset + p.x),
 					// h);
@@ -277,8 +267,7 @@ public class SWTX {
 				}
 				return;
 			}
-			if (((text == null) || (text.length() == 0))
-					&& ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_CENTER)) {
+			if (((text == null) || (text.length() == 0)) && ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_CENTER)) {
 				int offset = (w - imageSize.x) / 2;
 				// System.out.println("w: " + w + "   imageSize" + imageSize +
 				// "   offset: " + offset);
@@ -290,43 +279,35 @@ public class SWTX {
 			}
 			if ((textAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_LEFT) {
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_NONE) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							y, w, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, y, w, h);
 					// gc.fillRectangle(x + textSize.x, y, w - textSize.x, h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_LEFT) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x
-							+ imageSize.x, y, w - imageSize.x, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x + imageSize.x, y, w - imageSize.x, h);
 					drawImageVerticalAlign(gc, image, imageAlign, x, y, h);
 					// gc.fillRectangle(x + textSize.x + imageSize.x, y, w -
 					// (textSize.x + imageSize.x), h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_RIGHT) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							y, w - imageSize.x, h);
-					drawImageVerticalAlign(gc, image, imageAlign, x + w
-							- imageSize.x, y, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, y, w - imageSize.x, h);
+					drawImageVerticalAlign(gc, image, imageAlign, x + w - imageSize.x, y, h);
 					// gc.fillRectangle(x + textSize.x, y, w - (textSize.x +
 					// imageSize.x), h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_RIGHT_LEFT) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							y, w - imageSize.x, h);
-					drawImageVerticalAlign(gc, image, imageAlign, x
-							+ textSize.x, y, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, y, w - imageSize.x, h);
+					drawImageVerticalAlign(gc, image, imageAlign, x + textSize.x, y, h);
 					// gc.fillRectangle(x + textSize.x + imageSize.x, y, w -
 					// (textSize.x + imageSize.x), h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_RIGHT_CENTER) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							y, w - imageSize.x, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, y, w - imageSize.x, h);
 					int xOffset = (w - textSize.x - imageSize.x) / 2;
-					drawImageVerticalAlign(gc, image, imageAlign, x
-							+ textSize.x + xOffset, y, h);
+					drawImageVerticalAlign(gc, image, imageAlign, x + textSize.x + xOffset, y, h);
 					// gc.fillRectangle(x + textSize.x, y, xOffset, h);
 					// gc.fillRectangle(
 					// x + textSize.x + xOffset + imageSize.x,
@@ -335,78 +316,60 @@ public class SWTX {
 					// h);
 					return;
 				}
-				throw new SWTException("Unknown alignment for text: "
-						+ (imageAlign & ALIGN_HORIZONTAL_MASK));
+				throw new SWTException("Unknown alignment for text: " + (imageAlign & ALIGN_HORIZONTAL_MASK));
 			} // text align left
 			if ((textAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_RIGHT) {
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_NONE) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							-1000, w, h);
-					drawTextVerticalAlign(gc, text, textAlign, x + w
-							- textSize.x, y, w, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, -1000, w, h);
+					drawTextVerticalAlign(gc, text, textAlign, x + w - textSize.x, y, w, h);
 					// gc.fillRectangle(x, y, w - textSize.x, h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_LEFT) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							-1000, w - imageSize.x, h);
-					drawTextVerticalAlign(gc, text, textAlign, x + w
-							- textSize.x, y, w - imageSize.x, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, -1000, w - imageSize.x, h);
+					drawTextVerticalAlign(gc, text, textAlign, x + w - textSize.x, y, w - imageSize.x, h);
 					drawImageVerticalAlign(gc, image, imageAlign, x, y, h);
 					// gc.fillRectangle(x + imageSize.x, y, w - (textSize.x +
 					// imageSize.x), h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_LEFT_RIGHT) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							-1000, w - imageSize.x, h);
-					drawTextVerticalAlign(gc, text, textAlign, x + w
-							- textSize.x, y, w - imageSize.x, h);
-					drawImageVerticalAlign(gc, image, imageAlign, x + w
-							- (textSize.x + imageSize.x), y, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, -1000, w - imageSize.x, h);
+					drawTextVerticalAlign(gc, text, textAlign, x + w - textSize.x, y, w - imageSize.x, h);
+					drawImageVerticalAlign(gc, image, imageAlign, x + w - (textSize.x + imageSize.x), y, h);
 					// gc.fillRectangle(x, y, w - (textSize.x + imageSize.x),
 					// h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_LEFT_CENTER) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							-1000, w - imageSize.x, h);
-					drawTextVerticalAlign(gc, text, textAlign, x + w
-							- textSize.x, y, w - imageSize.x, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, -1000, w - imageSize.x, h);
+					drawTextVerticalAlign(gc, text, textAlign, x + w - textSize.x, y, w - imageSize.x, h);
 					int xOffset = (w - textSize.x - imageSize.x) / 2;
-					drawImageVerticalAlign(gc, image, imageAlign, x + xOffset,
-							y, h);
+					drawImageVerticalAlign(gc, image, imageAlign, x + xOffset, y, h);
 					// // gc.fillRectangle(x, y, xOffset, h);
 					// // gc.fillRectangle(x + xOffset + imageSize.x, y, w -
 					// (xOffset + imageSize.x + textSize.x), h);
 					return;
 				}
 				if ((imageAlign & ALIGN_HORIZONTAL_MASK) == ALIGN_HORIZONTAL_RIGHT) {
-					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x,
-							-1000, w - imageSize.x, h);
-					drawTextVerticalAlign(gc, text, textAlign, x + w
-							- (textSize.x + imageSize.x), y, w - imageSize.x, h);
-					drawImageVerticalAlign(gc, image, imageAlign, x + w
-							- imageSize.x, y, h);
+					textSize.x = drawTextVerticalAlign(gc, text, textAlign, x, -1000, w - imageSize.x, h);
+					drawTextVerticalAlign(gc, text, textAlign, x + w - (textSize.x + imageSize.x), y, w - imageSize.x, h);
+					drawImageVerticalAlign(gc, image, imageAlign, x + w - imageSize.x, y, h);
 					// // gc.fillRectangle(x, y, w - (textSize.x + imageSize.x),
 					// h);
 					return;
 				}
-				throw new SWTException("Unknown alignment for text: "
-						+ (imageAlign & ALIGN_HORIZONTAL_MASK));
+				throw new SWTException("Unknown alignment for text: " + (imageAlign & ALIGN_HORIZONTAL_MASK));
 			} // text align right
-			throw new SWTException("Unknown alignment for text: "
-					+ (textAlign & ALIGN_HORIZONTAL_MASK));
+			throw new SWTException("Unknown alignment for text: " + (textAlign & ALIGN_HORIZONTAL_MASK));
 		} // trye
 		finally {
 			// gc.setClipping(oldClipping);
 		}
 	}
 
-	public static void drawTextImage(GC gc, String text, int textAlign,
-			Image image, int imageAlign, Rectangle r) {
-		drawTextImage(gc, text, textAlign, image, imageAlign, r.x, r.y,
-				r.width, r.height);
+	public static void drawTextImage(GC gc, String text, int textAlign, Image image, int imageAlign, Rectangle r) {
+		drawTextImage(gc, text, textAlign, image, imageAlign, r.x, r.y, r.width, r.height);
 	}
 
 	public static String cropWrappedTextForHeight(GC gc, String text, int height) {
@@ -429,21 +392,16 @@ public class SWTX {
 		if (textSize.x > width) {
 			StringBuffer wrappedText = new StringBuffer();
 			String[] lines = text.split("\n");
-			int cutoffLength = width
-					/ gc.getFontMetrics().getAverageCharWidth();
+			int cutoffLength = width / gc.getFontMetrics().getAverageCharWidth();
 			if (cutoffLength < 3)
 				return text;
 			for (int i = 0; i < lines.length; i++) {
 				int breakOffset = 0;
 				while (breakOffset < lines[i].length()) {
-					String lPart = lines[i].substring(
-							breakOffset,
-							Math.min(breakOffset + cutoffLength,
-									lines[i].length()));
+					String lPart = lines[i].substring(breakOffset, Math.min(breakOffset + cutoffLength, lines[i].length()));
 					Point lineSize = getCachedStringExtent(gc, lPart);
 					while ((lPart.length() > 0) && (lineSize.x >= width)) {
-						lPart = lPart.substring(0,
-								Math.max(lPart.length() - 1, 0));
+						lPart = lPart.substring(0, Math.max(lPart.length() - 1, 0));
 						lineSize = getCachedStringExtent(gc, lPart);
 					}
 					wrappedText.append(lPart);
@@ -451,17 +409,13 @@ public class SWTX {
 					wrappedText.append('\n');
 				}
 			}
-			return wrappedText.substring(0,
-					Math.max(wrappedText.length() - 1, 0));
+			return wrappedText.substring(0, Math.max(wrappedText.length() - 1, 0));
 		} else
 			return text;
 
 	}
 
-	public static void drawButtonUp(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h,
-			Color face, Color shadowHigh, Color shadowNormal, Color shadowDark,
-			int leftMargin, int topMargin) {
+	public static void drawButtonUp(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h, Color face, Color shadowHigh, Color shadowNormal, Color shadowDark, int leftMargin, int topMargin) {
 		Color prevForeground = gc.getForeground();
 		Color prevBackground = gc.getBackground();
 		Rectangle clip = gc.getClipping();
@@ -483,55 +437,33 @@ public class SWTX {
 
 			gc.fillRectangle(x + 1, y + 1, w - 3, h - 3);
 			gc.setForeground(prevForeground);
-			drawTextImage(gc, text, textAlign, image, imageAlign, x + 1
-					+ leftMargin, y + 1 + topMargin, w - 3 - leftMargin, h - 3
-					- topMargin);
+			drawTextImage(gc, text, textAlign, image, imageAlign, x + 1 + leftMargin, y + 1 + topMargin, w - 3 - leftMargin, h - 3 - topMargin);
 		} finally {
 			gc.setForeground(prevForeground);
 			gc.setBackground(prevBackground);
 		}
 	}
 
-	public static void drawButtonUp(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h, Color face) {
+	public static void drawButtonUp(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h, Color face) {
 		Display display = Display.getCurrent();
-		drawButtonUp(gc, text, textAlign, image, imageAlign, x, y, w, h, face,
-				display.getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW),
-				display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW),
-				display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW), 2, 2);
+		drawButtonUp(gc, text, textAlign, image, imageAlign, x, y, w, h, face, display.getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW), display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW), display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW), 2, 2);
 	}
 
-	public static void drawButtonUp(GC gc, String text, int textAlign,
-			Image image, int imageAlign, Rectangle r, int leftMargin,
-			int topMargin) {
+	public static void drawButtonUp(GC gc, String text, int textAlign, Image image, int imageAlign, Rectangle r, int leftMargin, int topMargin) {
 		Display display = Display.getCurrent();
-		drawButtonUp(gc, text, textAlign, image, imageAlign, r.x, r.y, r.width,
-				r.height, display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND),
-				display.getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW),
-				display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW),
-				display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW),
-				leftMargin, topMargin);
+		drawButtonUp(gc, text, textAlign, image, imageAlign, r.x, r.y, r.width, r.height, display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND), display.getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW), display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW), display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW), leftMargin, topMargin);
 	}
 
-	public static void drawButtonUp(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h) {
+	public static void drawButtonUp(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h) {
 		Display display = Display.getCurrent();
-		drawButtonUp(gc, text, textAlign, image, imageAlign, x, y, w, h,
-				display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND),
-				display.getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW),
-				display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW),
-				display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW), 2, 2);
+		drawButtonUp(gc, text, textAlign, image, imageAlign, x, y, w, h, display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND), display.getSystemColor(SWT.COLOR_WIDGET_HIGHLIGHT_SHADOW), display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW), display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW), 2, 2);
 	}
 
-	public static void drawButtonUp(GC gc, String text, int textAlign,
-			Image image, int imageAlign, Rectangle r) {
-		drawButtonUp(gc, text, textAlign, image, imageAlign, r.x, r.y, r.width,
-				r.height);
+	public static void drawButtonUp(GC gc, String text, int textAlign, Image image, int imageAlign, Rectangle r) {
+		drawButtonUp(gc, text, textAlign, image, imageAlign, r.x, r.y, r.width, r.height);
 	}
 
-	public static void drawButtonDown(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h,
-			Color face, Color shadowNormal, int leftMargin, int topMargin) {
+	public static void drawButtonDown(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h, Color face, Color shadowNormal, int leftMargin, int topMargin) {
 		Color prevForeground = gc.getForeground();
 		Color prevBackground = gc.getBackground();
 		try {
@@ -544,39 +476,28 @@ public class SWTX {
 			gc.drawRectangle(x, y, w - 1, h - 1);
 			gc.fillRectangle(x + 1, y + 1, w - 2, h - 2);
 			gc.setForeground(prevForeground);
-			drawTextImage(gc, text, textAlign, image, imageAlign, x + 2
-					+ leftMargin, y + 2 + topMargin, w - 3 - leftMargin, h - 3
-					- topMargin);
+			drawTextImage(gc, text, textAlign, image, imageAlign, x + 2 + leftMargin, y + 2 + topMargin, w - 3 - leftMargin, h - 3 - topMargin);
 		} finally {
 			gc.setForeground(prevForeground);
 			gc.setBackground(prevBackground);
 		}
 	}
 
-	public static void drawButtonDown(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h) {
+	public static void drawButtonDown(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h) {
 		Display display = Display.getCurrent();
-		drawButtonDown(gc, text, textAlign, image, imageAlign, x, y, w, h,
-				display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND),
-				display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW), 2, 2);
+		drawButtonDown(gc, text, textAlign, image, imageAlign, x, y, w, h, display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND), display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW), 2, 2);
 	}
 
-	public static void drawButtonDown(GC gc, String text, int textAlign,
-			Image image, int imageAlign, Rectangle r) {
-		drawButtonDown(gc, text, textAlign, image, imageAlign, r.x, r.y,
-				r.width, r.height);
+	public static void drawButtonDown(GC gc, String text, int textAlign, Image image, int imageAlign, Rectangle r) {
+		drawButtonDown(gc, text, textAlign, image, imageAlign, r.x, r.y, r.width, r.height);
 	}
 
-	public static void drawButtonDown(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h, Color face) {
+	public static void drawButtonDown(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h, Color face) {
 		Display display = Display.getCurrent();
-		drawButtonDown(gc, text, textAlign, image, imageAlign, x, y, w, h,
-				face, display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW),
-				2, 2);
+		drawButtonDown(gc, text, textAlign, image, imageAlign, x, y, w, h, face, display.getSystemColor(SWT.COLOR_WIDGET_NORMAL_SHADOW), 2, 2);
 	}
 
-	public static void drawButtonDeepDown(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h) {
+	public static void drawButtonDeepDown(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h) {
 		Display display = Display.getCurrent();
 		gc.setForeground(display.getSystemColor(SWT.COLOR_BLACK));
 		gc.drawLine(x, y, x + w - 2, y);
@@ -594,20 +515,14 @@ public class SWTX {
 		gc.fillRectangle(x + 1, y + 2, 2, h - 4);
 
 		gc.setBackground(display.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND));
-		drawTextImage(gc, text, textAlign, image, imageAlign, x + 2 + 1,
-				y + 2 + 1, w - 4, h - 3 - 1);
+		drawTextImage(gc, text, textAlign, image, imageAlign, x + 2 + 1, y + 2 + 1, w - 4, h - 3 - 1);
 	}
 
-	public static void drawButtonDeepDown(GC gc, String text, int textAlign,
-			Image image, int imageAlign, Rectangle r) {
-		drawButtonDeepDown(gc, text, textAlign, image, imageAlign, r.x, r.y,
-				r.width, r.height);
+	public static void drawButtonDeepDown(GC gc, String text, int textAlign, Image image, int imageAlign, Rectangle r) {
+		drawButtonDeepDown(gc, text, textAlign, image, imageAlign, r.x, r.y, r.width, r.height);
 	}
 
-	public static void drawFlatButtonUp(GC gc, String text, int textAlign,
-			Image image, int imageAlign, int x, int y, int w, int h,
-			Color face, Color shadowLight, Color shadowNormal, int leftMargin,
-			int topMargin) {
+	public static void drawFlatButtonUp(GC gc, String text, int textAlign, Image image, int imageAlign, int x, int y, int w, int h, Color face, Color shadowLight, Color shadowNormal, int leftMargin, int topMargin) {
 		Color prevForeground = gc.getForeground();
 		Color prevBackground = gc.getBackground();
 		try {
@@ -624,9 +539,7 @@ public class SWTX {
 			//
 			gc.setBackground(face);
 			gc.setForeground(prevForeground);
-			drawTextImage(gc, text, textAlign, image, imageAlign, x + 1
-					+ leftMargin, y + 1 + topMargin, w - 1 - leftMargin, h - 1
-					- topMargin);
+			drawTextImage(gc, text, textAlign, image, imageAlign, x + 1 + leftMargin, y + 1 + topMargin, w - 1 - leftMargin, h - 1 - topMargin);
 		} finally {
 			gc.setForeground(prevForeground);
 			gc.setBackground(prevBackground);
@@ -641,14 +554,11 @@ public class SWTX {
 	 * @param y
 	 * @param alpha
 	 */
-	public static void drawShadowImage(GC gc, Image image, int x, int y,
-			int alpha) {
+	public static void drawShadowImage(GC gc, Image image, int x, int y, int alpha) {
 		Display display = Display.getCurrent();
-		Point imageSize = new Point(image.getBounds().width,
-				image.getBounds().height);
+		Point imageSize = new Point(image.getBounds().width, image.getBounds().height);
 		//
-		ImageData imgData = new ImageData(imageSize.x, imageSize.y, 24,
-				new PaletteData(255, 255, 255));
+		ImageData imgData = new ImageData(imageSize.x, imageSize.y, 24, new PaletteData(255, 255, 255));
 		imgData.alpha = alpha;
 		Image img = new Image(display, imgData);
 		GC imgGC = new GC(img);

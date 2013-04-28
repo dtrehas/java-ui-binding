@@ -7,8 +7,7 @@ import com.beirtipol.binding.core.tree.ITreeNode;
 public class ListTreeNode extends BasicReflectionTreeNode {
 	private final List<?> model;
 
-	public ListTreeNode(ITreeNode parent, String name, List<?> model,
-			BasicReflectionTreeNodeIDContext idContext) {
+	public ListTreeNode(ITreeNode parent, String name, List<?> model, BasicReflectionTreeNodeIDContext idContext) {
 		super(parent, name, model, idContext);
 		this.model = model;
 	}
@@ -17,8 +16,7 @@ public class ListTreeNode extends BasicReflectionTreeNode {
 	public void createChildren(List<ITreeNode> children) {
 		for (int i = 0; i < model.size(); i++) {
 			String nodeName = "[" + i + "]";
-			children.add(TreeNodeFactory.createTreeNode(this, nodeName,
-					model.get(i), idContext));
+			children.add(TreeNodeFactory.createTreeNode(this, nodeName, model.get(i), idContext));
 		}
 	}
 

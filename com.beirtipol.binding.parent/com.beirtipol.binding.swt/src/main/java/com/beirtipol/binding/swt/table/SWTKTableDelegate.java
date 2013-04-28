@@ -17,11 +17,9 @@ import de.kupzog.ktable.KTableDefaultModel;
 import de.kupzog.ktable.renderers.DefaultCellRenderer;
 import de.kupzog.ktable.renderers.FixedCellRenderer;
 
-public class SWTKTableDelegate extends KTableDefaultModel implements
-		ITableDelegate {
+public class SWTKTableDelegate extends KTableDefaultModel implements ITableDelegate {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(SWTKTableDelegate.class);
+	private static final Logger LOGGER = Logger.getLogger(SWTKTableDelegate.class);
 
 	enum CellType {
 		BLANK, COLUMN_HEADER, ROW_HEADER, DATA;
@@ -140,8 +138,7 @@ public class SWTKTableDelegate extends KTableDefaultModel implements
 		return result;
 	}
 
-	public Point createAbosolutePointFromRelative(CellType cellType, int col,
-			int row) {
+	public Point createAbosolutePointFromRelative(CellType cellType, int col, int row) {
 		if (cellType != CellType.BLANK) {
 			if (cellType == CellType.DATA) {
 				row += getFixedRowCount();
@@ -220,9 +217,7 @@ public class SWTKTableDelegate extends KTableDefaultModel implements
 
 	@Override
 	public KTableCellRenderer doGetCellRenderer(int col, int row) {
-		return new FixedCellRenderer(DefaultCellRenderer.STYLE_FLAT
-				| DefaultCellRenderer.INDICATION_FOCUS
-				| DefaultCellRenderer.INDICATION_SORT);
+		return new FixedCellRenderer(DefaultCellRenderer.STYLE_FLAT | DefaultCellRenderer.INDICATION_FOCUS | DefaultCellRenderer.INDICATION_SORT);
 	}
 
 	@Override

@@ -4,8 +4,7 @@ import java.awt.Color;
 
 import com.beirtipol.binding.core.delegates.ITextDelegate;
 
-public abstract class AbstractTextBinder extends
-		AbstractWidgetBinder<ITextDelegate> implements ITextBinder {
+public abstract class AbstractTextBinder extends AbstractWidgetBinder<ITextDelegate> implements ITextBinder {
 
 	@Override
 	public void updateUI() {

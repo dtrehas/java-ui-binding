@@ -14,8 +14,7 @@ import com.beirtipol.binding.core.binders.widget.IButtonBinder;
 import com.beirtipol.binding.swing.AbstractPresentableSwingPanel;
 import com.beirtipol.binding.swing.SwingButtonDelegate;
 
-public class SwingButtonBinderDemo extends
-		AbstractPresentableSwingPanel<SwingButtonBinderDemo.Presenter> {
+public class SwingButtonBinderDemo extends AbstractPresentableSwingPanel<SwingButtonBinderDemo.Presenter> {
 	private JButton btnCount;
 	private SwingButtonDelegate btnCountDelegate;
 

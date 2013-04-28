@@ -5,8 +5,7 @@ import java.beans.PropertyChangeListener;
 
 import com.beirtipol.binding.core.util.StringStack;
 
-public abstract class NestedPropertyChangeListener implements
-		PropertyChangeListener {
+public abstract class NestedPropertyChangeListener implements PropertyChangeListener {
 	private final StringStack path;
 
 	public NestedPropertyChangeListener(String... path) {
@@ -22,8 +21,7 @@ public abstract class NestedPropertyChangeListener implements
 		if (evt instanceof NestedPropertyChangeEvent) {
 			boolean matches = path == null || path.size() == 0;
 			if (!matches) {
-				StringStack eventPath = ((NestedPropertyChangeEvent) evt)
-						.getPropertyPath();
+				StringStack eventPath = ((NestedPropertyChangeEvent) evt).getPropertyPath();
 				matches = eventPath.startsWith(path);
 			}
 			if (matches) {

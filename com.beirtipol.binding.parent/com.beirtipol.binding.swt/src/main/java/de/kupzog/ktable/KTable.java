@@ -259,11 +259,9 @@ public class KTable extends Canvas {
 
 		// determine default border colors:
 		if ((getStyle() & SWT.FLAT) == 0)
-			m_ColorTopBorder = m_Display
-					.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW);
+			m_ColorTopBorder = m_Display.getSystemColor(SWT.COLOR_WIDGET_DARK_SHADOW);
 		else
-			m_ColorTopBorder = m_Display
-					.getSystemColor(SWT.COLOR_LIST_BACKGROUND);
+			m_ColorTopBorder = m_Display.getSystemColor(SWT.COLOR_LIST_BACKGROUND);
 		m_ColorRightBorder = m_ColorLeftBorder = m_ColorTopBorder;
 	}
 
@@ -327,8 +325,7 @@ public class KTable extends Canvas {
 			private Point[] oldSelections;
 
 			public void cellSelected(int col, int row, int statemask) {
-				if (isHighlightSelectionInHeader()
-						&& (statemask & SWT.SHIFT) == 0) {
+				if (isHighlightSelectionInHeader() && (statemask & SWT.SHIFT) == 0) {
 					Point[] selections = getCellSelection();
 					GC gc = new GC(KTable.this);
 
@@ -358,8 +355,7 @@ public class KTable extends Canvas {
 					for (int j = 0; j < getModel().getFixedHeaderColumnCount(); j++) {
 						Point valid = getValidCell(j, row);
 						// allow painting of GC only on columns, not on rows:
-						Rectangle rowClip = new Rectangle(1, 1 + fixedHeight,
-								fixedWidth, bounds.height - 1 - fixedHeight);
+						Rectangle rowClip = new Rectangle(1, 1 + fixedHeight, fixedWidth, bounds.height - 1 - fixedHeight);
 						rowClip.intersect(oldClipping);
 						gc.setClipping(rowClip);
 						drawCell(gc, valid.x, valid.y);
@@ -367,8 +363,7 @@ public class KTable extends Canvas {
 					for (int j = 0; j < getModel().getFixedHeaderRowCount(); j++) {
 						Point valid = getValidCell(col, j);
 						// allow painting of GC only on rows, not on cols:
-						Rectangle rowClip = new Rectangle(1 + fixedWidth, 1,
-								bounds.width - 1 - fixedWidth, fixedHeight);
+						Rectangle rowClip = new Rectangle(1 + fixedWidth, 1, bounds.width - 1 - fixedWidth, fixedHeight);
 
 						rowClip.intersect(oldClipping);
 						gc.setClipping(rowClip);
@@ -417,8 +412,7 @@ public class KTable extends Canvas {
 			getVerticalBar().addSelectionListener(new SelectionAdapter() {
 				public void widgetSelected(SelectionEvent e) {
 					int oldTopRow = m_TopRow;
-					m_TopRow = getVerticalBar().getSelection()
-							+ getFixedRowCount();
+					m_TopRow = getVerticalBar().getSelection() + getFixedRowCount();
 					if (oldTopRow != m_TopRow)
 						redraw();
 				}
@@ -431,8 +425,7 @@ public class KTable extends Canvas {
 			getHorizontalBar().addSelectionListener(new SelectionAdapter() {
 				public void widgetSelected(SelectionEvent e) {
 					int oldLeftCol = m_LeftColumn;
-					m_LeftColumn = getHorizontalBar().getSelection()
-							+ getFixedColumnCount();
+					m_LeftColumn = getHorizontalBar().getSelection() + getFixedColumnCount();
 					if (oldLeftCol != m_LeftColumn)
 						redraw();
 				}
@@ -522,8 +515,7 @@ public class KTable extends Canvas {
 
 		int count = 0;
 		int heightSum = fixedHeight;
-		for (int i = m_TopRow; heightSum < rect.height
-				&& i < m_Model.getRowCount(); i++) {
+		for (int i = m_TopRow; heightSum < rect.height && i < m_Model.getRowCount(); i++) {
 			int rowHeight = m_Model.getRowHeight(i);
 			if (heightSum + rowHeight <= rect.height) {
 				count++;
@@ -540,8 +532,7 @@ public class KTable extends Canvas {
 
 		int count = 0;
 		int heightSum = getFixedHeight();
-		for (int i = m_Model.getRowCount() - 1; heightSum < rect.height
-				&& i >= getFixedRowCount(); i--) {
+		for (int i = m_Model.getRowCount() - 1; heightSum < rect.height && i >= getFixedRowCount(); i--) {
 			int rowHeight = m_Model.getRowHeight(i);
 			if (heightSum + rowHeight <= rect.height) {
 				count++;
@@ -558,8 +549,7 @@ public class KTable extends Canvas {
 
 		int count = 0;
 		int widthSum = getFixedWidth();
-		for (int i = m_Model.getColumnCount() - 1; widthSum < rect.width
-				&& i >= getFixedColumnCount(); i--) {
+		for (int i = m_Model.getColumnCount() - 1; widthSum < rect.width && i >= getFixedColumnCount(); i--) {
 			int colWidth = m_Model.getColumnWidth(i);
 			if (widthSum + colWidth <= rect.width) {
 				count++;
@@ -613,10 +603,8 @@ public class KTable extends Canvas {
 		 * but the table still scrolled to the right / bottom with no way to
 		 * access the left / top because the scrollbars are deactivated.
 		 */
-		boolean allColumnsFullyVisible = getFullyVisibleColCountAtEndOfTable() == m_Model
-				.getColumnCount() - getFixedColumnCount();
-		boolean allRowsFullyVisible = getFullyVisibleRowCountAtEndOfTable() == m_Model
-				.getRowCount() - getFixedRowCount();
+		boolean allColumnsFullyVisible = getFullyVisibleColCountAtEndOfTable() == m_Model.getColumnCount() - getFixedColumnCount();
+		boolean allRowsFullyVisible = getFullyVisibleRowCountAtEndOfTable() == m_Model.getRowCount() - getFixedRowCount();
 		if (allColumnsFullyVisible) {
 			m_LeftColumn = getFixedColumnCount();
 		}
@@ -643,8 +631,7 @@ public class KTable extends Canvas {
 
 		ScrollBar sb = getHorizontalBar();
 		if (sb != null) {
-			if (m_Model.getColumnCount() <= getFixedColumnCount()
-					|| allColumnsFullyVisible) {
+			if (m_Model.getColumnCount() <= getFixedColumnCount() || allColumnsFullyVisible) {
 				sb.setMinimum(0);
 				sb.setMaximum(1);
 				sb.setPageIncrement(1);
@@ -657,9 +644,7 @@ public class KTable extends Canvas {
 				 * the minimum being equal to the selection.
 				 */
 				sb.setMinimum(0);
-				sb.setMaximum(m_Model.getColumnCount()
-						- getFullyVisibleColCountAtEndOfTable() + 5
-						- getFixedColumnCount());
+				sb.setMaximum(m_Model.getColumnCount() - getFullyVisibleColCountAtEndOfTable() + 5 - getFixedColumnCount());
 				sb.setIncrement(1);
 				sb.setPageIncrement(1);
 				sb.setThumb(5);
@@ -668,15 +653,13 @@ public class KTable extends Canvas {
 		}
 
 		m_RowsFullyVisible = getFullyVisibleRowCount(fixedHeight);
-		m_RowsFullyVisible = Math.min(m_RowsFullyVisible, m_Model.getRowCount()
-				- getFixedRowCount());
+		m_RowsFullyVisible = Math.min(m_RowsFullyVisible, m_Model.getRowCount() - getFixedRowCount());
 		m_RowsFullyVisible = Math.max(0, m_RowsFullyVisible);
 
 		m_RowsVisible = m_RowsFullyVisible + 1;
 
 		if (m_TopRow + m_RowsFullyVisible > m_Model.getRowCount()) {
-			m_TopRow = Math.max(getFixedRowCount(), m_Model.getRowCount()
-					- m_RowsFullyVisible);
+			m_TopRow = Math.max(getFixedRowCount(), m_Model.getRowCount() - m_RowsFullyVisible);
 		}
 
 		if (m_TopRow + m_RowsFullyVisible >= m_Model.getRowCount()) {
@@ -685,8 +668,7 @@ public class KTable extends Canvas {
 
 		sb = getVerticalBar();
 		if (sb != null) {
-			if (m_Model.getRowCount() <= getFixedRowCount()
-					|| allRowsFullyVisible) {
+			if (m_Model.getRowCount() <= getFixedRowCount() || allRowsFullyVisible) {
 				sb.setMinimum(0);
 				sb.setMaximum(1);
 				sb.setPageIncrement(1);
@@ -699,9 +681,7 @@ public class KTable extends Canvas {
 				 * the minimum being equal to the selection.
 				 */
 				sb.setMinimum(0);
-				sb.setMaximum(m_Model.getRowCount()
-						- getFullyVisibleRowCountAtEndOfTable() + 5
-						- getFixedRowCount());
+				sb.setMaximum(m_Model.getRowCount() - getFullyVisibleRowCountAtEndOfTable() + 5 - getFixedRowCount());
 				sb.setPageIncrement(m_RowsVisible - getFixedRowCount());
 				sb.setIncrement(1);
 				sb.setThumb(5);
@@ -873,8 +853,7 @@ public class KTable extends Canvas {
 		// check adjacent cells (towards the right) to see if they are merged
 		// with this cell
 		int i;
-		for (i = 1; col + i < m_Model.getColumnCount()
-				&& getValidCell(col + i, row).equals(new Point(col, row)); i++) {
+		for (i = 1; col + i < m_Model.getColumnCount() && getValidCell(col + i, row).equals(new Point(col, row)); i++) {
 			/*
 			 * if we get to the border of the fixed cell block, we must stop
 			 * counting; otherwise, we run into problems when cells are merged
@@ -897,8 +876,7 @@ public class KTable extends Canvas {
 		 * because the user has not scrolled very far).
 		 */
 		if (col < getFixedColumnCount() && col + i >= getFixedColumnCount()) {
-			for (int j = 0; getValidCell(m_LeftColumn + j, row).equals(
-					new Point(col, row)); j++) {
+			for (int j = 0; getValidCell(m_LeftColumn + j, row).equals(new Point(col, row)); j++) {
 				widthInPx += getColumnWidth(m_LeftColumn + j);
 				widthInColumns = m_LeftColumn + j - row;
 			}
@@ -938,8 +916,7 @@ public class KTable extends Canvas {
 	 * @return The height, unit depending on the parameter
 	 *         <code>resultInPixels</code>.
 	 */
-	private int calculateExtraCellHeight(int col, int row,
-			boolean resultInPixels) {
+	private int calculateExtraCellHeight(int col, int row, boolean resultInPixels) {
 		// check: only the root cells of merged cells are actually drawn, so all
 		// other cells have span width of 0
 		Point valid = getValidCell(col, row);
@@ -954,8 +931,7 @@ public class KTable extends Canvas {
 		// check adjacent cells (towards the bottom) to see if they are merged
 		// with this cell
 		int i;
-		for (i = 1; row + i < m_Model.getRowCount()
-				&& getValidCell(col, row + i).equals(new Point(col, row)); i++) {
+		for (i = 1; row + i < m_Model.getRowCount() && getValidCell(col, row + i).equals(new Point(col, row)); i++) {
 			/*
 			 * if we get to the border of the fixed cell block, we must stop
 			 * counting; otherwise, we run into problems when cells are merged
@@ -978,8 +954,7 @@ public class KTable extends Canvas {
 		 * because the user has not scrolled very far).
 		 */
 		if (row < getFixedRowCount() && row + i >= getFixedRowCount()) {
-			for (int j = 0; getValidCell(col, m_TopRow + j).equals(
-					new Point(col, row)); j++) {
+			for (int j = 0; getValidCell(col, m_TopRow + j).equals(new Point(col, row)); j++) {
 				heightInPx += m_Model.getRowHeight(m_TopRow + j);
 				heightInRows = m_TopRow + j - row;
 			}
@@ -1065,13 +1040,11 @@ public class KTable extends Canvas {
 		Point valid = getValidCell(col, row);
 		Rectangle extent = new Rectangle(valid.x, valid.y, 1, 1);
 
-		for (int i = extent.width; getValidCell(valid.x + i, valid.y).equals(
-				valid); i++) {
+		for (int i = extent.width; getValidCell(valid.x + i, valid.y).equals(valid); i++) {
 			extent.width++;
 		}
 
-		for (int j = extent.height; getValidCell(valid.x, valid.y + j).equals(
-				valid); j++) {
+		for (int j = extent.height; getValidCell(valid.x, valid.y + j).equals(valid); j++) {
 			extent.height++;
 		}
 
@@ -1109,19 +1082,15 @@ public class KTable extends Canvas {
 			// be sure that clipping cuts oft all the unneccessary part of a
 			// spanned cell:
 			Rectangle oldClipping = setContentAreaClipping(gc);
-			drawCells(gc, oldClipping, m_LeftColumn, m_Model.getColumnCount(),
-					m_TopRow, m_TopRow + m_RowsVisible);
+			drawCells(gc, oldClipping, m_LeftColumn, m_Model.getColumnCount(), m_TopRow, m_TopRow + m_RowsVisible);
 			// content has been drawn, so set back clipping:
 
 			setTopAreaClipping(gc, oldClipping);
-			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), m_TopRow,
-					m_TopRow + m_RowsVisible);
+			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), m_TopRow, m_TopRow + m_RowsVisible);
 			setLeftAreaClipping(gc, oldClipping);
-			drawCells(gc, gc.getClipping(), m_LeftColumn,
-					m_Model.getColumnCount(), 0, getFixedRowCount());
+			drawCells(gc, gc.getClipping(), m_LeftColumn, m_Model.getColumnCount(), 0, getFixedRowCount());
 			gc.setClipping(oldClipping);
-			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), 0,
-					getFixedRowCount());
+			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), 0, getFixedRowCount());
 
 			drawBottomSpace(gc);
 		} else {
@@ -1211,8 +1180,7 @@ public class KTable extends Canvas {
 			}
 		}
 
-		int lastColRight = getColumnRight(Math.min(m_LeftColumn
-				+ m_ColumnsVisible, m_Model.getColumnCount() - 1));
+		int lastColRight = getColumnRight(Math.min(m_LeftColumn + m_ColumnsVisible, m_Model.getColumnCount() - 1));
 
 		// implement the behavior that we fill the remaining space with an
 		// additional empty column.
@@ -1224,22 +1192,17 @@ public class KTable extends Canvas {
 			int ystart = 1;
 			for (int row = 0; row < getFixedRowCount(); row++) {
 				Point last = getValidCell(lastCol, row);
-				KTableCellRenderer fixedRenderer = m_Model.getCellRenderer(
-						last.x, last.y);
+				KTableCellRenderer fixedRenderer = m_Model.getCellRenderer(last.x, last.y);
 
 				int rowheight = m_Model.getRowHeight(row);
-				fixedRenderer.drawCell(gc, new Rectangle(lastColRight + 2,
-						ystart, r.width - 1, rowheight - 1), -1, -1, "", false,
-						true, false, m_Model);
+				fixedRenderer.drawCell(gc, new Rectangle(lastColRight + 2, ystart, r.width - 1, rowheight - 1), -1, -1, "", false, true, false, m_Model);
 
 				ystart += rowheight;
 			}
 			TextCellRenderer defaultRenderer = new TextCellRenderer(SWT.NONE);
 			for (int row = m_TopRow; row < m_TopRow + m_RowsVisible + 1; row++) {
 				int rowHeight = m_Model.getRowHeight(row);
-				defaultRenderer.drawCell(gc, new Rectangle(lastColRight + 2,
-						ystart, r.width - 1, rowHeight - 1), -1, -1, "", false,
-						false, false, m_Model);
+				defaultRenderer.drawCell(gc, new Rectangle(lastColRight + 2, ystart, r.width - 1, rowHeight - 1), -1, -1, "", false, false, false, m_Model);
 				ystart += rowHeight;
 			}
 
@@ -1249,11 +1212,9 @@ public class KTable extends Canvas {
 
 			// draw outer lines:
 			Rectangle clientArea = getClientArea();
-			gc.setForeground(m_Display
-					.getSystemColor(SWT.COLOR_LIST_BACKGROUND));
+			gc.setForeground(m_Display.getSystemColor(SWT.COLOR_LIST_BACKGROUND));
 			gc.drawLine(1, r.y, clientArea.x + clientArea.width - 1, r.y);
-			gc.drawLine(clientArea.x + clientArea.width - 1, 0, clientArea.x
-					+ clientArea.width - 1, r.y - 1);
+			gc.drawLine(clientArea.x + clientArea.width - 1, 0, clientArea.x + clientArea.width - 1, r.y - 1);
 
 			drawBorderLines(gc, clientArea);
 		} else if ((getStyle() & SWTX.FILL_WITH_LASTCOL) != 0) {
@@ -1265,8 +1226,7 @@ public class KTable extends Canvas {
 			gc.setForeground(m_Display.getSystemColor(SWT.COLOR_WHITE));
 			gc.drawLine(1, r.y, clientArea.x + clientArea.width - 1, r.y);
 			if (m_LeftColumn + m_ColumnsVisible == m_Model.getColumnCount())
-				gc.drawLine(clientArea.x + clientArea.width - 1, 0,
-						clientArea.x + clientArea.width - 1, r.y - 1);
+				gc.drawLine(clientArea.x + clientArea.width - 1, 0, clientArea.x + clientArea.width - 1, r.y - 1);
 
 			drawBorderLines(gc, clientArea);
 		} else {
@@ -1298,9 +1258,7 @@ public class KTable extends Canvas {
 			// border
 			if (m_LeftColumn + m_ColumnsVisible == m_Model.getColumnCount()) {
 				gc.setForeground(m_ColorRightBorder);
-				gc.drawLine(clientArea.x + clientArea.width - 1, 0,
-						clientArea.x + clientArea.width - 1, clientArea.y
-								+ clientArea.height);
+				gc.drawLine(clientArea.x + clientArea.width - 1, 0, clientArea.x + clientArea.width - 1, clientArea.y + clientArea.height);
 			}
 		}
 	}
@@ -1315,8 +1273,7 @@ public class KTable extends Canvas {
 	 */
 	public void redraw(Rectangle cellsToRedraw) {
 		checkWidget();
-		redraw(cellsToRedraw.x, cellsToRedraw.y, cellsToRedraw.width,
-				cellsToRedraw.height);
+		redraw(cellsToRedraw.x, cellsToRedraw.y, cellsToRedraw.width, cellsToRedraw.height);
 	}
 
 	/**
@@ -1347,27 +1304,21 @@ public class KTable extends Canvas {
 		Rectangle clipRect = getClientArea();
 		GC gc = new GC(this);
 		Rectangle oldClip = setContentAreaClipping(gc);
-		drawCells(gc, clipRect, firstCol,
-				Math.min(firstCol + numOfCols, m_Model.getColumnCount()),
-				firstRow, Math.min(firstRow + numOfRows, m_Model.getRowCount()));
+		drawCells(gc, clipRect, firstCol, Math.min(firstCol + numOfCols, m_Model.getColumnCount()), firstRow, Math.min(firstRow + numOfRows, m_Model.getRowCount()));
 		gc.setClipping(oldClip);
 
 		if (redrawFixedRows)
-			drawCells(gc, gc.getClipping(), m_LeftColumn,
-					m_Model.getColumnCount(), 0, getFixedRowCount());
+			drawCells(gc, gc.getClipping(), m_LeftColumn, m_Model.getColumnCount(), 0, getFixedRowCount());
 		if (redrawFixedCols)
-			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), m_TopRow,
-					m_TopRow + m_RowsVisible);
+			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), m_TopRow, m_TopRow + m_RowsVisible);
 		if (redrawFixedCols || redrawFixedRows) {
-			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), 0,
-					getFixedRowCount());
+			drawCells(gc, gc.getClipping(), 0, getFixedColumnCount(), 0, getFixedRowCount());
 			drawBottomSpace(gc);
 		}
 		gc.dispose();
 	}
 
-	protected void drawCells(GC gc, Rectangle clipRect, int fromCol, int toCol,
-			int fromRow, int toRow) {
+	protected void drawCells(GC gc, Rectangle clipRect, int fromCol, int toCol, int fromRow, int toRow) {
 		Rectangle r;
 
 		if (m_CellEditor != null) {
@@ -1375,8 +1326,7 @@ public class KTable extends Canvas {
 				Rectangle hide = new Rectangle(-101, -101, 100, 100);
 				m_CellEditor.setCellRect(hide);
 			} else {
-				m_CellEditor.setCellRect(getCellRect(m_CellEditor.m_Col,
-						m_CellEditor.m_Row));
+				m_CellEditor.setCellRect(getCellRect(m_CellEditor.m_Col, m_CellEditor.m_Row));
 			}
 		}
 
@@ -1406,8 +1356,7 @@ public class KTable extends Canvas {
 				if (valid != null && (valid.x != col || valid.y != row)) {
 					// is this a partially visible merged cell? then we still
 					// have to draw it!
-					if ((valid.x < col && col - 1 < m_LeftColumn && col > getFixedColumnCount())
-							|| (valid.y < row && row - 1 < m_TopRow && row > getFixedRowCount())) {
+					if ((valid.x < col && col - 1 < m_LeftColumn && col > getFixedColumnCount()) || (valid.y < row && row - 1 < m_TopRow && row > getFixedRowCount())) {
 						drawCell(gc, valid.x, valid.y);
 					}
 					// merged cell that is not partially visible -> don't draw
@@ -1445,9 +1394,7 @@ public class KTable extends Canvas {
 		Point found = new Point(colToCheck, rowToCheck);
 
 		// check input parameters
-		if (colToCheck >= m_Model.getColumnCount()
-				|| rowToCheck >= m_Model.getRowCount() || colToCheck < 0
-				|| rowToCheck < 0) {
+		if (colToCheck >= m_Model.getColumnCount() || rowToCheck >= m_Model.getRowCount() || colToCheck < 0 || rowToCheck < 0) {
 			return found;
 		}
 
@@ -1455,12 +1402,8 @@ public class KTable extends Canvas {
 		while (!found.equals(lastFound)) {
 			lastFound = found;
 			found = m_Model.belongsToCell(found.x, found.y);
-			if (found != null
-					&& (found.x > lastFound.x || found.y > lastFound.y))
-				throw new IllegalArgumentException(
-						"When spanning over several cells, "
-								+ "supercells that determine the content of the large cell must "
-								+ "always be in the left upper corner!");
+			if (found != null && (found.x > lastFound.x || found.y > lastFound.y))
+				throw new IllegalArgumentException("When spanning over several cells, " + "supercells that determine the content of the large cell must " + "always be in the left upper corner!");
 			if (found == null)
 				return lastFound;
 		}
@@ -1503,26 +1446,13 @@ public class KTable extends Canvas {
 		// set up clipping so that the renderer is only
 		// allowed to paint in his area:
 		Rectangle oldClip = gc.getClipping();
-		Rectangle newClip = new Rectangle(rect.x, rect.y, rect.width + 1,
-				rect.height + 1);
+		Rectangle newClip = new Rectangle(rect.x, rect.y, rect.width + 1, rect.height + 1);
 		newClip.intersect(oldClip);
 		gc.setClipping(newClip);
 
-		Point validClickedCell = getValidCell(m_ClickColumnIndex,
-				m_ClickRowIndex);
+		Point validClickedCell = getValidCell(m_ClickColumnIndex, m_ClickRowIndex);
 
-		m_Model.getCellRenderer(col, row)
-				.drawCell(
-						gc,
-						rect,
-						col,
-						row,
-						m_Model.getContentAt(col, row),
-						showAsSelected(col, row)
-								|| highlightSelectedRowCol(col, row),
-						isHeaderCell(col, row),
-						col == validClickedCell.x && row == validClickedCell.y,
-						m_Model);
+		m_Model.getCellRenderer(col, row).drawCell(gc, rect, col, row, m_Model.getContentAt(col, row), showAsSelected(col, row) || highlightSelectedRowCol(col, row), isHeaderCell(col, row), col == validClickedCell.x && row == validClickedCell.y, m_Model);
 
 		gc.setClipping(oldClip);
 	}
@@ -1540,8 +1470,7 @@ public class KTable extends Canvas {
 	 */
 	public void updateCell(int col, int row) {
 		checkWidget();
-		if ((row < 0) || (row >= m_Model.getRowCount()) || (col < 0)
-				|| (col >= m_Model.getColumnCount()))
+		if ((row < 0) || (row >= m_Model.getRowCount()) || (col < 0) || (col >= m_Model.getColumnCount()))
 			return;
 
 		// be sure it is a valid cell if cells span
@@ -1575,36 +1504,30 @@ public class KTable extends Canvas {
 	 *         <code>getFixedHeaderRowCount()</code>
 	 */
 	public boolean isHeaderCell(int col, int row) {
-		return col < m_Model.getFixedHeaderColumnCount()
-				|| row < m_Model.getFixedHeaderRowCount();
+		return col < m_Model.getFixedHeaderColumnCount() || row < m_Model.getFixedHeaderRowCount();
 	}
 
 	protected boolean showAsSelected(int col, int row) {
 		// A cell with an open editor should be drawn without focus
 		if (m_CellEditor != null) {
-			if (col == m_CellEditor.m_Col && row == m_CellEditor.m_Row
-					&& m_CellEditor.getControl() != null)
+			if (col == m_CellEditor.m_Col && row == m_CellEditor.m_Row && m_CellEditor.getControl() != null)
 				return false;
 		}
-		return isCellSelected(col, row)
-				&& (isFocusControl() || isShowSelectionWithoutFocus());
+		return isCellSelected(col, row) && (isFocusControl() || isShowSelectionWithoutFocus());
 	}
 
 	protected void drawRow(GC gc, int row) {
 		drawCells(gc, getClientArea(), 0, getFixedColumnCount(), row, row + 1);
-		drawCells(gc, getClientArea(), m_LeftColumn, m_Model.getColumnCount(),
-				row, row + 1);
+		drawCells(gc, getClientArea(), m_LeftColumn, m_Model.getColumnCount(), row, row + 1);
 	}
 
 	protected void drawCol(GC gc, int col) {
 		if (col < getFixedColumnCount()) {
-			drawCells(gc, getClientArea(), col, col + 1, 0, m_TopRow
-					+ m_RowsVisible);
+			drawCells(gc, getClientArea(), col, col + 1, 0, m_TopRow + m_RowsVisible);
 		} else {
 			drawCells(gc, getClientArea(), col, col + 1, 0, getFixedRowCount());
 			Rectangle oldClip = setContentAreaClipping(gc);
-			drawCells(gc, gc.getClipping(), col, col + 1, m_TopRow, m_TopRow
-					+ m_RowsVisible);
+			drawCells(gc, gc.getClipping(), col, col + 1, m_TopRow, m_TopRow + m_RowsVisible);
 			gc.setClipping(oldClip);
 		}
 	}
@@ -1680,10 +1603,7 @@ public class KTable extends Canvas {
 	/* returns the index of a model column */
 	protected int getColumnForResize(int x, int y) {
 
-		if (m_Model == null
-				|| y <= 0
-				|| y > getClientArea().y + getClientArea().height
-				|| (y >= getHeaderHeight() & (getStyle() & SWTX.RESIZE_ON_ENTIRE_COLUMN) == 0)) {
+		if (m_Model == null || y <= 0 || y > getClientArea().y + getClientArea().height || (y >= getHeaderHeight() & (getStyle() & SWTX.RESIZE_ON_ENTIRE_COLUMN) == 0)) {
 			return -1;
 		}
 
@@ -1705,8 +1625,7 @@ public class KTable extends Canvas {
 
 		int left = getColumnLeft(m_LeftColumn);
 		// -1
-		for (int i = m_LeftColumn; i < (m_LeftColumn + m_ColumnsVisible + 1)
-				&& i < m_Model.getColumnCount(); i++) {
+		for (int i = m_LeftColumn; i < (m_LeftColumn + m_ColumnsVisible + 1) && i < m_Model.getColumnCount(); i++) {
 
 			if (i >= m_Model.getColumnCount()) {
 				return -1;
@@ -1724,8 +1643,7 @@ public class KTable extends Canvas {
 
 			}
 
-			if ((x >= left + m_ResizeAreaSize / 2)
-					&& (x <= right - m_ResizeAreaSize / 2)) {
+			if ((x >= left + m_ResizeAreaSize / 2) && (x <= right - m_ResizeAreaSize / 2)) {
 				break;
 			}
 
@@ -1747,8 +1665,7 @@ public class KTable extends Canvas {
 
 			// allow first row height resize?
 
-			if (Math.abs(m_Model.getRowHeight(0) - y) < m_ResizeAreaSize / 2
-					&& m_Model.isRowResizable(0)) {
+			if (Math.abs(m_Model.getRowHeight(0) - y) < m_ResizeAreaSize / 2 && m_Model.isRowResizable(0)) {
 
 				return 0;
 
@@ -1762,11 +1679,9 @@ public class KTable extends Canvas {
 		int row_y = getYforRow(row);
 		int next_row_y = getYforRow(row + 1);
 
-		if ((Math.abs(y - next_row_y) < m_ResizeAreaSize / 2)
-				&& m_Model.isRowResizable(row)) {
+		if ((Math.abs(y - next_row_y) < m_ResizeAreaSize / 2) && m_Model.isRowResizable(row)) {
 			return row;
-		} else if ((Math.abs(y - row_y) < m_ResizeAreaSize / 2)
-				&& m_Model.isRowResizable(row - 1)) {
+		} else if ((Math.abs(y - row_y) < m_ResizeAreaSize / 2) && m_Model.isRowResizable(row - 1)) {
 			return row - 1;
 		}
 
@@ -1790,21 +1705,17 @@ public class KTable extends Canvas {
 		Point valid = getValidCell(m_LeftColumn, m_TopRow);
 
 		// at first iterate over the fixed columns, that are always shown:
-		Point found = checkIfMatchesInColumns(0, getFixedRowCount(), 0,
-				getFixedColumnCount(), toFind, true);
+		Point found = checkIfMatchesInColumns(0, getFixedRowCount(), 0, getFixedColumnCount(), toFind, true);
 		if (found != null)
 			return found;
-		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible, 0,
-				getFixedColumnCount(), toFind, true);
+		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible, 0, getFixedColumnCount(), toFind, true);
 		if (found != null)
 			return found;
 
-		found = checkIfMatchesInColumns(0, getFixedRowCount(), valid.x,
-				m_LeftColumn + m_ColumnsVisible, toFind, true);
+		found = checkIfMatchesInColumns(0, getFixedRowCount(), valid.x, m_LeftColumn + m_ColumnsVisible, toFind, true);
 		if (found != null)
 			return found;
-		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible,
-				valid.x, m_LeftColumn + m_ColumnsVisible, toFind, true);
+		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible, valid.x, m_LeftColumn + m_ColumnsVisible, toFind, true);
 		if (found != null)
 			return found;
 
@@ -1820,21 +1731,17 @@ public class KTable extends Canvas {
 		Point valid = new Point(m_LeftColumn, m_TopRow);
 
 		// at first iterate over the fixed columns, that are always shown:
-		Point found = checkIfMatchesInColumns(0, getFixedRowCount(), 0,
-				getFixedColumnCount(), toFind, false);
+		Point found = checkIfMatchesInColumns(0, getFixedRowCount(), 0, getFixedColumnCount(), toFind, false);
 		if (found != null)
 			return found;
-		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible, 0,
-				getFixedColumnCount(), toFind, false);
+		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible, 0, getFixedColumnCount(), toFind, false);
 		if (found != null)
 			return found;
 
-		found = checkIfMatchesInColumns(0, getFixedRowCount(), valid.x,
-				m_LeftColumn + m_ColumnsVisible, toFind, false);
+		found = checkIfMatchesInColumns(0, getFixedRowCount(), valid.x, m_LeftColumn + m_ColumnsVisible, toFind, false);
 		if (found != null)
 			return found;
-		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible,
-				valid.x, m_LeftColumn + m_ColumnsVisible, toFind, false);
+		found = checkIfMatchesInColumns(valid.y, m_TopRow + m_RowsVisible, valid.x, m_LeftColumn + m_ColumnsVisible, toFind, false);
 		if (found != null)
 			return found;
 
@@ -1849,8 +1756,7 @@ public class KTable extends Canvas {
 	 *            Set to true if for spanning cells we just want to have the
 	 *            left-upper-most cell.
 	 */
-	protected Point checkIfMatchesInColumns(int startRow, int endRow,
-			int startCol, int endCol, Point toFind, boolean span) {
+	protected Point checkIfMatchesInColumns(int startRow, int endRow, int startCol, int endCol, Point toFind, boolean span) {
 
 		for (int row = startRow; row < endRow; row++) {
 			for (int col = startCol; col < endCol; col++) {
@@ -1875,17 +1781,14 @@ public class KTable extends Canvas {
 		checkWidget();
 		if (m_Model == null)
 			return false;
-		return ((col >= m_LeftColumn && col < m_LeftColumn + m_ColumnsVisible) || col < getFixedColumnCount())
-				&& ((row >= m_TopRow && row < m_TopRow + m_RowsVisible) || row < getFixedRowCount());
+		return ((col >= m_LeftColumn && col < m_LeftColumn + m_ColumnsVisible) || col < getFixedColumnCount()) && ((row >= m_TopRow && row < m_TopRow + m_RowsVisible) || row < getFixedRowCount());
 	}
 
 	public boolean isCellFullyVisible(int col, int row) {
 		checkWidget();
 		if (m_Model == null)
 			return false;
-		return ((col >= m_LeftColumn && col < m_LeftColumn
-				+ m_ColumnsFullyVisible) || col < getFixedColumnCount())
-				&& ((row >= m_TopRow && row < m_TopRow + m_RowsFullyVisible) || row < getFixedRowCount());
+		return ((col >= m_LeftColumn && col < m_LeftColumn + m_ColumnsFullyVisible) || col < getFixedColumnCount()) && ((row >= m_TopRow && row < m_TopRow + m_RowsFullyVisible) || row < getFixedRowCount());
 	}
 
 	/**
@@ -1938,8 +1841,7 @@ public class KTable extends Canvas {
 		 * a non-fixed row is allowed and handled as a selection of a non-fixed
 		 * cell.
 		 */
-		if (row >= m_Model.getFixedHeaderRowCount()
-				&& (col >= m_Model.getFixedHeaderColumnCount() || isRowSelectMode())) {
+		if (row >= m_Model.getFixedHeaderRowCount() && (col >= m_Model.getFixedHeaderColumnCount() || isRowSelectMode())) {
 
 			if ((stateMask & SWT.CTRL) == 0 && (stateMask & SWT.SHIFT) == 0) {
 				// case: no modifier key
@@ -2118,15 +2020,13 @@ public class KTable extends Canvas {
 						// This makes sure that the highlighting of those
 						// fixed rows and columns happens.
 
-						if (isMultiSelectMode()
-								&& isHighlightSelectionInHeader()) {
+						if (isMultiSelectMode() && isHighlightSelectionInHeader()) {
 							redraw(-1, row, 1, 1);
 							redraw(col, -1, 1, 1);
 						}
 
 						if (!oldSelection.equals(m_Selection)) {
-							redraw(min.x, min.y, max.x - min.x + 1, max.y
-									- min.y + 1);
+							redraw(min.x, min.y, max.x - min.x + 1, max.y - min.y + 1);
 							// notify non-fixed cell listeners
 							fireCellSelection(orig.x, orig.y, stateMask);
 						}
@@ -2160,8 +2060,7 @@ public class KTable extends Canvas {
 		// is the click intercepted? then stop processing!
 		Point spanCell = getCellForCoordinates(e.x, e.y);
 		Rectangle spanCellRect = getCellRect(spanCell.x, spanCell.y);
-		if (fireCellClicked(spanCell.x, spanCell.y, spanCellRect, e.x, e.y,
-				e.button)) {
+		if (fireCellClicked(spanCell.x, spanCell.y, spanCellRect, e.x, e.y, e.button)) {
 			m_ClickColumnIndex = spanCell.x;
 			m_ClickRowIndex = spanCell.y;
 
@@ -2191,8 +2090,7 @@ public class KTable extends Canvas {
 			}
 		}
 
-		if (e.button == 1 || isMultiSelectMode()
-				&& !clickInSelectedCells(new Point(e.x, e.y))) {
+		if (e.button == 1 || isMultiSelectMode() && !clickInSelectedCells(new Point(e.x, e.y))) {
 			// focus change
 			Point cell = calcNonSpanColumnNum(e.x, e.y);
 			if (cell.x == -1 || cell.y == -1) {
@@ -2224,19 +2122,16 @@ public class KTable extends Canvas {
 		// show resize cursor?
 		checkCursorToDisplay(e.x, e.y);
 
-		if (e.stateMask == SWT.BUTTON1 && m_CellEditor == null
-				&& m_ResizeColumnIndex == -1) {
+		if (e.stateMask == SWT.BUTTON1 && m_CellEditor == null && m_ResizeColumnIndex == -1) {
 			// extend selection?
 			if (m_ClickColumnIndex != -1 && isMultiSelectMode()) {
 
 				Point cell = calcNonSpanColumnNum(e.x, e.y);
 				if (cell.x == -1 || cell.y == -1)
 					return;
-				if (cell.y >= m_Model.getFixedHeaderRowCount()
-						&& cell.x >= m_Model.getFixedHeaderColumnCount()) {
+				if (cell.y >= m_Model.getFixedHeaderRowCount() && cell.x >= m_Model.getFixedHeaderColumnCount()) {
 
-					if (cell.x != m_ClickColumnIndex
-							|| cell.y != m_ClickRowIndex) {
+					if (cell.x != m_ClickColumnIndex || cell.y != m_ClickRowIndex) {
 						m_ClickColumnIndex = cell.x;
 						m_ClickRowIndex = cell.y;
 
@@ -2262,8 +2157,7 @@ public class KTable extends Canvas {
 			}
 
 			m_Model.setColumnWidth(m_ResizeColumnIndex, newSize);
-			fireColumnResize(m_ResizeColumnIndex,
-					m_Model.getColumnWidth(m_ResizeColumnIndex));
+			fireColumnResize(m_ResizeColumnIndex, m_Model.getColumnWidth(m_ResizeColumnIndex));
 			redraw();
 		}
 
@@ -2339,18 +2233,10 @@ public class KTable extends Canvas {
 			} else if (e.count == 1) { // check if we have to edit:
 				Point click = new Point(e.x, e.y);
 				Point cell = getCellForCoordinates(e.x, e.y);
-				if (cell.x >= 0 && cell.y >= 0
-						&& cell.x < m_Model.getColumnCount()
-						&& cell.y < m_Model.getRowCount()) {
+				if (cell.x >= 0 && cell.y >= 0 && cell.x < m_Model.getColumnCount() && cell.y < m_Model.getRowCount()) {
 					if (isHeaderCell(cell.x, cell.y)) {
-						KTableCellEditor editor = m_Model.getCellEditor(cell.x,
-								cell.y);
-						if (editor != null
-								&& ((editor.getActivationSignals() & KTableCellEditor.SINGLECLICK) != 0)
-								&& editor.isApplicable(
-										KTableCellEditor.SINGLECLICK, this,
-										cell.x, cell.y, click, null,
-										e.stateMask)) {
+						KTableCellEditor editor = m_Model.getCellEditor(cell.x, cell.y);
+						if (editor != null && ((editor.getActivationSignals() & KTableCellEditor.SINGLECLICK) != 0) && editor.isApplicable(KTableCellEditor.SINGLECLICK, this, cell.x, cell.y, click, null, e.stateMask)) {
 							int oldFocusCol = m_FocusCol;
 							int oldFocusRow = m_FocusRow;
 							m_FocusCol = cell.x;
@@ -2361,16 +2247,9 @@ public class KTable extends Canvas {
 						}
 					} else {
 						if (m_FocusCol >= 0 && m_FocusRow >= 0) {
-							KTableCellEditor editor = m_Model.getCellEditor(
-									m_FocusCol, m_FocusRow);
+							KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol, m_FocusRow);
 							Rectangle rect = getCellRect(m_FocusCol, m_FocusRow);
-							if (editor != null
-									&& rect.contains(click)
-									&& (editor.getActivationSignals() & KTableCellEditor.SINGLECLICK) != 0
-									&& editor.isApplicable(
-											KTableCellEditor.SINGLECLICK, this,
-											m_FocusCol, m_FocusRow, click,
-											null, e.stateMask)) {
+							if (editor != null && rect.contains(click) && (editor.getActivationSignals() & KTableCellEditor.SINGLECLICK) != 0 && editor.isApplicable(KTableCellEditor.SINGLECLICK, this, m_FocusCol, m_FocusRow, click, null, e.stateMask)) {
 								openEditorInFocus();
 							}
 						}
@@ -2432,8 +2311,7 @@ public class KTable extends Canvas {
 
 		// if FILL_WITH_LASTCOL is set, we must take into account that the
 		// column expands all the way to the right
-		if (x >= colSum && x < getClientArea().x + getClientArea().width
-				&& (getStyle() & SWTX.FILL_WITH_LASTCOL) != 0) {
+		if (x >= colSum && x < getClientArea().x + getClientArea().width && (getStyle() & SWTX.FILL_WITH_LASTCOL) != 0) {
 			cell.x = m_Model.getColumnCount() - 1;
 		}
 
@@ -2449,14 +2327,8 @@ public class KTable extends Canvas {
 			return;
 
 		if ((e.character == ' ') || (e.character == '\r')) {
-			KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol,
-					m_FocusRow);
-			if (editor != null
-					&& (editor.getActivationSignals() & KTableCellEditor.KEY_RETURN_AND_SPACE) != 0
-					&& editor.isApplicable(
-							KTableCellEditor.KEY_RETURN_AND_SPACE, this,
-							m_FocusCol, m_FocusRow, null, e.character + "",
-							e.stateMask)) {
+			KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol, m_FocusRow);
+			if (editor != null && (editor.getActivationSignals() & KTableCellEditor.KEY_RETURN_AND_SPACE) != 0 && editor.isApplicable(KTableCellEditor.KEY_RETURN_AND_SPACE, this, m_FocusCol, m_FocusRow, null, e.character + "", e.stateMask)) {
 				openEditorInFocus();
 				return;
 			}
@@ -2472,51 +2344,40 @@ public class KTable extends Canvas {
 			if (newFocusRow == -1)
 				newFocusRow = m_Model.getFixedHeaderRowCount();
 			focusChanged = true;
-		} else if (e.keyCode == SWT.ARROW_LEFT
-				|| (e.keyCode == SWT.TAB && (e.stateMask & SWT.SHIFT) != 0)) {
+		} else if (e.keyCode == SWT.ARROW_LEFT || (e.keyCode == SWT.TAB && (e.stateMask & SWT.SHIFT) != 0)) {
 			if (!isRowSelectMode()) {
 				if (newFocusCol > m_Model.getFixedHeaderColumnCount()) {
-					Point current = m_Model.belongsToCell(m_FocusCol,
-							m_FocusRow);
+					Point current = m_Model.belongsToCell(m_FocusCol, m_FocusRow);
 					if (current == null)
 						current = new Point(m_FocusCol, m_FocusRow);
-					Point newPt = m_Model.belongsToCell(current.x - 1,
-							current.y);
+					Point newPt = m_Model.belongsToCell(current.x - 1, current.y);
 					if (newPt == null)
 						newPt = new Point(current.x - 1, current.y);
 					newFocusCol = newPt.x;
 					newFocusRow = newPt.y;
-				} else if (newFocusCol == m_Model.getFixedHeaderColumnCount()
-						&& newFocusRow >= m_Model.getFixedHeaderRowCount()
-						&& e.keyCode == SWT.TAB) {
+				} else if (newFocusCol == m_Model.getFixedHeaderColumnCount() && newFocusRow >= m_Model.getFixedHeaderRowCount() && e.keyCode == SWT.TAB) {
 					// wrap arount when traversing:
 					newFocusCol = m_Model.getColumnCount() - 1;
 					newFocusRow--;
 				}
 			}
 			focusChanged = true;
-		} else if (e.keyCode == SWT.ARROW_RIGHT
-				|| (e.keyCode == SWT.TAB && (e.stateMask & SWT.SHIFT) == 0)) {
+		} else if (e.keyCode == SWT.ARROW_RIGHT || (e.keyCode == SWT.TAB && (e.stateMask & SWT.SHIFT) == 0)) {
 			if (!isRowSelectMode()) {
 				if (newFocusCol == -1) {
 					newFocusCol = m_Model.getFixedHeaderColumnCount();
 					newFocusRow = m_Model.getFixedHeaderRowCount();
-				} else if (newFocusCol == m_Model.getColumnCount() - 1
-						&& newFocusRow == m_Model.getRowCount() - 1) {
+				} else if (newFocusCol == m_Model.getColumnCount() - 1 && newFocusRow == m_Model.getRowCount() - 1) {
 					// last cell selected, proceed to the next control:
 					Composite current = this;
 					boolean newFocusSet = false;
 					while (current.getParent() != null && !newFocusSet) {
 						Composite parent = current.getParent();
 						for (int i = 0; i < parent.getTabList().length; i++)
-							if (parent.getTabList()[i] == current
-									&& i < parent.getTabList().length - 1) {
+							if (parent.getTabList()[i] == current && i < parent.getTabList().length - 1) {
 								Control newFocus = parent.getTabList()[i + 1];
-								while (newFocus instanceof Composite
-										&& ((Composite) newFocus).getTabList() != null
-										&& ((Composite) newFocus).getTabList().length > 0)
-									newFocus = ((Composite) newFocus)
-											.getTabList()[0];
+								while (newFocus instanceof Composite && ((Composite) newFocus).getTabList() != null && ((Composite) newFocus).getTabList().length > 0)
+									newFocus = ((Composite) newFocus).getTabList()[0];
 								this.setSelection(new Point[] {}, false);
 								newFocus.setFocus();
 								newFocusSet = true;
@@ -2526,21 +2387,17 @@ public class KTable extends Canvas {
 				} else if (newFocusCol < m_Model.getColumnCount() - 1) {
 					Point old = new Point(m_FocusCol, m_FocusRow);
 					newFocusCol++;
-					Point next = m_Model
-							.belongsToCell(newFocusCol, newFocusRow);
+					Point next = m_Model.belongsToCell(newFocusCol, newFocusRow);
 					if (next == null)
 						next = new Point(newFocusCol, newFocusRow);
-					while (next.equals(old)
-							&& newFocusCol < m_Model.getColumnCount() - 1) {
+					while (next.equals(old) && newFocusCol < m_Model.getColumnCount() - 1) {
 						newFocusCol++;
 						next = m_Model.belongsToCell(newFocusCol, newFocusRow);
 						if (next == null)
 							next = new Point(newFocusCol, newFocusRow);
 					}
 					newFocusCol = next.x;
-				} else if (m_FocusCol == m_Model.getColumnCount() - 1
-						&& m_FocusRow != m_Model.getRowCount() - 1
-						&& e.keyCode == SWT.TAB) {
+				} else if (m_FocusCol == m_Model.getColumnCount() - 1 && m_FocusRow != m_Model.getRowCount() - 1 && e.keyCode == SWT.TAB) {
 					newFocusCol = m_Model.getFixedHeaderColumnCount();
 					newFocusRow++;
 				}
@@ -2590,33 +2447,18 @@ public class KTable extends Canvas {
 		} else if (isEditOnKeyEvent()) {
 			// check if a key was pressed that forces editing:
 			if (e.keyCode == SWT.DEL || e.keyCode == SWT.BS) {
-				KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol,
-						m_FocusRow);
-				if (editor != null
-						&& (editor.getActivationSignals() & KTableCellEditor.KEY_ANY) != 0
-						&& editor.isApplicable(KTableCellEditor.KEY_ANY, this,
-								m_FocusCol, m_FocusRow, null, e.character + "",
-								e.stateMask)) {
+				KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol, m_FocusRow);
+				if (editor != null && (editor.getActivationSignals() & KTableCellEditor.KEY_ANY) != 0 && editor.isApplicable(KTableCellEditor.KEY_ANY, this, m_FocusCol, m_FocusRow, null, e.character + "", e.stateMask)) {
 					openEditorInFocus();
 					if (m_CellEditor != null) {
 						m_CellEditor.setContent("");
 					}
 				}
 				return;
-			} else if ((Character.isLetterOrDigit(e.character) || e.keyCode > 32
-					&& e.keyCode < 254 && e.keyCode != 127)
-					&& e.keyCode != SWT.CTRL
-					&& e.keyCode != SWT.ALT
-					&& (e.stateMask & SWT.CONTROL) == 0
-					&& (e.stateMask & SWT.ALT) == 0) {
+			} else if ((Character.isLetterOrDigit(e.character) || e.keyCode > 32 && e.keyCode < 254 && e.keyCode != 127) && e.keyCode != SWT.CTRL && e.keyCode != SWT.ALT && (e.stateMask & SWT.CONTROL) == 0 && (e.stateMask & SWT.ALT) == 0) {
 
-				KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol,
-						m_FocusRow);
-				if (editor != null
-						&& (editor.getActivationSignals() & KTableCellEditor.KEY_ANY) != 0
-						&& editor.isApplicable(KTableCellEditor.KEY_ANY, this,
-								m_FocusCol, m_FocusRow, null, e.character + "",
-								e.stateMask)) {
+				KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol, m_FocusRow);
+				if (editor != null && (editor.getActivationSignals() & KTableCellEditor.KEY_ANY) != 0 && editor.isApplicable(KTableCellEditor.KEY_ANY, this, m_FocusCol, m_FocusRow, null, e.character + "", e.stateMask)) {
 					openEditorInFocus();
 					if (m_CellEditor != null) {
 						m_CellEditor.setContent(e.character + "");
@@ -2644,8 +2486,7 @@ public class KTable extends Canvas {
 			return;
 		if (e.button == 1) {
 
-			if ((e.y > 0 && e.y < getHeaderHeight())
-					|| (getStyle() & SWTX.RESIZE_ON_ENTIRE_COLUMN) != 0) {
+			if ((e.y > 0 && e.y < getHeaderHeight()) || (getStyle() & SWTX.RESIZE_ON_ENTIRE_COLUMN) != 0) {
 				/*
 				 * automatic resize happens: on double click on cell boundary in
 				 * header; or on all cell boundaries when the appropriate style
@@ -2666,13 +2507,8 @@ public class KTable extends Canvas {
 				Point click = new Point(e.x, e.y);
 				Point cell = getCellForCoordinates(e.x, e.y);
 				if (isHeaderCell(cell.x, cell.y)) {
-					KTableCellEditor editor = m_Model.getCellEditor(cell.x,
-							cell.y);
-					if (editor != null
-							&& (editor.getActivationSignals() & KTableCellEditor.DOUBLECLICK) != 0
-							&& editor.isApplicable(
-									KTableCellEditor.DOUBLECLICK, this, cell.x,
-									cell.y, click, null, e.stateMask)) {
+					KTableCellEditor editor = m_Model.getCellEditor(cell.x, cell.y);
+					if (editor != null && (editor.getActivationSignals() & KTableCellEditor.DOUBLECLICK) != 0 && editor.isApplicable(KTableCellEditor.DOUBLECLICK, this, cell.x, cell.y, click, null, e.stateMask)) {
 						int oldFocusCol = m_FocusCol;
 						int oldFocusRow = m_FocusRow;
 						m_FocusCol = cell.x;
@@ -2684,16 +2520,9 @@ public class KTable extends Canvas {
 					fireFixedCellDoubleClicked(cell.x, cell.y, e.stateMask);
 				} else {
 					if (m_FocusCol >= 0 && m_FocusRow >= 0) {
-						KTableCellEditor editor = m_Model.getCellEditor(
-								m_FocusCol, m_FocusRow);
+						KTableCellEditor editor = m_Model.getCellEditor(m_FocusCol, m_FocusRow);
 						Rectangle rect = getCellRect(m_FocusCol, m_FocusRow);
-						if (editor != null
-								&& rect.contains(click)
-								&& (editor.getActivationSignals() & KTableCellEditor.DOUBLECLICK) != 0
-								&& editor.isApplicable(
-										KTableCellEditor.DOUBLECLICK, this,
-										m_FocusCol, m_FocusRow, click, null,
-										e.stateMask))
+						if (editor != null && rect.contains(click) && (editor.getActivationSignals() & KTableCellEditor.DOUBLECLICK) != 0 && editor.isApplicable(KTableCellEditor.DOUBLECLICK, this, m_FocusCol, m_FocusRow, click, null, e.stateMask))
 							openEditorInFocus();
 						fireCellDoubleClicked(cell.x, cell.y, e.stateMask);
 					}
@@ -2752,14 +2581,11 @@ public class KTable extends Canvas {
 
 				Point cell = getCellForCoordinates(event.x, event.y);
 				String tooltip = null;
-				if (cell.x >= 0 && cell.x < m_Model.getColumnCount()
-						&& cell.y >= 0 && cell.y < m_Model.getRowCount())
+				if (cell.x >= 0 && cell.x < m_Model.getColumnCount() && cell.y >= 0 && cell.y < m_Model.getRowCount())
 					tooltip = m_Model.getTooltipAt(cell.x, cell.y);
 
 				// check if there is something to show, and abort otherwise:
-				if (((tooltip == null || tooltip.equals("")) && (m_nativTooltip == null || m_nativTooltip
-						.equals("")))
-						|| (cell == null || cell.x == -1 || cell.y == -1)) {
+				if (((tooltip == null || tooltip.equals("")) && (m_nativTooltip == null || m_nativTooltip.equals(""))) || (cell == null || cell.x == -1 || cell.y == -1)) {
 					tip = null;
 					label = null;
 					return;
@@ -2770,14 +2596,11 @@ public class KTable extends Canvas {
 				gl.marginWidth = 2;
 				gl.marginHeight = 2;
 				tip.setLayout(gl);
-				tip.setBackground(getDisplay().getSystemColor(
-						SWT.COLOR_INFO_BACKGROUND));
+				tip.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
 				label = new Label(tip, SWT.NONE);
 				label.setLayoutData(new GridData(GridData.FILL_BOTH));
-				label.setForeground(getDisplay().getSystemColor(
-						SWT.COLOR_INFO_FOREGROUND));
-				label.setBackground(getDisplay().getSystemColor(
-						SWT.COLOR_INFO_BACKGROUND));
+				label.setForeground(getDisplay().getSystemColor(SWT.COLOR_INFO_FOREGROUND));
+				label.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
 				if (tooltip != null && !tooltip.equals(""))
 					label.setText(tooltip);
 				else
@@ -2790,8 +2613,7 @@ public class KTable extends Canvas {
 				// TODO: Correctly position the tooltip below the cursor.
 				int y = 20; // currently the windows default???
 				int x = 0;
-				if (m_defaultCursorSize != null && m_defaultCursorSize.x >= 0
-						&& m_defaultCursorSize.y >= 0) {
+				if (m_defaultCursorSize != null && m_defaultCursorSize.x >= 0 && m_defaultCursorSize.y >= 0) {
 					y = m_defaultCursorSize.y + 1;
 					x = -m_defaultCursorSize.x;
 				}
@@ -2799,11 +2621,9 @@ public class KTable extends Canvas {
 				// bounds of the table are not overlapped.
 				Rectangle tableBounds = KTable.this.getBounds();
 				if (event.x + x + size.x > tableBounds.x + tableBounds.width)
-					event.x -= event.x + x + size.x - tableBounds.x
-							- tableBounds.width;
+					event.x -= event.x + x + size.x - tableBounds.x - tableBounds.width;
 				if (event.y + y + size.y > tableBounds.y + tableBounds.height)
-					event.y -= event.y + y + size.y - tableBounds.y
-							- tableBounds.height;
+					event.y -= event.y + y + size.y - tableBounds.y - tableBounds.height;
 
 				Point pt = toDisplay(event.x + x, event.y + y);
 				tip.setBounds(pt.x, pt.y, size.x, size.y);
@@ -2865,26 +2685,15 @@ public class KTable extends Canvas {
 			for (int i = 0; i < m_Model.getFixedHeaderRowCount(); i++) {
 				Point valid = getValidCell(column, i);
 				if (valid.x == column && valid.y == i) {
-					int width = m_Model.getCellRenderer(column, i)
-							.getOptimalWidth(gc, column, i,
-									m_Model.getContentAt(column, i), true,
-									m_Model);
+					int width = m_Model.getCellRenderer(column, i).getOptimalWidth(gc, column, i, m_Model.getContentAt(column, i), true, m_Model);
 					if (width > optWidth)
 						optWidth = width;
 				}
 			}
-			for (int i = Math.max(0, m_TopRow
-					- INVISIBLE_ROWS_TO_REGARD_DURING_WIDTH_OPTIMIZATION); i < Math
-					.min(m_TopRow
-							+ m_RowsVisible
-							+ INVISIBLE_ROWS_TO_REGARD_DURING_WIDTH_OPTIMIZATION,
-							m_Model.getRowCount()); i++) {
+			for (int i = Math.max(0, m_TopRow - INVISIBLE_ROWS_TO_REGARD_DURING_WIDTH_OPTIMIZATION); i < Math.min(m_TopRow + m_RowsVisible + INVISIBLE_ROWS_TO_REGARD_DURING_WIDTH_OPTIMIZATION, m_Model.getRowCount()); i++) {
 				Point valid = getValidCell(column, i);
 				if (valid.x == column && valid.y == i) {
-					int width = m_Model.getCellRenderer(column, i)
-							.getOptimalWidth(gc, column, i,
-									m_Model.getContentAt(column, i), true,
-									m_Model);
+					int width = m_Model.getCellRenderer(column, i).getOptimalWidth(gc, column, i, m_Model.getContentAt(column, i), true, m_Model);
 					if (width > optWidth)
 						optWidth = width;
 				}
@@ -2922,8 +2731,7 @@ public class KTable extends Canvas {
 	 */
 	public boolean isEditorOpen(int col, int row) {
 		Point valid = getValidCell(col, row);
-		return m_CellEditor != null && m_CellEditor.m_Col == valid.x
-				&& m_CellEditor.m_Row == valid.y;
+		return m_CellEditor != null && m_CellEditor.m_Col == valid.x && m_CellEditor.m_Row == valid.y;
 	}
 
 	/**
@@ -2935,8 +2743,7 @@ public class KTable extends Canvas {
 	 *            The row index.
 	 */
 	public void scroll(int col, int row) {
-		if (col < 0 || col >= m_Model.getColumnCount() || row < 0
-				|| row >= m_Model.getRowCount())
+		if (col < 0 || col >= m_Model.getColumnCount() || row < 0 || row >= m_Model.getRowCount())
 			return;
 
 		m_TopRow = row;
@@ -2945,9 +2752,7 @@ public class KTable extends Canvas {
 	}
 
 	protected void scrollToFocus() {
-		if (m_FocusCol < 0 || m_FocusRow < 0
-				|| m_FocusCol >= m_Model.getColumnCount()
-				|| m_FocusRow >= m_Model.getRowCount()) {
+		if (m_FocusCol < 0 || m_FocusRow < 0 || m_FocusCol >= m_Model.getColumnCount() || m_FocusRow >= m_Model.getRowCount()) {
 			return;
 		}
 
@@ -2961,16 +2766,14 @@ public class KTable extends Canvas {
 			}
 
 			if (m_FocusRow >= m_TopRow + m_RowsFullyVisible) {
-				m_TopRow = Math.min(m_Model.getRowCount() - 1, m_FocusRow
-						- m_RowsFullyVisible + 1);
+				m_TopRow = Math.min(m_Model.getRowCount() - 1, m_FocusRow - m_RowsFullyVisible + 1);
 				change = true;
 			}
 		}
 
 		// horizontal scroll allowed?
 		if (getHorizontalBar() != null) {
-			if (m_FocusCol < m_LeftColumn
-					&& !(m_FocusCol < getFixedColumnCount())) {
+			if (m_FocusCol < m_LeftColumn && !(m_FocusCol < getFixedColumnCount())) {
 				m_LeftColumn = m_FocusCol;
 				change = true;
 			}
@@ -2980,10 +2783,7 @@ public class KTable extends Canvas {
 				Rectangle rect = getClientArea();
 				int leftColX = getColumnLeft(m_FocusCol);
 				int focusCellWidth = getCellRect(m_FocusCol, m_FocusRow).width;
-				while (m_LeftColumn < m_FocusCol
-						&& m_LeftColumn < m_Model.getColumnCount()
-						&& (leftColX < 0 || leftColX + focusCellWidth > rect.width
-								+ rect.x)) {
+				while (m_LeftColumn < m_FocusCol && m_LeftColumn < m_Model.getColumnCount() && (leftColX < 0 || leftColX + focusCellWidth > rect.width + rect.x)) {
 					m_LeftColumn++;
 					leftColX = getColumnLeft(m_FocusCol);
 				}
@@ -2998,22 +2798,17 @@ public class KTable extends Canvas {
 	protected void fireCellSelection(int col, int row, int statemask) {
 		Point validCell = getValidCell(col, row);
 		for (int i = 0; i < cellSelectionListeners.size(); i++) {
-			((KTableCellSelectionListener) cellSelectionListeners.get(i))
-					.cellSelected(validCell.x, validCell.y, statemask);
+			((KTableCellSelectionListener) cellSelectionListeners.get(i)).cellSelected(validCell.x, validCell.y, statemask);
 		}
 	}
 
-	protected boolean fireCellClicked(int col, int row, Rectangle cellRect,
-			int x, int y, int button) {
-		if (col < 0 || row < 0 || col >= m_Model.getColumnCount()
-				|| row >= m_Model.getRowCount()) {
+	protected boolean fireCellClicked(int col, int row, Rectangle cellRect, int x, int y, int button) {
+		if (col < 0 || row < 0 || col >= m_Model.getColumnCount() || row >= m_Model.getRowCount()) {
 			return false;
 		}
 		Point validCell = getValidCell(col, row);
 		for (int i = 0; i < cellClickListeners.size(); i++) {
-			if (((KTableClickInterceptionListener) cellClickListeners.get(i))
-					.cellClicked(validCell.x, validCell.y, cellRect, x, y,
-							button, this)) {
+			if (((KTableClickInterceptionListener) cellClickListeners.get(i)).cellClicked(validCell.x, validCell.y, cellRect, x, y, button, this)) {
 				return true;
 			}
 		}
@@ -3023,38 +2818,33 @@ public class KTable extends Canvas {
 	protected void fireCellDoubleClicked(int col, int row, int statemask) {
 		Point validCell = getValidCell(col, row);
 		for (int i = 0; i < cellDoubleClickListeners.size(); i++) {
-			((KTableCellDoubleClickListener) cellDoubleClickListeners.get(i))
-					.cellDoubleClicked(validCell.x, validCell.y, statemask);
+			((KTableCellDoubleClickListener) cellDoubleClickListeners.get(i)).cellDoubleClicked(validCell.x, validCell.y, statemask);
 		}
 	}
 
 	protected void fireFixedCellDoubleClicked(int col, int row, int statemask) {
 		Point validCell = getValidCell(col, row);
 		for (int i = 0; i < cellDoubleClickListeners.size(); i++) {
-			((KTableCellDoubleClickListener) cellDoubleClickListeners.get(i))
-					.fixedCellDoubleClicked(validCell.x, validCell.y, statemask);
+			((KTableCellDoubleClickListener) cellDoubleClickListeners.get(i)).fixedCellDoubleClicked(validCell.x, validCell.y, statemask);
 		}
 	}
 
 	protected void fireFixedCellSelection(int col, int row, int statemask) {
 		Point validCell = getValidCell(col, row);
 		for (int i = 0; i < cellSelectionListeners.size(); i++) {
-			((KTableCellSelectionListener) cellSelectionListeners.get(i))
-					.fixedCellSelected(validCell.x, validCell.y, statemask);
+			((KTableCellSelectionListener) cellSelectionListeners.get(i)).fixedCellSelected(validCell.x, validCell.y, statemask);
 		}
 	}
 
 	protected void fireColumnResize(int col, int newSize) {
 		for (int i = 0; i < cellResizeListeners.size(); i++) {
-			((KTableCellResizeListener) cellResizeListeners.get(i))
-					.columnResized(col, newSize);
+			((KTableCellResizeListener) cellResizeListeners.get(i)).columnResized(col, newSize);
 		}
 	}
 
 	protected void fireRowResize(int row, int newSize) {
 		for (int i = 0; i < cellResizeListeners.size(); i++) {
-			((KTableCellResizeListener) cellResizeListeners.get(i)).rowResized(
-					row, newSize);
+			((KTableCellResizeListener) cellResizeListeners.get(i)).rowResized(row, newSize);
 		}
 	}
 
@@ -3087,8 +2877,7 @@ public class KTable extends Canvas {
 	 * 
 	 * @param listener
 	 */
-	public void addCellDoubleClickListener(
-			KTableCellDoubleClickListener listener) {
+	public void addCellDoubleClickListener(KTableCellDoubleClickListener listener) {
 		cellDoubleClickListeners.add(listener);
 	}
 
@@ -3097,8 +2886,7 @@ public class KTable extends Canvas {
 	 * 
 	 * @param listener
 	 */
-	public void addClickInterceptionListener(
-			KTableClickInterceptionListener listener) {
+	public void addClickInterceptionListener(KTableClickInterceptionListener listener) {
 		cellClickListeners.add(listener);
 	}
 
@@ -3106,8 +2894,7 @@ public class KTable extends Canvas {
 	 * Removes the listener if present. Returns true, if found and removed from
 	 * the list of listeners.
 	 */
-	public boolean removeCellSelectionListener(
-			KTableCellSelectionListener listener) {
+	public boolean removeCellSelectionListener(KTableCellSelectionListener listener) {
 		return cellSelectionListeners.remove(listener);
 	}
 
@@ -3123,8 +2910,7 @@ public class KTable extends Canvas {
 	 * Removes the listener if present. Returns true, if found and removed from
 	 * the list of listeners.
 	 */
-	public boolean removeDoubleClickListener(
-			KTableCellDoubleClickListener listener) {
+	public boolean removeDoubleClickListener(KTableCellDoubleClickListener listener) {
 		return cellDoubleClickListeners.remove(listener);
 	}
 
@@ -3132,8 +2918,7 @@ public class KTable extends Canvas {
 	 * Removes the listener if present. Returns true, if found and removed from
 	 * the list of listeners.
 	 */
-	public boolean removeClickInterceptionListener(
-			KTableClickInterceptionListener listener) {
+	public boolean removeClickInterceptionListener(KTableClickInterceptionListener listener) {
 		return cellClickListeners.remove(listener);
 	}
 
@@ -3262,10 +3047,7 @@ public class KTable extends Canvas {
 	 */
 	public void setSelection(int col, int row, boolean scroll) {
 		checkWidget();
-		if (col < m_Model.getColumnCount()
-				&& col >= m_Model.getFixedHeaderColumnCount()
-				&& row < m_Model.getRowCount()
-				&& row >= m_Model.getFixedHeaderRowCount()) {
+		if (col < m_Model.getColumnCount() && col >= m_Model.getFixedHeaderColumnCount() && row < m_Model.getRowCount() && row >= m_Model.getFixedHeaderRowCount()) {
 			focusCell(col, row, 0);
 			if (scroll) {
 				scrollToFocus();
@@ -3300,10 +3082,7 @@ public class KTable extends Canvas {
 				for (int i = 0; i < selections.length; i++) {
 					int col = selections[i].x;
 					int row = selections[i].y;
-					if (col < m_Model.getColumnCount()
-							&& col >= m_Model.getFixedHeaderColumnCount()
-							&& row < m_Model.getRowCount()
-							&& row >= m_Model.getFixedHeaderRowCount())
+					if (col < m_Model.getColumnCount() && col >= m_Model.getFixedHeaderColumnCount() && row < m_Model.getRowCount() && row >= m_Model.getFixedHeaderRowCount())
 						if (i == 0)
 							focusCell(col, row, SWT.CTRL);
 						else
@@ -3427,8 +3206,7 @@ public class KTable extends Canvas {
 	 *         and the rows at the y / height coordinates.
 	 */
 	public Rectangle getVisibleCells() {
-		return new Rectangle(m_LeftColumn, m_TopRow, m_ColumnsVisible,
-				m_RowsVisible);
+		return new Rectangle(m_LeftColumn, m_TopRow, m_ColumnsVisible, m_RowsVisible);
 	}
 
 	/**
@@ -3503,8 +3281,7 @@ public class KTable extends Canvas {
 	 * @return
 	 */
 	protected int getFixedColumnCount() {
-		return m_Model.getFixedHeaderColumnCount()
-				+ m_Model.getFixedSelectableColumnCount();
+		return m_Model.getFixedHeaderColumnCount() + m_Model.getFixedSelectableColumnCount();
 	}
 
 	/**
@@ -3513,8 +3290,7 @@ public class KTable extends Canvas {
 	 * @return
 	 */
 	protected int getFixedRowCount() {
-		return m_Model.getFixedHeaderRowCount()
-				+ m_Model.getFixedSelectableRowCount();
+		return m_Model.getFixedHeaderRowCount() + m_Model.getFixedSelectableRowCount();
 	}
 
 	protected void updateScrollbarVisibility() {
@@ -3556,8 +3332,7 @@ public class KTable extends Canvas {
 	}
 
 	private int getColumnWidth(int col) {
-		if (col == m_Model.getColumnCount() - 1
-				&& (getStyle() & SWTX.FILL_WITH_LASTCOL) != 0) {
+		if (col == m_Model.getColumnCount() - 1 && (getStyle() & SWTX.FILL_WITH_LASTCOL) != 0) {
 			// expand the width to grab all the remaining space with this last
 			// col.
 			Rectangle cl = getClientArea();
@@ -3708,8 +3483,7 @@ public class KTable extends Canvas {
 	 * @param numRowsVisibleInPreferredSize
 	 *            The number of rows visible in the preferred size.
 	 */
-	public void setNumRowsVisibleInPreferredSize(
-			int numRowsVisibleInPreferredSize) {
+	public void setNumRowsVisibleInPreferredSize(int numRowsVisibleInPreferredSize) {
 		m_numRowsVisibleInPreferredSize = numRowsVisibleInPreferredSize;
 	}
 
@@ -3720,8 +3494,7 @@ public class KTable extends Canvas {
 	 * @param numColsVisibleInPreferredSize
 	 *            The number of columns visible in the preferred size.
 	 */
-	public void setNumColsVisibleInPreferredSize(
-			int numColsVisibleInPreferredSize) {
+	public void setNumColsVisibleInPreferredSize(int numColsVisibleInPreferredSize) {
 		m_numColsVisibleInPreferredSize = numColsVisibleInPreferredSize;
 	}
 
@@ -3740,8 +3513,7 @@ public class KTable extends Canvas {
 	 *            when a certain row should be visible but is currently not
 	 *            filled with data.
 	 */
-	public void setPreferredSizeDefaultRowHeight(
-			int preferredSizeDefaultRowHeight) {
+	public void setPreferredSizeDefaultRowHeight(int preferredSizeDefaultRowHeight) {
 		m_preferredSizeDefaultRowHeight = preferredSizeDefaultRowHeight;
 	}
 
@@ -3775,9 +3547,7 @@ public class KTable extends Canvas {
 
 			// Add height of data rows to display
 			int rowsVisible = 0;
-			for (int i = m_Model.getFixedHeaderRowCount(); i < m_Model
-					.getFixedHeaderRowCount() + m_numRowsVisibleInPreferredSize
-					&& i < m_Model.getRowCount(); i++) {
+			for (int i = m_Model.getFixedHeaderRowCount(); i < m_Model.getFixedHeaderRowCount() + m_numRowsVisibleInPreferredSize && i < m_Model.getRowCount(); i++) {
 				height += m_Model.getRowHeight(i);
 				rowsVisible++;
 			}
@@ -3795,12 +3565,8 @@ public class KTable extends Canvas {
 			}
 
 			// Add width of data columns to display
-			for (int i = m_Model.getFixedHeaderColumnCount(); i < m_Model
-					.getFixedHeaderColumnCount()
-					+ m_numColsVisibleInPreferredSize
-					&& i < m_Model.getColumnCount(); i++) {
-				width += m_Model.getColumnWidth(m_Model
-						.getFixedHeaderColumnCount());
+			for (int i = m_Model.getFixedHeaderColumnCount(); i < m_Model.getFixedHeaderColumnCount() + m_numColsVisibleInPreferredSize && i < m_Model.getColumnCount(); i++) {
+				width += m_Model.getColumnWidth(m_Model.getFixedHeaderColumnCount());
 			}
 		}
 

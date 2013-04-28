@@ -16,8 +16,7 @@ public class BinderChangeSupport implements PropertyChangeListener {
 	private final IBinder binder;
 	private final Set<StringStack> dependentEventPaths = new HashSet<StringStack>();
 
-	public BinderChangeSupport(IBinder binder,
-			IStaticObjectFormattedAccessor<?> accessor) {
+	public BinderChangeSupport(IBinder binder, IStaticObjectFormattedAccessor<?> accessor) {
 		this.binder = binder;
 		this.accessor = accessor;
 	}

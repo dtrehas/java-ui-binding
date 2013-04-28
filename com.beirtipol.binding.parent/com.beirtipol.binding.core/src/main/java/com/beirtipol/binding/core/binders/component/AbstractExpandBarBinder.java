@@ -5,8 +5,7 @@ import java.util.List;
 import com.beirtipol.binding.core.binders.AbstractBinder;
 import com.beirtipol.binding.core.delegates.IExpandBarDelegate;
 
-public abstract class AbstractExpandBarBinder extends
-		AbstractBinder<IExpandBarDelegate> implements IExpandBarBinder {
+public abstract class AbstractExpandBarBinder extends AbstractBinder<IExpandBarDelegate> implements IExpandBarBinder {
 	@Override
 	public synchronized void updateUI() {
 		if (delegate != null) {

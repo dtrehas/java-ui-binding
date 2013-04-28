@@ -11,8 +11,7 @@ import com.beirtipol.binding.core.binders.tree.ITreeBinder;
 import com.beirtipol.binding.core.delegates.ITreeDelegate;
 import com.beirtipol.binding.core.tree.ITreeNode;
 
-public abstract class SWTBaseTreeDelegate<T extends ITreeBinder> implements
-		ITreeDelegate<T> {
+public abstract class SWTBaseTreeDelegate<T extends ITreeBinder> implements ITreeDelegate<T> {
 
 	private TreeViewer viewer;
 	private final MyContentProvider contentProvider = new MyContentProvider();

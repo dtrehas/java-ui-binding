@@ -34,8 +34,7 @@ import javax.swing.text.MaskFormatter;
  * @version $LastChangedRevision: 97 $
  * @version $LastChangedDate: 2006-05-24 17:30:41 +0200 (Mi, 24 Mai 2006) $
  */
-public class JTextFieldDateEditor extends JFormattedTextField implements
-		IDateEditor, CaretListener, FocusListener, ActionListener {
+public class JTextFieldDateEditor extends JFormattedTextField implements IDateEditor, CaretListener, FocusListener, ActionListener {
 	private static final long serialVersionUID = -8901842591101625304L;
 
 	protected Date date;
@@ -58,15 +57,12 @@ public class JTextFieldDateEditor extends JFormattedTextField implements
 		this(false, null, null, ' ');
 	}
 
-	public JTextFieldDateEditor(String datePattern, String maskPattern,
-			char placeholder) {
+	public JTextFieldDateEditor(String datePattern, String maskPattern, char placeholder) {
 		this(true, datePattern, maskPattern, placeholder);
 	}
 
-	public JTextFieldDateEditor(boolean showMask, String datePattern,
-			String maskPattern, char placeholder) {
-		dateFormatter = (SimpleDateFormat) DateFormat
-				.getDateInstance(DateFormat.MEDIUM);
+	public JTextFieldDateEditor(boolean showMask, String datePattern, String maskPattern, char placeholder) {
+		dateFormatter = (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.MEDIUM);
 		dateFormatter.setLenient(false);
 
 		setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -182,8 +178,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements
 		try {
 			dateFormatter.applyPattern(dateFormatString);
 		} catch (RuntimeException e) {
-			dateFormatter = (SimpleDateFormat) DateFormat
-					.getDateInstance(DateFormat.MEDIUM);
+			dateFormatter = (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.MEDIUM);
 			dateFormatter.setLenient(false);
 		}
 		this.datePattern = dateFormatter.toPattern();
@@ -302,8 +297,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements
 		}
 
 		super.setLocale(locale);
-		dateFormatter = (SimpleDateFormat) DateFormat.getDateInstance(
-				DateFormat.MEDIUM, locale);
+		dateFormatter = (SimpleDateFormat) DateFormat.getDateInstance(DateFormat.MEDIUM, locale);
 		setToolTipText(dateFormatter.toPattern());
 
 		setDate(date, false);
@@ -360,8 +354,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements
 		if (isMaskVisible) {
 			if (maskFormatter == null) {
 				try {
-					maskFormatter = new MaskFormatter(
-							createMaskFromDatePattern(datePattern));
+					maskFormatter = new MaskFormatter(createMaskFromDatePattern(datePattern));
 					maskFormatter.setPlaceholderCharacter(this.placeholder);
 					maskFormatter.install(this);
 				} catch (ParseException e) {
@@ -388,8 +381,7 @@ public class JTextFieldDateEditor extends JFormattedTextField implements
 	public void setEnabled(boolean b) {
 		super.setEnabled(b);
 		if (!b) {
-			super.setBackground(UIManager
-					.getColor("TextField.inactiveBackground"));
+			super.setBackground(UIManager.getColor("TextField.inactiveBackground"));
 		} else {
 			super.setBackground(UIManager.getColor("TextField.background"));
 		}

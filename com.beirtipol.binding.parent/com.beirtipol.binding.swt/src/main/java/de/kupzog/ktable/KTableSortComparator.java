@@ -38,8 +38,7 @@ public abstract class KTableSortComparator implements Comparator {
 	 * @param model
 	 *            The mode to compare on.
 	 */
-	public KTableSortComparator(KTableSortedModel model, int columnIndex,
-			int direction) {
+	public KTableSortComparator(KTableSortedModel model, int columnIndex, int direction) {
 		setModel(model);
 		setSortDirection(direction);
 		setColumnToCompare(columnIndex);
@@ -58,8 +57,7 @@ public abstract class KTableSortComparator implements Comparator {
 	 */
 	public final int compare(Object o1, Object o2) {
 		if (!(o1 instanceof Integer) || !(o2 instanceof Integer))
-			throw new ClassCastException(
-					"KTableSortComparator was used in a way not allowed!");
+			throw new ClassCastException("KTableSortComparator was used in a way not allowed!");
 
 		int row1 = ((Integer) o1).intValue();
 		int row2 = ((Integer) o2).intValue();
@@ -135,10 +133,8 @@ public abstract class KTableSortComparator implements Comparator {
 	 *            The sort direction, either SORT_NONE, SORT_UP or SORT_DOWN.
 	 */
 	public void setSortDirection(int direction) {
-		if (direction != SORT_UP && direction != SORT_DOWN
-				&& direction != SORT_NONE)
-			throw new IllegalArgumentException("Undefined sorting direction: "
-					+ direction);
+		if (direction != SORT_UP && direction != SORT_DOWN && direction != SORT_NONE)
+			throw new IllegalArgumentException("Undefined sorting direction: " + direction);
 
 		m_Direction = direction;
 	}

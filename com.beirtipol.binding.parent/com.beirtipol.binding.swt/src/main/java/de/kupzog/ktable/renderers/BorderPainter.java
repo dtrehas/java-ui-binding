@@ -20,30 +20,23 @@ import org.eclipse.swt.graphics.Rectangle;
  */
 public abstract class BorderPainter {
 
-	public static Rectangle drawDoubleLineSeperatorBorder(GC gc,
-			Rectangle rect, Color vColor, Color hColor, Color seperatorBGColor,
-			boolean vSeperator, boolean hSeperator) {
-		Rectangle newContentBounds = drawDefaultSolidCellLine(gc, rect, vColor,
-				hColor);
+	public static Rectangle drawDoubleLineSeperatorBorder(GC gc, Rectangle rect, Color vColor, Color hColor, Color seperatorBGColor, boolean vSeperator, boolean hSeperator) {
+		Rectangle newContentBounds = drawDefaultSolidCellLine(gc, rect, vColor, hColor);
 
 		if (vSeperator) {
 			gc.setForeground(vColor);
-			gc.drawLine(rect.x + rect.width - 2, rect.y, rect.x + rect.width
-					- 2, rect.y + rect.height);
+			gc.drawLine(rect.x + rect.width - 2, rect.y, rect.x + rect.width - 2, rect.y + rect.height);
 
 			gc.setForeground(seperatorBGColor);
-			gc.drawLine(rect.x + rect.width - 1, rect.y, rect.x + rect.width
-					- 1, rect.y + rect.height);
+			gc.drawLine(rect.x + rect.width - 1, rect.y, rect.x + rect.width - 1, rect.y + rect.height);
 
 			newContentBounds.width -= 2;
 		}
 		if (hSeperator) {
 			gc.setForeground(hColor);
-			gc.drawLine(rect.x, rect.y + rect.height - 2, rect.x + rect.width,
-					rect.y + rect.height - 2);
+			gc.drawLine(rect.x, rect.y + rect.height - 2, rect.x + rect.width, rect.y + rect.height - 2);
 			gc.setForeground(seperatorBGColor);
-			gc.drawLine(rect.x, rect.y + rect.height - 1, rect.x + rect.width,
-					rect.y + rect.height - 1);
+			gc.drawLine(rect.x, rect.y + rect.height - 1, rect.x + rect.width, rect.y + rect.height - 1);
 			newContentBounds.height -= 2;
 		}
 
@@ -67,15 +60,12 @@ public abstract class BorderPainter {
 	 * @param hBorderColor
 	 *            The horizontal line color for the line on the bottom.
 	 */
-	public static final Rectangle drawDefaultSolidCellLine(GC gc,
-			Rectangle rect, Color vBorderColor, Color hBorderColor) {
+	public static final Rectangle drawDefaultSolidCellLine(GC gc, Rectangle rect, Color vBorderColor, Color hBorderColor) {
 		gc.setForeground(hBorderColor);
-		gc.drawLine(rect.x, rect.y + rect.height, rect.x + rect.width, rect.y
-				+ rect.height);
+		gc.drawLine(rect.x, rect.y + rect.height, rect.x + rect.width, rect.y + rect.height);
 
 		gc.setForeground(vBorderColor);
-		gc.drawLine(rect.x + rect.width, rect.y, rect.x + rect.width, rect.y
-				+ rect.height);
+		gc.drawLine(rect.x + rect.width, rect.y, rect.x + rect.width, rect.y + rect.height);
 
 		// the 1px line is already included in the given rect (calculated in
 		// KTable!)
@@ -114,13 +104,9 @@ public abstract class BorderPainter {
 	 * @return returns the remaining space in the cell that should be filled
 	 *         with content.
 	 */
-	public static final Rectangle drawSolidCellLines(GC gc, Rectangle rect,
-			Color topBorderColor, Color bottomBorderColor,
-			Color leftBorderColor, Color rightBorderColor, int topWidth,
-			int bottomWidth, int leftWidth, int rightWidth) {
+	public static final Rectangle drawSolidCellLines(GC gc, Rectangle rect, Color topBorderColor, Color bottomBorderColor, Color leftBorderColor, Color rightBorderColor, int topWidth, int bottomWidth, int leftWidth, int rightWidth) {
 		if (leftWidth < 0 || rightWidth < 0 || topWidth < 0 || bottomWidth < 0)
-			SWT.error(SWT.ERROR_INVALID_ARGUMENT, null,
-					"Invalid border line width in KTable CellRenderer");
+			SWT.error(SWT.ERROR_INVALID_ARGUMENT, null, "Invalid border line width in KTable CellRenderer");
 
 		// must paint at least a little bit since it is assumed that way in
 		// KTable!
@@ -128,14 +114,12 @@ public abstract class BorderPainter {
 		bottomWidth += 1;
 
 		gc.setBackground(bottomBorderColor);
-		gc.fillRectangle(rect.x, rect.y + rect.height - bottomWidth + 1,
-				rect.width + 1, bottomWidth);
+		gc.fillRectangle(rect.x, rect.y + rect.height - bottomWidth + 1, rect.width + 1, bottomWidth);
 		gc.setBackground(topBorderColor);
 		gc.fillRectangle(rect.x, rect.y, rect.width + 1, topWidth);
 
 		gc.setBackground(rightBorderColor);
-		gc.fillRectangle(rect.x + rect.width - rightWidth + 1, rect.y,
-				rightWidth, rect.height + 1);
+		gc.fillRectangle(rect.x + rect.width - rightWidth + 1, rect.y, rightWidth, rect.height + 1);
 		gc.setBackground(leftBorderColor);
 		gc.fillRectangle(rect.x, rect.y, leftWidth, rect.height + 1);
 

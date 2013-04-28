@@ -5,8 +5,7 @@ import com.beirtipol.binding.core.binders.dialog.IOldPresentableDialogBinder;
 import com.beirtipol.binding.core.binders.dialog.IValidator;
 
 @SuppressWarnings({ "rawtypes" })
-public interface IOldPresentableDialogDelegate<T extends IOldDialogPresenter>
-		extends IDialogDelegate {
+public interface IOldPresentableDialogDelegate<T extends IOldDialogPresenter> extends IDialogDelegate {
 	public void setTitle(String title);
 
 	public void setMessage(String message);

@@ -25,8 +25,7 @@ import com.beirtipol.binding.swt.SWTTextDelegate;
 import com.beirtipol.binding.swt.core.dialog.SWTDirectoryDialogDelegate;
 import com.beirtipol.binding.swt.demo.SWTDirectoryDialogDemo.Presenter;
 
-public class SWTDirectoryDialogDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTDirectoryDialogDemo extends SWTAbstractPresentableComposite<Presenter> {
 	private Button btnChooseFile;
 	private SWTButtonDelegate chooseFileDelegate;
 	private Text txtChosenFile;
@@ -44,20 +43,17 @@ public class SWTDirectoryDialogDemo extends
 		// Widgets
 		{
 			txtChosenFile = new Text(this, SWT.BORDER);
-			txtChosenFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT,
-					true, false, 1, 1));
+			txtChosenFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, true, false, 1, 1));
 
 			btnChooseFile = new Button(this, SWT.NONE);
-			btnChooseFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT,
-					false, false, 1, 1));
+			btnChooseFile.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 1, 1));
 
 		}
 		// Delegates
 		{
 			chooseFileDelegate = new SWTButtonDelegate(btnChooseFile);
 			chosenTextDelegate = new SWTTextDelegate(txtChosenFile);
-			fileChooserDelegate = new SWTDirectoryDialogDelegate(
-					new DirectoryDialog(getShell()));
+			fileChooserDelegate = new SWTDirectoryDialogDelegate(new DirectoryDialog(getShell()));
 		}
 	}
 
@@ -126,8 +122,7 @@ public class SWTDirectoryDialogDemo extends
 
 					@Override
 					public String getTextFromModel() {
-						return chosenFile == null ? "" : chosenFile
-								.getAbsolutePath();
+						return chosenFile == null ? "" : chosenFile.getAbsolutePath();
 					}
 				};
 			}
@@ -144,8 +139,7 @@ public class SWTDirectoryDialogDemo extends
 		Shell shell = new Shell(display);
 		shell.setText("SWT");
 		shell.setLayout(new FillLayout());
-		SWTDirectoryDialogDemo comp = new SWTDirectoryDialogDemo(shell,
-				SWT.NONE);
+		SWTDirectoryDialogDemo comp = new SWTDirectoryDialogDemo(shell, SWT.NONE);
 		Presenter presenter = comp.new Presenter();
 		comp.setPresenter(presenter);
 		shell.open();

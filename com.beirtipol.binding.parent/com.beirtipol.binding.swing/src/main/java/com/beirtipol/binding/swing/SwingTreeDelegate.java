@@ -37,12 +37,8 @@ public class SwingTreeDelegate implements ITreeDelegate<ITreeBinder> {
 	private void setupRendering() {
 		tree.setCellRenderer(new DefaultTreeCellRenderer() {
 			@Override
-			public Component getTreeCellRendererComponent(JTree tree,
-					Object value, boolean selected, boolean expanded,
-					boolean leaf, int row, boolean hasFocus) {
-				return super.getTreeCellRendererComponent(tree,
-						((ITreeNode) value).getName(), selected, expanded,
-						leaf, row, hasFocus);
+			public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+				return super.getTreeCellRendererComponent(tree, ((ITreeNode) value).getName(), selected, expanded, leaf, row, hasFocus);
 			}
 		});
 	}
@@ -60,8 +56,7 @@ public class SwingTreeDelegate implements ITreeDelegate<ITreeBinder> {
 					TreePath[] selectionPaths = tree.getSelectionPaths();
 					List<ITreeNode> selectedNodes = new ArrayList<ITreeNode>();
 					for (TreePath path : selectionPaths) {
-						selectedNodes.add((ITreeNode) path
-								.getLastPathComponent());
+						selectedNodes.add((ITreeNode) path.getLastPathComponent());
 					}
 					if (selectedNodes.size() > 0) {
 						binder.select(selectedNodes.toArray(new ITreeNode[0]));
@@ -162,8 +157,7 @@ public class SwingTreeDelegate implements ITreeDelegate<ITreeBinder> {
 	}
 
 	private void executeSelectedNode() {
-		ITreeNode selectedNode = (ITreeNode) SwingTreeDelegate.this.tree
-				.getLastSelectedPathComponent();
+		ITreeNode selectedNode = (ITreeNode) SwingTreeDelegate.this.tree.getLastSelectedPathComponent();
 
 		/**
 		 * Plausible for fast mouse navigation picking up double clicks

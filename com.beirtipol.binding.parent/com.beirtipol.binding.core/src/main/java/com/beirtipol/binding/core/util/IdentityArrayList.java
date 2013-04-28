@@ -85,8 +85,7 @@ import java.util.RandomAccess;
  * <p>
  */
 
-public class IdentityArrayList<E> extends AbstractList<E> implements List<E>,
-		RandomAccess {
+public class IdentityArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess {
 
 	/**
 	 * The array buffer into which the elements of the IdentityArrayList are
@@ -113,8 +112,7 @@ public class IdentityArrayList<E> extends AbstractList<E> implements List<E>,
 	public IdentityArrayList(int initialCapacity) {
 		super();
 		if (initialCapacity < 0) {
-			throw new IllegalArgumentException("Illegal Capacity: "
-					+ initialCapacity);
+			throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
 		}
 		this.elementData = new Object[initialCapacity];
 	}
@@ -375,8 +373,7 @@ public class IdentityArrayList<E> extends AbstractList<E> implements List<E>,
 		rangeCheckForAdd(index);
 
 		ensureCapacity(size + 1); // Increments modCount!!
-		System.arraycopy(elementData, index, elementData, index + 1, size
-				- index);
+		System.arraycopy(elementData, index, elementData, index + 1, size - index);
 		elementData[index] = element;
 		size++;
 	}
@@ -401,8 +398,7 @@ public class IdentityArrayList<E> extends AbstractList<E> implements List<E>,
 
 		int numMoved = size - index - 1;
 		if (numMoved > 0) {
-			System.arraycopy(elementData, index + 1, elementData, index,
-					numMoved);
+			System.arraycopy(elementData, index + 1, elementData, index, numMoved);
 		}
 		elementData[--size] = null; // Let gc do its work
 
@@ -441,8 +437,7 @@ public class IdentityArrayList<E> extends AbstractList<E> implements List<E>,
 		modCount++;
 		int numMoved = size - index - 1;
 		if (numMoved > 0) {
-			System.arraycopy(elementData, index + 1, elementData, index,
-					numMoved);
+			System.arraycopy(elementData, index + 1, elementData, index, numMoved);
 		}
 		elementData[--size] = null; // Let gc do its work
 	}
@@ -515,8 +510,7 @@ public class IdentityArrayList<E> extends AbstractList<E> implements List<E>,
 
 		int numMoved = size - index;
 		if (numMoved > 0) {
-			System.arraycopy(elementData, index, elementData, index + numNew,
-					numMoved);
+			System.arraycopy(elementData, index, elementData, index + numNew, numMoved);
 		}
 
 		System.arraycopy(a, 0, elementData, index, numNew);

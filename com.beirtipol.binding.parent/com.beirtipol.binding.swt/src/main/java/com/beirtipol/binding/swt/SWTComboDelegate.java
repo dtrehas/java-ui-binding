@@ -42,8 +42,7 @@ public class SWTComboDelegate implements IComboDelegate, ISWTDelegate {
 		this.combo = combo;
 		combo.setContentProvider(new ArrayContentProvider());
 		combo.getCombo().setVisibleItemCount(25);
-		autoCompleteField = new AutoCompleteField(combo.getControl(),
-				new ComboContentAdapter(), new String[] {});
+		autoCompleteField = new AutoCompleteField(combo.getControl(), new ComboContentAdapter(), new String[] {});
 		this.combo.getCombo().addDisposeListener(new DisposeListener() {
 			@Override
 			public void widgetDisposed(DisposeEvent e) {
@@ -68,8 +67,7 @@ public class SWTComboDelegate implements IComboDelegate, ISWTDelegate {
 					if (combo.getInput() == null) {
 						combo.setInput(new Object[] { o });
 					}
-					Object selectedItem = SWTSelectionUtils
-							.getSingleSelection(combo.getSelection());
+					Object selectedItem = SWTSelectionUtils.getSingleSelection(combo.getSelection());
 					if (ObjectUtils.equals(selectedItem, o)) {
 						return;
 					}
@@ -85,26 +83,23 @@ public class SWTComboDelegate implements IComboDelegate, ISWTDelegate {
 			@Override
 			public void run() {
 				if (combo != null && !combo.getCombo().isDisposed()) {
-					combo.getCombo().addTraverseListener(
-							new TraverseListener() {
-								@Override
-								public void keyTraversed(TraverseEvent e) {
-									if (isReadOnlyStyle()) {
-										// If the combo is in read only mode we
-										// only
-										// want to listen for
-										// selection events (otherwise combos
-										// like the
-										// Add combo in the
-										// trade asset view will get multiple
-										// events)
-										return;
-									}
-									binder.setSelectedItem(SWTSelectionUtils
-											.getSingleSelection(combo
-													.getSelection()));
-								}
-							});
+					combo.getCombo().addTraverseListener(new TraverseListener() {
+						@Override
+						public void keyTraversed(TraverseEvent e) {
+							if (isReadOnlyStyle()) {
+								// If the combo is in read only mode we
+								// only
+								// want to listen for
+								// selection events (otherwise combos
+								// like the
+								// Add combo in the
+								// trade asset view will get multiple
+								// events)
+								return;
+							}
+							binder.setSelectedItem(SWTSelectionUtils.getSingleSelection(combo.getSelection()));
+						}
+					});
 				}
 			}
 		});
@@ -116,39 +111,31 @@ public class SWTComboDelegate implements IComboDelegate, ISWTDelegate {
 			@Override
 			public void run() {
 				if (combo != null && !combo.getCombo().isDisposed()) {
-					combo.getCombo().addSelectionListener(
-							new SelectionAdapter() {
-								@Override
-								public void widgetSelected(SelectionEvent e) {
-									Object selection = SWTSelectionUtils
-											.getSingleSelection(combo
-													.getSelection());
-									binder.setSelectedItem(selection);
+					combo.getCombo().addSelectionListener(new SelectionAdapter() {
+						@Override
+						public void widgetSelected(SelectionEvent e) {
+							Object selection = SWTSelectionUtils.getSingleSelection(combo.getSelection());
+							binder.setSelectedItem(selection);
 
-									/**
-									 * Ultra-hack 1: The AutoCompleteField gets
-									 * activated as soon as the user selects
-									 * something. If the proposals contains
-									 * something like ['Aaa','Aaab'] and the
-									 * user selects 'Aaa' from the dropdown, the
-									 * autoComplete detects entry of 'Aaa' and
-									 * pops up the proposal for 'Aaab'. By
-									 * clearing the proposals and then resetting
-									 * them on the next run of the event thread,
-									 * we stop this.
-									 */
-									autoCompleteField
-											.setProposals(new String[0]);
-									Display.getDefault().asyncExec(
-											new Runnable() {
-												@Override
-												public void run() {
-													autoCompleteField
-															.setProposals(currentProposals);
-												}
-											});
+							/**
+							 * Ultra-hack 1: The AutoCompleteField gets
+							 * activated as soon as the user selects something.
+							 * If the proposals contains something like
+							 * ['Aaa','Aaab'] and the user selects 'Aaa' from
+							 * the dropdown, the autoComplete detects entry of
+							 * 'Aaa' and pops up the proposal for 'Aaab'. By
+							 * clearing the proposals and then resetting them on
+							 * the next run of the event thread, we stop this.
+							 */
+							autoCompleteField.setProposals(new String[0]);
+							Display.getDefault().asyncExec(new Runnable() {
+								@Override
+								public void run() {
+									autoCompleteField.setProposals(currentProposals);
 								}
 							});
+						}
+					});
 				}
 			}
 		});
@@ -169,18 +156,11 @@ public class SWTComboDelegate implements IComboDelegate, ISWTDelegate {
 						@SuppressWarnings("unchecked")
 						@Override
 						public void focusLost(FocusEvent e) {
-							Object selection = SWTSelectionUtils
-									.getSingleSelection(combo.getSelection());
+							Object selection = SWTSelectionUtils.getSingleSelection(combo.getSelection());
 							if (selection == null) {
 								try {
-									for (Object item : binder
-											.getAvailableItems()) {
-										if (binder
-												.getItemBinder()
-												.convert(item)
-												.equalsIgnoreCase(
-														combo.getCombo()
-																.getText())) {
+									for (Object item : binder.getAvailableItems()) {
+										if (binder.getItemBinder().convert(item).equalsIgnoreCase(combo.getCombo().getText())) {
 											selection = item;
 											break;
 										}
@@ -203,8 +183,7 @@ public class SWTComboDelegate implements IComboDelegate, ISWTDelegate {
 			@Override
 			public void run() {
 				if (combo != null && !combo.getCombo().isDisposed()) {
-					combo.getCombo().setBackground(
-							ColorConverter.convert(color));
+					combo.getCombo().setBackground(ColorConverter.convert(color));
 				}
 			}
 		});
@@ -216,8 +195,7 @@ public class SWTComboDelegate implements IComboDelegate, ISWTDelegate {
 			@Override
 			public void run() {
 				if (combo != null && !combo.getCombo().isDisposed()) {
-					combo.getCombo().setForeground(
-							ColorConverter.convert(color));
+					combo.getCombo().setForeground(ColorConverter.convert(color));
 				}
 			}
 		});

@@ -34,8 +34,7 @@ public class SwingOldDialogDelegate implements IDialogDelegate {
 			@Override
 			public void run() {
 				if (parentComponent != null) {
-					Point parentLocation = parentComponent
-							.getLocationOnScreen();
+					Point parentLocation = parentComponent.getLocationOnScreen();
 					parentLocation.x += parentComponent.getWidth();
 					dialog.setLocation(parentLocation);
 				}

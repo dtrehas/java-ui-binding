@@ -4,8 +4,7 @@ import java.awt.Color;
 
 import com.beirtipol.binding.core.delegates.ILabelDelegate;
 
-public abstract class AbstractLabelBinder extends
-		AbstractWidgetBinder<ILabelDelegate> implements ILabelBinder {
+public abstract class AbstractLabelBinder extends AbstractWidgetBinder<ILabelDelegate> implements ILabelBinder {
 
 	@Override
 	public void updateUI() {

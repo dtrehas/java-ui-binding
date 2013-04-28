@@ -27,8 +27,7 @@ public class StringStack {
 	}
 
 	public boolean startsWith(StringStack other) {
-		String[] trimmed = (String[]) ArrayUtils.subarray(path, 0,
-				other.path.length);
+		String[] trimmed = (String[]) ArrayUtils.subarray(path, 0, other.path.length);
 		return Arrays.equals(other.path, trimmed);
 	}
 
@@ -43,8 +42,7 @@ public class StringStack {
 	 * @return a new StringStack minus the specified number of elements
 	 */
 	public StringStack drop(int num) {
-		return new StringStack((String[]) ArrayUtils.subarray(path, num,
-				path.length));
+		return new StringStack((String[]) ArrayUtils.subarray(path, num, path.length));
 	}
 
 	/**
@@ -126,8 +124,7 @@ public class StringStack {
 		return result;
 	}
 
-	public static List<StringStack> pushAll(String segment,
-			List<StringStack> paths) {
+	public static List<StringStack> pushAll(String segment, List<StringStack> paths) {
 		List<StringStack> result = new ArrayList<StringStack>();
 		for (StringStack columnPath : paths) {
 			result.add(columnPath.push(segment));

@@ -4,8 +4,7 @@ import com.beirtipol.binding.core.binders.AbstractBinder;
 import com.beirtipol.binding.core.delegates.ITreeDelegate;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
-public abstract class AbstractTreeBinder extends AbstractBinder<ITreeDelegate>
-		implements ITreeBinder {
+public abstract class AbstractTreeBinder extends AbstractBinder<ITreeDelegate> implements ITreeBinder {
 	@Override
 	public void updateUI() {
 		final ITreeDelegate delegate = getDelegate();

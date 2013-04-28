@@ -24,13 +24,11 @@ public class SWTComponentHelper {
 	 *            component
 	 * @see SWT_SwingBridge
 	 */
-	public static void drawSWTComponent(final JComponent canvasParent,
-			final Canvas canvas, final SWT_SwingBridge runnable) {
+	public static void drawSWTComponent(final JComponent canvasParent, final Canvas canvas, final SWT_SwingBridge runnable) {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				final Shell shell = SWT_AWT.new_Shell(Display.getDefault(),
-						canvas);
+				final Shell shell = SWT_AWT.new_Shell(Display.getDefault(), canvas);
 				shell.setLayout(new FillLayout());
 				runnable.drawSWTComponent(shell);
 				SwingUtilities.invokeLater(new Runnable() {

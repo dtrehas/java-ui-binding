@@ -17,8 +17,7 @@ public class TreeNodePrinter {
 	 * @param nodes
 	 *            The nodes to write on the stream
 	 */
-	public static void print(PrintStream stream, int maxDepth,
-			ITreeNode... nodes) {
+	public static void print(PrintStream stream, int maxDepth, ITreeNode... nodes) {
 		stream.print(toString(maxDepth, nodes));
 	}
 
@@ -46,21 +45,17 @@ public class TreeNodePrinter {
 	 * @param node
 	 *            The node to write
 	 */
-	private static void serializeNode(StringWriter writer, String prefix,
-			ITreeNode node, int maxDepth, int currentDepth) {
+	private static void serializeNode(StringWriter writer, String prefix, ITreeNode node, int maxDepth, int currentDepth) {
 		writer.append(prefix);
-		writer.append(node.getName() + ": " + node.getClass().getSimpleName()
-				+ ": " + node.toString());
+		writer.append(node.getName() + ": " + node.getClass().getSimpleName() + ": " + node.toString());
 		writer.append("\n");
 		if (node.hasChildren()) {
 			if (currentDepth == maxDepth) {
-				writer.append("**** Max Depth (" + currentDepth
-						+ ") Exceeded ****\n");
+				writer.append("**** Max Depth (" + currentDepth + ") Exceeded ****\n");
 				return;
 			}
 			currentDepth++;
-			prefix = prefix.substring(0, Math.max(prefix.length() - 2, 0))
-					+ "| ";
+			prefix = prefix.substring(0, Math.max(prefix.length() - 2, 0)) + "| ";
 			List<ITreeNode> children = node.getChildren();
 			for (int i = 0; i < children.size(); i++) {
 				ITreeNode child = children.get(i);
@@ -74,15 +69,13 @@ public class TreeNodePrinter {
 						childPrefix = "|-";
 					}
 				}
-				serializeNode(writer, prefix + childPrefix, child, maxDepth,
-						currentDepth);
+				serializeNode(writer, prefix + childPrefix, child, maxDepth, currentDepth);
 			}
 			currentDepth--;
 		}
 	}
 
 	public static void main(String[] args) {
-		print(System.out, 1, new BasicReflectionTreeNode(null, "Root",
-				"ROotasdasd", new BasicReflectionTreeNodeIDContext()));
+		print(System.out, 1, new BasicReflectionTreeNode(null, "Root", "ROotasdasd", new BasicReflectionTreeNodeIDContext()));
 	}
 }

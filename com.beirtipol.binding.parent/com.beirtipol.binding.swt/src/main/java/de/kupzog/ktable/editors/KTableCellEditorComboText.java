@@ -36,8 +36,7 @@ import de.kupzog.ktable.KTableCellEditor;
 public class KTableCellEditorComboText extends KTableCellEditor {
 	private CCombo m_Combo;
 	private String m_Items[];
-	private Cursor m_ArrowCursor = new Cursor(Display.getDefault(),
-			SWT.CURSOR_ARROW);
+	private Cursor m_ArrowCursor = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
 
 	private KeyAdapter keyListener = new KeyAdapter() {
 		public void keyPressed(KeyEvent e) {
@@ -75,8 +74,7 @@ public class KTableCellEditorComboText extends KTableCellEditor {
 
 	protected Control createControl() {
 		m_Combo = new CCombo(m_Table, SWT.NONE);
-		m_Combo.setBackground(Display.getCurrent().getSystemColor(
-				SWT.COLOR_LIST_BACKGROUND));
+		m_Combo.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
 		if (m_Items != null)
 			m_Combo.setItems(m_Items);
 		m_Combo.addKeyListener(keyListener);
@@ -86,8 +84,7 @@ public class KTableCellEditorComboText extends KTableCellEditor {
 	}
 
 	public void setBounds(Rectangle rect) {
-		super.setBounds(new Rectangle(rect.x, rect.y + 1, rect.width,
-				rect.height - 2));
+		super.setBounds(new Rectangle(rect.x, rect.y + 1, rect.width, rect.height - 2));
 	}
 
 	/**

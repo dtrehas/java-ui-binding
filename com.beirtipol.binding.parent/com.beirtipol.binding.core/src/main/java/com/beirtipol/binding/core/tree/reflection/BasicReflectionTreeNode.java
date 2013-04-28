@@ -13,17 +13,14 @@ import com.beirtipol.binding.core.tree.ITypedTreeNode;
 import com.beirtipol.binding.core.tree.TreeNodeAdapter;
 import com.beirtipol.binding.core.util.ReflectionUtils;
 
-public class BasicReflectionTreeNode extends TreeNodeAdapter implements
-		ITypedTreeNode, Comparable<BasicReflectionTreeNode> {
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(BasicReflectionTreeNode.class);
+public class BasicReflectionTreeNode extends TreeNodeAdapter implements ITypedTreeNode, Comparable<BasicReflectionTreeNode> {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BasicReflectionTreeNode.class);
 
 	protected final Object model;
 	private final String name;
 	protected final BasicReflectionTreeNodeIDContext idContext;
 
-	public BasicReflectionTreeNode(ITreeNode parent, String name, Object model,
-			BasicReflectionTreeNodeIDContext idContext) {
+	public BasicReflectionTreeNode(ITreeNode parent, String name, Object model, BasicReflectionTreeNodeIDContext idContext) {
 		super(parent);
 		this.model = model;
 		this.name = name;
@@ -35,11 +32,9 @@ public class BasicReflectionTreeNode extends TreeNodeAdapter implements
 		if (model == null) {
 			return;
 		}
-		List<Field> fields = ReflectionUtils.getAllDeclaredFields(model
-				.getClass());
+		List<Field> fields = ReflectionUtils.getAllDeclaredFields(model.getClass());
 		for (Field f : fields) {
-			if ("this$0".equals(f.getName())
-					|| f.getName().startsWith("$SWITCH_TABLE")) {
+			if ("this$0".equals(f.getName()) || f.getName().startsWith("$SWITCH_TABLE")) {
 				continue;
 			}
 			if (((f.getModifiers() & Modifier.STATIC) == Modifier.STATIC)) {
@@ -52,14 +47,10 @@ public class BasicReflectionTreeNode extends TreeNodeAdapter implements
 					// Certain classes are self-referential
 					continue;
 				}
-				ITypedTreeNode childNode = TreeNodeFactory.createTreeNode(this,
-						f.getName(), value, idContext);
+				ITypedTreeNode childNode = TreeNodeFactory.createTreeNode(this, f.getName(), value, idContext);
 				children.add(childNode);
 			} catch (IllegalAccessException e) {
-				LOGGER.error(
-						String.format(
-								"IllegalAccessException when trying to get the value from field '%s' of object '%s'",
-								f.getName(), model), e);
+				LOGGER.error(String.format("IllegalAccessException when trying to get the value from field '%s' of object '%s'", f.getName(), model), e);
 				continue;
 			}
 		}

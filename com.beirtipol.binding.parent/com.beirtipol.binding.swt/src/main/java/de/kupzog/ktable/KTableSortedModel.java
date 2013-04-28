@@ -49,8 +49,7 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
 		rowMapping = new Vector<Integer>(numberOfElems);
 
 		// SORT_NONE is default, so direclty map the rows 1:1
-		int fixedRowCount = getFixedHeaderRowCount()
-				+ getFixedSelectableRowCount();
+		int fixedRowCount = getFixedHeaderRowCount() + getFixedSelectableRowCount();
 		for (int i = 0; i < numberOfElems; i++)
 			rowMapping.add(i, new Integer(i + fixedRowCount));
 	}
@@ -126,8 +125,7 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
 
 		// if new elements were added, update the size of the mapping vector.
 		if (row - getFixedRowCount() >= rowMapping.size()) {
-			int fixedRowCount = getFixedHeaderRowCount()
-					+ getFixedSelectableRowCount();
+			int fixedRowCount = getFixedHeaderRowCount() + getFixedSelectableRowCount();
 			for (int i = rowMapping.size(); i < getRowCount() - fixedRowCount; i++)
 				rowMapping.add(i, new Integer(i + fixedRowCount));
 		}
@@ -286,12 +284,8 @@ public abstract class KTableSortedModel extends KTableDefaultModel {
 		while (!found.equals(lastFound)) {
 			lastFound = found;
 			found = doBelongsToCell(found.x, found.y);
-			if (found != null
-					&& (found.x > lastFound.x || found.y > lastFound.y))
-				throw new IllegalArgumentException(
-						"When spanning over several cells, "
-								+ "supercells that determine the content of the large cell must "
-								+ "always be in the left upper corner!");
+			if (found != null && (found.x > lastFound.x || found.y > lastFound.y))
+				throw new IllegalArgumentException("When spanning over several cells, " + "supercells that determine the content of the large cell must " + "always be in the left upper corner!");
 			if (found == null)
 				return lastFound;
 		}

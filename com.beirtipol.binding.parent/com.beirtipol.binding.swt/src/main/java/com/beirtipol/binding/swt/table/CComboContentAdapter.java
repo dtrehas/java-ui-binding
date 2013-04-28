@@ -22,16 +22,13 @@ public class CComboContentAdapter implements IControlContentAdapter {
 	}
 
 	@Override
-	public void setControlContents(Control control, String text,
-			int cursorPosition) {
+	public void setControlContents(Control control, String text, int cursorPosition) {
 		((CCombo) control).setText(text);
-		((CCombo) control).setSelection(new Point(cursorPosition,
-				cursorPosition));
+		((CCombo) control).setSelection(new Point(cursorPosition, cursorPosition));
 	}
 
 	@Override
-	public void insertControlContents(Control control, String text,
-			int cursorPosition) {
+	public void insertControlContents(Control control, String text, int cursorPosition) {
 		CCombo combo = (CCombo) control;
 		String contents = combo.getText();
 		Point selection = combo.getSelection();
@@ -61,8 +58,7 @@ public class CComboContentAdapter implements IControlContentAdapter {
 		String contents = combo.getText();
 		GC gc = new GC(combo);
 		gc.setFont(combo.getFont());
-		Point extent = gc.textExtent(contents.substring(0,
-				Math.min(position, contents.length())));
+		Point extent = gc.textExtent(contents.substring(0, Math.min(position, contents.length())));
 		gc.dispose();
 		return new Rectangle(extent.x, 0, 1, combo.getSize().y);
 	}

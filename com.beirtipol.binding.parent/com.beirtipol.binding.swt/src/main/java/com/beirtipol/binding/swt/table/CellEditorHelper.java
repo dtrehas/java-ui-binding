@@ -42,8 +42,7 @@ public class CellEditorHelper {
 	 * @param save
 	 * @param cellSelection
 	 */
-	public static void moveToNextCell(KTable m_Table, boolean save,
-			Point[] cellSelection) {
+	public static void moveToNextCell(KTable m_Table, boolean save, Point[] cellSelection) {
 		// If user hits Esc we don't want to move to the next cell
 		if (save == false) {
 			return;
@@ -56,8 +55,7 @@ public class CellEditorHelper {
 			int nextRow = cellSelection[0].y;
 			do {
 				nextRow++;
-				nextCellEditor = m_Model.getCellEditor(cellSelection[0].x,
-						nextRow);
+				nextCellEditor = m_Model.getCellEditor(cellSelection[0].x, nextRow);
 			} while (nextCellEditor == null && m_Table.getSize().y > nextRow);
 
 			m_Table.setSelection(cellSelection[0].x, nextRow, true);
@@ -84,16 +82,14 @@ public class CellEditorHelper {
 			int nextCol = cellSelection[0].x;
 			do {
 				nextCol++;
-				nextCellEditor = m_Model.getCellEditor(nextCol,
-						cellSelection[0].y);
+				nextCellEditor = m_Model.getCellEditor(nextCol, cellSelection[0].y);
 			} while (nextCellEditor == null && m_Table.getSize().x > nextCol);
 
 			m_Table.setSelection(nextCol, cellSelection[0].y, true);
 		}
 	}
 
-	public static Point[] getCellSelectionFromRowMode(KTable table,
-			int colToEdit) {
+	public static Point[] getCellSelectionFromRowMode(KTable table, int colToEdit) {
 		int[] rowSelections = table.getRowSelection();
 
 		List<Point> cellSelectionList = new ArrayList<Point>();
@@ -120,7 +116,6 @@ public class CellEditorHelper {
 	 * @return True Ctrl+Enter been pressed
 	 */
 	public static boolean applyValueToSelectedCells(KeyEvent e) {
-		return '\r' == e.character
-				&& ((SWT.CTRL == e.stateMask) || (e.stateMask == (SWT.CTRL | SWT.SHIFT)));
+		return '\r' == e.character && ((SWT.CTRL == e.stateMask) || (e.stateMask == (SWT.CTRL | SWT.SHIFT)));
 	}
 }

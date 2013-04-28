@@ -24,8 +24,7 @@ import com.beirtipol.binding.swing.SwingTextDelegate;
 import com.beirtipol.binding.swing.core.dialog.SwingDirectoryDialogDelegate;
 import com.beirtipol.binding.swing.demo.SwingDirectoryDialogDemo.Presenter;
 
-public class SwingDirectoryDialogDemo extends
-		AbstractPresentableSwingPanel<Presenter> {
+public class SwingDirectoryDialogDemo extends AbstractPresentableSwingPanel<Presenter> {
 	private JButton btnChooseFile;
 	private SwingButtonDelegate chooseFileDelegate;
 	private JTextField txtChosenFile;
@@ -50,8 +49,7 @@ public class SwingDirectoryDialogDemo extends
 		{
 			chooseFileDelegate = new SwingButtonDelegate(btnChooseFile);
 			chosenTextDelegate = new SwingTextDelegate(txtChosenFile);
-			fileChooserDelegate = new SwingDirectoryDialogDelegate(
-					new JFileChooser(), result);
+			fileChooserDelegate = new SwingDirectoryDialogDelegate(new JFileChooser(), result);
 		}
 		return result;
 	}
@@ -121,8 +119,7 @@ public class SwingDirectoryDialogDemo extends
 
 					@Override
 					public String getTextFromModel() {
-						return chosenFile == null ? "" : chosenFile
-								.getAbsolutePath();
+						return chosenFile == null ? "" : chosenFile.getAbsolutePath();
 					}
 				};
 			}

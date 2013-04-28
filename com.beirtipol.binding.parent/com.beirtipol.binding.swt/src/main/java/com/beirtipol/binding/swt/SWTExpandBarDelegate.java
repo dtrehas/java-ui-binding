@@ -26,8 +26,7 @@ public abstract class SWTExpandBarDelegate implements IExpandBarDelegate {
 
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public void setExpandItemBinders(
-			final Collection<IExpandItemBinder> currentBinders) {
+	public void setExpandItemBinders(final Collection<IExpandItemBinder> currentBinders) {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
@@ -35,10 +34,8 @@ public abstract class SWTExpandBarDelegate implements IExpandBarDelegate {
 					return;
 				}
 				// Remove any binders not required
-				Collection<IExpandItemBinder> bindersToRemove = CollectionUtils
-						.subtract(myBinders.keySet(), currentBinders);
-				for (IExpandItemBinder eiBinder : SWTExpandBarDelegate.this.myBinders
-						.keySet()) {
+				Collection<IExpandItemBinder> bindersToRemove = CollectionUtils.subtract(myBinders.keySet(), currentBinders);
+				for (IExpandItemBinder eiBinder : SWTExpandBarDelegate.this.myBinders.keySet()) {
 					if (bindersToRemove.contains(eiBinder)) {
 						eiBinder.getDelegate().free();
 						eiBinder.setDelegate(null);
@@ -50,30 +47,23 @@ public abstract class SWTExpandBarDelegate implements IExpandBarDelegate {
 				}
 
 				// Add any new binders
-				Collection<IExpandItemBinder> newBinders = CollectionUtils
-						.subtract(currentBinders, myBinders.keySet());
+				Collection<IExpandItemBinder> newBinders = CollectionUtils.subtract(currentBinders, myBinders.keySet());
 				for (IExpandItemBinder eiBinder : newBinders) {
-					final ExpandItem taskPane = new ExpandItem(control,
-							SWT.NONE);
-					SWTExpandItemDelegate delegate = new SWTExpandItemDelegate(
-							taskPane);
+					final ExpandItem taskPane = new ExpandItem(control, SWT.NONE);
+					SWTExpandItemDelegate delegate = new SWTExpandItemDelegate(taskPane);
 					eiBinder.setDelegate(delegate);
 
-					IPresentableComponentBinder<?> itemBinder = eiBinder
-							.getComponentBinder();
+					IPresentableComponentBinder<?> itemBinder = eiBinder.getComponentBinder();
 					SWTPresentableComponentDelegate<? extends IPresenter> componentDelegate = getComponentDelegate(itemBinder);
-					final SWTAbstractPresentableComposite eiControl = componentDelegate
-							.getComponent();
+					final SWTAbstractPresentableComposite eiControl = componentDelegate.getComponent();
 					taskPane.setControl(eiControl);
-					eiBinder.getComponentBinder().setDelegate(
-							new SWTPresentableComponentDelegate(eiControl));
+					eiBinder.getComponentBinder().setDelegate(new SWTPresentableComponentDelegate(eiControl));
 					eiBinder.updateUI();
 
 					// ExpandItem needs to be resized after the screen has been
 					// drawn in the
 					// presentable panel.
-					Point size = eiControl
-							.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+					Point size = eiControl.computeSize(SWT.DEFAULT, SWT.DEFAULT);
 					if (taskPane.getHeight() != size.y) {
 						taskPane.setHeight(size.y);
 					}
@@ -100,8 +90,7 @@ public abstract class SWTExpandBarDelegate implements IExpandBarDelegate {
 	 * @return a {@link SWTPresentableComponentDelegate} which has been
 	 *         initialised with the correct panel for the supplied binder.
 	 */
-	protected abstract SWTPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(
-			IPresentableComponentBinder<? extends IPresenter> binder);
+	protected abstract SWTPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(IPresentableComponentBinder<? extends IPresenter> binder);
 
 	@Override
 	public void free() {

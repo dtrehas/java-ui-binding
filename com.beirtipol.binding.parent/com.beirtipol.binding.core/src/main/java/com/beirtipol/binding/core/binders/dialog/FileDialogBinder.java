@@ -5,8 +5,7 @@ import java.util.Map;
 
 import com.beirtipol.binding.core.delegates.IFileDialogDelegate;
 
-public abstract class FileDialogBinder extends
-		AbstractFileDialogBinder<IFileDialogDelegate> {
+public abstract class FileDialogBinder extends AbstractFileDialogBinder<IFileDialogDelegate> {
 
 	protected String getFileName() {
 		return null;

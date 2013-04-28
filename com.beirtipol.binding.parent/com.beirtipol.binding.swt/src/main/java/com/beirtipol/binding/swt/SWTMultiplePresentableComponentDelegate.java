@@ -14,8 +14,7 @@ import com.beirtipol.binding.core.binders.component.IPresentableComponentBinder;
 import com.beirtipol.binding.core.delegates.IMultiplePresentableComponentDelegate;
 
 @SuppressWarnings("rawtypes")
-public abstract class SWTMultiplePresentableComponentDelegate implements
-		IMultiplePresentableComponentDelegate {
+public abstract class SWTMultiplePresentableComponentDelegate implements IMultiplePresentableComponentDelegate {
 	private final Composite control;
 	private final Map<IPresentableComponentBinder, SWTAbstractPresentableComposite> binders = new LinkedHashMap<IPresentableComponentBinder, SWTAbstractPresentableComposite>();
 
@@ -30,19 +29,15 @@ public abstract class SWTMultiplePresentableComponentDelegate implements
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public void setComponentBinders(
-			final Collection<IPresentableComponentBinder> newBindersToSet) {
+	public void setComponentBinders(final Collection<IPresentableComponentBinder> newBindersToSet) {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
-				Set<IPresentableComponentBinder> existingBinders = SWTMultiplePresentableComponentDelegate.this.binders
-						.keySet();
-				Collection<IPresentableComponentBinder> bindersToRemove = CollectionUtils
-						.subtract(existingBinders, newBindersToSet);
+				Set<IPresentableComponentBinder> existingBinders = SWTMultiplePresentableComponentDelegate.this.binders.keySet();
+				Collection<IPresentableComponentBinder> bindersToRemove = CollectionUtils.subtract(existingBinders, newBindersToSet);
 				for (IPresentableComponentBinder compBinder : existingBinders) {
 					if (bindersToRemove.contains(compBinder)) {
-						SWTAbstractPresentableComposite panel = SWTMultiplePresentableComponentDelegate.this.binders
-								.get(compBinder);
+						SWTAbstractPresentableComposite panel = SWTMultiplePresentableComponentDelegate.this.binders.get(compBinder);
 						if (panel != null && !panel.isDisposed()) {
 							panel.dispose();
 						}
@@ -50,19 +45,15 @@ public abstract class SWTMultiplePresentableComponentDelegate implements
 					}
 				}
 				for (IPresentableComponentBinder compBinder : bindersToRemove) {
-					SWTMultiplePresentableComponentDelegate.this.binders
-							.remove(compBinder);
+					SWTMultiplePresentableComponentDelegate.this.binders.remove(compBinder);
 				}
-				Collection<IPresentableComponentBinder> bindersToAdd = CollectionUtils
-						.subtract(newBindersToSet, existingBinders);
+				Collection<IPresentableComponentBinder> bindersToAdd = CollectionUtils.subtract(newBindersToSet, existingBinders);
 				for (IPresentableComponentBinder childBinder : bindersToAdd) {
 					SWTPresentableComponentDelegate panelDelegate = createDelegateForBinder(childBinder);
 					childBinder.setDelegate(panelDelegate);
-					SWTAbstractPresentableComposite presentablePanel = panelDelegate
-							.getComponent();
+					SWTAbstractPresentableComposite presentablePanel = panelDelegate.getComponent();
 					childBinder.updateUI();
-					SWTMultiplePresentableComponentDelegate.this.binders.put(
-							childBinder, presentablePanel);
+					SWTMultiplePresentableComponentDelegate.this.binders.put(childBinder, presentablePanel);
 				}
 
 				// Once everything has been added, layout the control so that
@@ -80,7 +71,6 @@ public abstract class SWTMultiplePresentableComponentDelegate implements
 	 * @param binder
 	 * @return
 	 */
-	protected abstract SWTPresentableComponentDelegate<? extends IPresenter> createDelegateForBinder(
-			IPresentableComponentBinder binder);
+	protected abstract SWTPresentableComponentDelegate<? extends IPresenter> createDelegateForBinder(IPresentableComponentBinder binder);
 
 }

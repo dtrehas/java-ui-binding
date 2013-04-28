@@ -31,8 +31,7 @@ public abstract class SWTTabFolderDelegate implements ITabFolderDelegate {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public void setTabItemBinders(
-			final Collection<ITabItemBinder> currentBinders) {
+	public void setTabItemBinders(final Collection<ITabItemBinder> currentBinders) {
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
@@ -40,10 +39,8 @@ public abstract class SWTTabFolderDelegate implements ITabFolderDelegate {
 					return;
 				}
 				// Remove any binders not required
-				Collection<ITabItemBinder> bindersToRemove = CollectionUtils
-						.subtract(myBinders.keySet(), currentBinders);
-				for (ITabItemBinder eiBinder : SWTTabFolderDelegate.this.myBinders
-						.keySet()) {
+				Collection<ITabItemBinder> bindersToRemove = CollectionUtils.subtract(myBinders.keySet(), currentBinders);
+				for (ITabItemBinder eiBinder : SWTTabFolderDelegate.this.myBinders.keySet()) {
 					if (bindersToRemove.contains(eiBinder)) {
 						eiBinder.getDelegate().free();
 						eiBinder.setDelegate(null);
@@ -55,22 +52,17 @@ public abstract class SWTTabFolderDelegate implements ITabFolderDelegate {
 				}
 
 				// Add any new binders
-				Collection<ITabItemBinder> newBinders = CollectionUtils
-						.subtract(currentBinders, myBinders.keySet());
+				Collection<ITabItemBinder> newBinders = CollectionUtils.subtract(currentBinders, myBinders.keySet());
 				for (ITabItemBinder eiBinder : newBinders) {
 					final CTabItem taskPane = new CTabItem(tabFolder, SWT.NONE);
-					SWTTabItemDelegate delegate = new SWTTabItemDelegate(
-							taskPane);
+					SWTTabItemDelegate delegate = new SWTTabItemDelegate(taskPane);
 					eiBinder.setDelegate(delegate);
 
-					IPresentableComponentBinder<?> itemBinder = eiBinder
-							.getComponentBinder();
+					IPresentableComponentBinder<?> itemBinder = eiBinder.getComponentBinder();
 					SWTPresentableComponentDelegate<? extends IPresenter> componentDelegate = getComponentDelegate(itemBinder);
-					final SWTAbstractPresentableComposite eiControl = componentDelegate
-							.getComponent();
+					final SWTAbstractPresentableComposite eiControl = componentDelegate.getComponent();
 					taskPane.setControl(eiControl);
-					eiBinder.getComponentBinder().setDelegate(
-							new SWTPresentableComponentDelegate(eiControl));
+					eiBinder.getComponentBinder().setDelegate(new SWTPresentableComponentDelegate(eiControl));
 					eiBinder.updateUI();
 					myBinders.put(eiBinder, taskPane);
 				}
@@ -98,7 +90,6 @@ public abstract class SWTTabFolderDelegate implements ITabFolderDelegate {
 	 * @return a {@link SWTPresentableComponentDelegate} which has been
 	 *         initialised with the correct panel for the supplied binder.
 	 */
-	protected abstract SWTPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(
-			IPresentableComponentBinder<? extends IPresenter> binder);
+	protected abstract SWTPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(IPresentableComponentBinder<? extends IPresenter> binder);
 
 }

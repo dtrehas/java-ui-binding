@@ -35,8 +35,7 @@ import net.miginfocom.swing.MigLayout;
 @SuppressWarnings("serial")
 public abstract class JAbstractTitleDialog extends JDialog {
 	private static final Color GRADIENT_COLOR = new Color(224, 231, 248);
-	private static final KeyStroke escapeStroke = KeyStroke.getKeyStroke(
-			KeyEvent.VK_ESCAPE, 0);
+	private static final KeyStroke escapeStroke = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0);
 	public static final String dispatchWindowClosingActionMapKey = "com.spodding.tackline.dispatch:WINDOW_CLOSING";
 	private int returnCode = -1;
 
@@ -97,8 +96,7 @@ public abstract class JAbstractTitleDialog extends JDialog {
 	/**
 	 * @param modal
 	 */
-	public JAbstractTitleDialog(final Component relativeToComponent,
-			boolean modal) {
+	public JAbstractTitleDialog(final Component relativeToComponent, boolean modal) {
 		this.relativeToComponent = relativeToComponent;
 
 		setModal(modal);
@@ -193,12 +191,9 @@ public abstract class JAbstractTitleDialog extends JDialog {
 			@Override
 			public void paintComponent(Graphics g) {
 				Graphics2D g2d = (Graphics2D) g;
-				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-						RenderingHints.VALUE_ANTIALIAS_ON);
+				g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-				GradientPaint mainGradient = new GradientPaint(0, 0,
-						Color.WHITE, this.getWidth(), this.getHeight(),
-						GRADIENT_COLOR);
+				GradientPaint mainGradient = new GradientPaint(0, 0, Color.WHITE, this.getWidth(), this.getHeight(), GRADIENT_COLOR);
 				g2d.setPaint(mainGradient);
 				g.fillRect(0, 0, this.getWidth(), this.getHeight());
 			}
@@ -395,10 +390,8 @@ public abstract class JAbstractTitleDialog extends JDialog {
 			}
 		};
 		JRootPane root = getRootPane();
-		root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeStroke,
-				dispatchWindowClosingActionMapKey);
-		root.getActionMap().put(dispatchWindowClosingActionMapKey,
-				dispatchClosing);
+		root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(escapeStroke, dispatchWindowClosingActionMapKey);
+		root.getActionMap().put(dispatchWindowClosingActionMapKey, dispatchClosing);
 	}
 
 	public static void main(String[] args) {
@@ -423,8 +416,7 @@ public abstract class JAbstractTitleDialog extends JDialog {
 	@Override
 	public void dispose() {
 		JRootPane root = getRootPane();
-		root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
-				.remove(escapeStroke);
+		root.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).remove(escapeStroke);
 		root.getActionMap().remove(dispatchWindowClosingActionMapKey);
 		if (windowListener != null) {
 			removeWindowListener(windowListener);

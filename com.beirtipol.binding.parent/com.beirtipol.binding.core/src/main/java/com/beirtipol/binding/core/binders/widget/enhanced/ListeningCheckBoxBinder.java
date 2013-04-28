@@ -5,14 +5,11 @@ import com.beirtipol.binding.core.binders.widget.ICheckBoxBinder;
 import com.beirtipol.binding.core.delegates.ICheckBoxDelegate;
 import com.beirtipol.binding.core.pcs.StaticObjectFormattedFieldAccessor;
 
-public class ListeningCheckBoxBinder extends
-		AbstractListeningBinder<ICheckBoxDelegate> implements ICheckBoxBinder {
+public class ListeningCheckBoxBinder extends AbstractListeningBinder<ICheckBoxDelegate> implements ICheckBoxBinder {
 
 	private final String initialText;
 
-	public ListeningCheckBoxBinder(
-			final StaticObjectFormattedFieldAccessor<Boolean> accessor,
-			final String initialText) {
+	public ListeningCheckBoxBinder(final StaticObjectFormattedFieldAccessor<Boolean> accessor, final String initialText) {
 		super(accessor);
 		this.initialText = initialText;
 	}
@@ -26,8 +23,7 @@ public class ListeningCheckBoxBinder extends
 				return;
 			}
 			Boolean checkedFromModel = getCheckedFromModel();
-			checkedFromModel = checkedFromModel != null ? checkedFromModel
-					: false;
+			checkedFromModel = checkedFromModel != null ? checkedFromModel : false;
 			delegate.setChecked(checkedFromModel);
 			delegate.setEnabled(isEnabled());
 			delegate.setText(getText());

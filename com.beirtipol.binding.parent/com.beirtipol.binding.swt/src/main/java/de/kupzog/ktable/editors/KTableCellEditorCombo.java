@@ -75,8 +75,7 @@ public class KTableCellEditorCombo extends KTableCellEditor {
 
 	protected Control createControl() {
 		m_Combo = new CCombo(m_Table, SWT.READ_ONLY);
-		m_Combo.setBackground(Display.getCurrent().getSystemColor(
-				SWT.COLOR_LIST_BACKGROUND));
+		m_Combo.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
 
 		if (m_Items != null)
 			m_Combo.setItems(m_Items);
@@ -112,8 +111,7 @@ public class KTableCellEditorCombo extends KTableCellEditor {
 	}
 
 	public void setBounds(Rectangle rect) {
-		super.setBounds(new Rectangle(rect.x, rect.y + 1, rect.width,
-				rect.height - 2));
+		super.setBounds(new Rectangle(rect.x, rect.y + 1, rect.width, rect.height - 2));
 	}
 
 	public void setItems(String items[]) {

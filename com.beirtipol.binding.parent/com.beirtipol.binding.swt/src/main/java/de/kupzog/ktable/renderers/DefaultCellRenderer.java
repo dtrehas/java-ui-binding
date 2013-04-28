@@ -35,23 +35,15 @@ import de.kupzog.ktable.SWTX;
 public class DefaultCellRenderer implements KTableCellRenderer {
 
 	// default colors:
-	public Color COLOR_TEXT = Display.getDefault().getSystemColor(
-			SWT.COLOR_LIST_FOREGROUND);
-	public Color COLOR_BACKGROUND = Display.getDefault().getSystemColor(
-			SWT.COLOR_LIST_BACKGROUND);
-	public static Color COLOR_LINE_LIGHTGRAY = Display.getDefault()
-			.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
-	public static Color COLOR_LINE_DARKGRAY = Display.getDefault()
-			.getSystemColor(SWT.COLOR_DARK_GRAY);
+	public Color COLOR_TEXT = Display.getDefault().getSystemColor(SWT.COLOR_LIST_FOREGROUND);
+	public Color COLOR_BACKGROUND = Display.getDefault().getSystemColor(SWT.COLOR_LIST_BACKGROUND);
+	public static Color COLOR_LINE_LIGHTGRAY = Display.getDefault().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
+	public static Color COLOR_LINE_DARKGRAY = Display.getDefault().getSystemColor(SWT.COLOR_DARK_GRAY);
 	public static Color COLOR_BGFOCUS = SWTX.getColor(SWTX.COLOR_BGFOCUS);
-	public static Color COLOR_COMMENTSIGN = Display.getDefault()
-			.getSystemColor(SWT.COLOR_DARK_BLUE);
-	public static Color COLOR_FIXEDHIGHLIGHT = SWTX
-			.getColor(SWTX.COLOR_FIXEDHIGHLIGHT);
-	public static Color COLOR_BGROWFOCUS = Display.getDefault().getSystemColor(
-			SWT.COLOR_LIST_SELECTION);
-	public static Color COLOR_FGROWFOCUS = Display.getDefault().getSystemColor(
-			SWT.COLOR_LIST_SELECTION_TEXT);
+	public static Color COLOR_COMMENTSIGN = Display.getDefault().getSystemColor(SWT.COLOR_DARK_BLUE);
+	public static Color COLOR_FIXEDHIGHLIGHT = SWTX.getColor(SWTX.COLOR_FIXEDHIGHLIGHT);
+	public static Color COLOR_BGROWFOCUS = Display.getDefault().getSystemColor(SWT.COLOR_LIST_SELECTION);
+	public static Color COLOR_FGROWFOCUS = Display.getDefault().getSystemColor(SWT.COLOR_LIST_SELECTION_TEXT);
 
 	/**
 	 * Makes a button-like cell.
@@ -139,8 +131,7 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	 */
 	protected int m_Style = 0;
 
-	protected int m_alignment = SWTX.ALIGN_HORIZONTAL_LEFT
-			| SWTX.ALIGN_VERTICAL_CENTER;
+	protected int m_alignment = SWTX.ALIGN_HORIZONTAL_LEFT | SWTX.ALIGN_VERTICAL_CENTER;
 
 	/**
 	 * Holds the currently set bg and fg colors.
@@ -150,10 +141,8 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	private Font m_GCfont, m_TMPfont = null;
 
 	// the default cell renderer for fixed cells:
-	protected static final FixedCellRenderer m_FixedRenderer = new FixedCellRenderer(
-			STYLE_FLAT);
-	protected static final TextCellRenderer m_TextRenderer = new TextCellRenderer(
-			INDICATION_FOCUS);
+	protected static final FixedCellRenderer m_FixedRenderer = new FixedCellRenderer(STYLE_FLAT);
+	protected static final TextCellRenderer m_TextRenderer = new TextCellRenderer(INDICATION_FOCUS);
 
 	/**
 	 * The constructor that sets the style bits given. The default cellrenderer
@@ -188,8 +177,7 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	 * de.kupzog.ktable.KTableCellRenderer#getOptimalWidth(org.eclipse.swt.graphics
 	 * .GC, int, int, java.lang.Object, boolean)
 	 */
-	public int getOptimalWidth(GC gc, int col, int row, Object content,
-			boolean fixed, KTableModel model) {
+	public int getOptimalWidth(GC gc, int col, int row, Object content, boolean fixed, KTableModel model) {
 		applyFont(gc);
 		int result = SWTX.getCachedStringExtent(gc, content.toString()).x + 8;
 		resetFont(gc);
@@ -203,15 +191,11 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	 * @see de.kupzog.ktable.KTableCellRenderer#drawCell(GC, Rectangle, int,
 	 *      int, Object, boolean, boolean, boolean, KTableModel)
 	 */
-	public void drawCell(GC gc, Rectangle rect, int col, int row,
-			Object content, boolean focus, boolean fixed, boolean clicked,
-			KTableModel model) {
+	public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, boolean focus, boolean fixed, boolean clicked, KTableModel model) {
 		if (fixed) {
-			m_FixedRenderer.drawCell(gc, rect, col, row, content, focus, fixed,
-					clicked, model);
+			m_FixedRenderer.drawCell(gc, rect, col, row, content, focus, fixed, clicked, model);
 		} else {
-			m_TextRenderer.drawCell(gc, rect, col, row, content, focus, fixed,
-					clicked, model);
+			m_TextRenderer.drawCell(gc, rect, col, row, content, focus, fixed, clicked, model);
 		}
 	}
 
@@ -229,14 +213,12 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	 * @param backColor
 	 *            The background color to use.
 	 */
-	protected void drawCellContent(GC gc, Rectangle rect, String text,
-			Image img, Color textColor, Color backColor) {
+	protected void drawCellContent(GC gc, Rectangle rect, String text, Image img, Color textColor, Color backColor) {
 		// clear background and paint content:
 		gc.setBackground(backColor);
 		gc.setForeground(textColor);
 		gc.fillRectangle(rect);
-		SWTX.drawTextImage(gc, text, getAlignment(), img, getAlignment(),
-				rect.x + 3, rect.y + 2, rect.width - 6, rect.height - 4);
+		SWTX.drawTextImage(gc, text, getAlignment(), img, getAlignment(), rect.x + 3, rect.y + 2, rect.width - 6, rect.height - 4);
 	}
 
 	/**
@@ -253,8 +235,7 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	 * @param backColor
 	 *            The background color to use.
 	 */
-	protected void drawVerticalCellContent(GC gc, Rectangle rect, String text,
-			Image img, Color textColor, Color backColor) {
+	protected void drawVerticalCellContent(GC gc, Rectangle rect, String text, Image img, Color textColor, Color backColor) {
 		if (rect.height <= 0)
 			rect.height = 1;
 		if (rect.width <= 0)
@@ -270,8 +251,7 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 		gcImg.fillRectangle(vImg.getBounds());
 
 		int alignment = mirrorAlignment();
-		SWTX.drawTextImage(gcImg, text, alignment, img, alignment, 3, 3,
-				rect.height - 6, rect.width - 6);
+		SWTX.drawTextImage(gcImg, text, alignment, img, alignment, 3, 3, rect.height - 6, rect.width - 6);
 		gcImg.dispose();
 		Image mirrorImg = mirrorImage(vImg);
 		gc.drawImage(mirrorImg, rect.x, rect.y);
@@ -314,12 +294,10 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 		Rectangle bounds = source.getBounds();
 
 		ImageData sourceData = source.getImageData();
-		ImageData resultData = new ImageData(sourceData.height,
-				sourceData.width, sourceData.depth, sourceData.palette);
+		ImageData resultData = new ImageData(sourceData.height, sourceData.width, sourceData.depth, sourceData.palette);
 		for (int x = 0; x < bounds.width; x++)
 			for (int y = 0; y < bounds.height; y++)
-				resultData.setPixel(y, resultData.height - x - 1,
-						sourceData.getPixel(x, y));
+				resultData.setPixel(y, resultData.height - x - 1, sourceData.getPixel(x, y));
 		source.dispose();
 		return new Image(Display.getCurrent(), resultData);
 	}
@@ -342,10 +320,8 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	 * @return Returns the new bounds of the cell that should be filled with
 	 *         content.
 	 */
-	protected Rectangle drawDefaultSolidCellLine(GC gc, Rectangle rect,
-			Color vBorderColor, Color hBorderColor) {
-		return BorderPainter.drawDefaultSolidCellLine(gc, rect, vBorderColor,
-				hBorderColor);
+	protected Rectangle drawDefaultSolidCellLine(GC gc, Rectangle rect, Color vBorderColor, Color hBorderColor) {
+		return BorderPainter.drawDefaultSolidCellLine(gc, rect, vBorderColor, hBorderColor);
 	}
 
 	/**
@@ -358,9 +334,7 @@ public class DefaultCellRenderer implements KTableCellRenderer {
 	 */
 	protected final void drawCommentSign(GC gc, Rectangle rect) {
 		gc.setBackground(COLOR_COMMENTSIGN);
-		gc.fillPolygon(new int[] { rect.x + rect.width - 4, rect.y + 1,
-				rect.x + rect.width - 1, rect.y + 1, rect.x + rect.width - 1,
-				rect.y + 4 });
+		gc.fillPolygon(new int[] { rect.x + rect.width - 4, rect.y + 1, rect.x + rect.width - 1, rect.y + 1, rect.x + rect.width - 1, rect.y + 4 });
 	}
 
 	/**

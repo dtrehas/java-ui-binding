@@ -21,21 +21,16 @@ import com.beirtipol.binding.core.delegates.IOldPresentableDialogDelegate;
 import com.beirtipol.binding.swing.core.dialog.JOldAbstractPresentableTitleDialog;
 
 @SuppressWarnings({ "rawtypes" })
-public class SwingOldPresentableDialogDelegate<T extends IOldDialogPresenter>
-		extends SwingOldDialogDelegate implements
-		IOldPresentableDialogDelegate<T> {
+public class SwingOldPresentableDialogDelegate<T extends IOldDialogPresenter> extends SwingOldDialogDelegate implements IOldPresentableDialogDelegate<T> {
 	private JOldAbstractPresentableTitleDialog<T> dialog;
 	private ComponentAdapter openComponentAdaptor;
 	private ComponentAdapter closedComponentAdaptor;
 
-	public SwingOldPresentableDialogDelegate(
-			JOldAbstractPresentableTitleDialog<T> dialog) {
+	public SwingOldPresentableDialogDelegate(JOldAbstractPresentableTitleDialog<T> dialog) {
 		this(dialog, null);
 	}
 
-	public SwingOldPresentableDialogDelegate(
-			JOldAbstractPresentableTitleDialog<T> dialog,
-			JComponent parentComponent) {
+	public SwingOldPresentableDialogDelegate(JOldAbstractPresentableTitleDialog<T> dialog, JComponent parentComponent) {
 		super(dialog, parentComponent);
 		this.dialog = dialog;
 	}
@@ -80,8 +75,7 @@ public class SwingOldPresentableDialogDelegate<T extends IOldDialogPresenter>
 					try {
 						parentLocation = parentComponent.getLocationOnScreen();
 					} catch (IllegalComponentStateException e) {
-						Dimension dim = Toolkit.getDefaultToolkit()
-								.getScreenSize();
+						Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 						int x = (dim.width) / 2;
 						int y = (dim.height) / 2;
 						dialog.setLocation(new Point(x, y));
@@ -90,13 +84,11 @@ public class SwingOldPresentableDialogDelegate<T extends IOldDialogPresenter>
 						return;
 					}
 
-					GraphicsEnvironment ge = GraphicsEnvironment
-							.getLocalGraphicsEnvironment();
+					GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 					GraphicsDevice[] gd = ge.getScreenDevices();
 					GraphicsConfiguration currentMonitorGC = null;
 					for (int i = 0; i < gd.length; i++) {
-						GraphicsConfiguration gc = gd[i]
-								.getDefaultConfiguration();
+						GraphicsConfiguration gc = gd[i].getDefaultConfiguration();
 						Rectangle r = gc.getBounds();
 						if (r.contains(parentLocation)) {
 							currentMonitorGC = gc;
@@ -107,28 +99,21 @@ public class SwingOldPresentableDialogDelegate<T extends IOldDialogPresenter>
 					Point proposedLocation = parentLocation;
 
 					if (currentMonitorGC != null) {
-						Rectangle currentMonitorBounds = currentMonitorGC
-								.getBounds();
+						Rectangle currentMonitorBounds = currentMonitorGC.getBounds();
 
 						if (dialog.getSize().width == 0) {
 
-							int x = (int) currentMonitorBounds.getBounds()
-									.getWidth() / 2;
-							int y = (int) currentMonitorBounds.getBounds()
-									.getHeight() / 2;
+							int x = (int) currentMonitorBounds.getBounds().getWidth() / 2;
+							int y = (int) currentMonitorBounds.getBounds().getHeight() / 2;
 							dialog.setLocation(new Point(x, y));
 							dialog.open();
 							return;
 						}
 
-						Rectangle proposedDialogBounds = new Rectangle(
-								parentLocation, dialog.getSize());
+						Rectangle proposedDialogBounds = new Rectangle(parentLocation, dialog.getSize());
 
-						if (!currentMonitorBounds
-								.contains(proposedDialogBounds)) {
-							proposedLocation.x = currentMonitorBounds.x
-									+ currentMonitorBounds.width
-									- proposedDialogBounds.width;
+						if (!currentMonitorBounds.contains(proposedDialogBounds)) {
+							proposedLocation.x = currentMonitorBounds.x + currentMonitorBounds.width - proposedDialogBounds.width;
 						} else {
 							proposedLocation.x += parentComponent.getWidth();
 						}

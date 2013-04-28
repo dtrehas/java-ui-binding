@@ -21,8 +21,7 @@ import de.kupzog.ktable.renderers.DefaultCellRenderer;
  */
 public interface KTableCellRenderer {
 
-	public static KTableCellRenderer defaultRenderer = new DefaultCellRenderer(
-			0);
+	public static KTableCellRenderer defaultRenderer = new DefaultCellRenderer(0);
 
 	/**
 	 * Returns the optimal width of the given cell (used by column resizing)
@@ -33,8 +32,7 @@ public interface KTableCellRenderer {
 	 * @param fixed
 	 * @return int
 	 */
-	public int getOptimalWidth(GC gc, int col, int row, Object content,
-			boolean fixed, KTableModel model);
+	public int getOptimalWidth(GC gc, int col, int row, Object content, boolean fixed, KTableModel model);
 
 	/**
 	 * This method is called from KTable to draw a table cell.
@@ -69,8 +67,6 @@ public interface KTableCellRenderer {
 	 *            flexible cell renderers. Models might provide additional
 	 *            information that can be requested when rendering.
 	 */
-	public void drawCell(GC gc, Rectangle rect, int col, int row,
-			Object content, boolean focus, boolean header, boolean clicked,
-			KTableModel model);
+	public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, boolean focus, boolean header, boolean clicked, KTableModel model);
 
 }

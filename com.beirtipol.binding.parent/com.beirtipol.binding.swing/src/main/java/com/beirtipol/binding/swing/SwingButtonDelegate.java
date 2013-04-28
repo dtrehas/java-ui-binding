@@ -33,8 +33,7 @@ public class SwingButtonDelegate implements IButtonDelegate {
 		ActionListener[] actionListeners = button.getActionListeners();
 		for (ActionListener listener : actionListeners) {
 			if (listener instanceof DelegateActionListener) {
-				IDelegate buttonDelegate = ((DelegateActionListener) listener)
-						.getDelegate();
+				IDelegate buttonDelegate = ((DelegateActionListener) listener).getDelegate();
 				if (buttonDelegate instanceof IButtonDelegate) {
 					if (buttonDelegate.equals(delegate)) {
 						return;

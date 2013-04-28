@@ -6,13 +6,12 @@ import org.junit.Test;
 
 import com.beirtipol.binding.core.pcs.BindableMethod;
 import com.beirtipol.binding.core.pcs.IBindable;
-import com.beirtipol.binding.core.pcs.PCSReflectiveTest;
 
 public class IncorrectEventFiredTest implements IBindable {
-	private PropertyChangeSupport	changeSupport;
+	private PropertyChangeSupport changeSupport;
 
-	public static final String		FLD_NAME	= "name";
-	private String					name;
+	public static final String FLD_NAME = "name";
+	private String name;
 
 	@Override
 	public PropertyChangeSupport changeSupport() {

@@ -35,8 +35,7 @@ import org.eclipse.ui.actions.ActionFactory;
 public class KTableActionHandler {
 
 	static final char TAB = '\t';
-	static final String PlatformLineDelimiter = System
-			.getProperty("line.separator");
+	static final String PlatformLineDelimiter = System.getProperty("line.separator");
 
 	public KTableCopyAction m_CopyAction;
 	public KTableCopyAllAction m_CopyAllAction;
@@ -113,14 +112,10 @@ public class KTableActionHandler {
 	 *            or getEditorSite().getActionBars().
 	 */
 	public void registerGlobalActions(IActionBars actionBar) {
-		actionBar.setGlobalActionHandler(ActionFactory.CUT.getId(),
-				this.m_CutAction);
-		actionBar.setGlobalActionHandler(ActionFactory.COPY.getId(),
-				this.m_CopyAction);
-		actionBar.setGlobalActionHandler(ActionFactory.PASTE.getId(),
-				this.m_PasteAction);
-		actionBar.setGlobalActionHandler(ActionFactory.SELECT_ALL.getId(),
-				this.m_SelectAllAction);
+		actionBar.setGlobalActionHandler(ActionFactory.CUT.getId(), this.m_CutAction);
+		actionBar.setGlobalActionHandler(ActionFactory.COPY.getId(), this.m_CopyAction);
+		actionBar.setGlobalActionHandler(ActionFactory.PASTE.getId(), this.m_PasteAction);
+		actionBar.setGlobalActionHandler(ActionFactory.SELECT_ALL.getId(), this.m_SelectAllAction);
 		actionBar.updateActionBars();
 	}
 
@@ -170,8 +165,7 @@ public class KTableActionHandler {
 			KTableModel model = m_table.getModel();
 			if (model == null)
 				return new Point[] {};
-			Vector<Point> cells = new Vector<Point>(model.getColumnCount()
-					* model.getRowCount());
+			Vector<Point> cells = new Vector<Point>(model.getColumnCount() * model.getRowCount());
 			for (int row = 0; row < model.getRowCount(); row++) {
 				for (int col = 0; col < model.getColumnCount(); col++) {
 					Point valid = model.belongsToCell(col, row);
@@ -242,8 +236,7 @@ public class KTableActionHandler {
 		}
 
 		public void updateEnabledState() {
-			if (m_table != null && !m_table.isDisposed()
-					&& m_table.isMultiSelectMode()) {
+			if (m_table != null && !m_table.isDisposed() && m_table.isMultiSelectMode()) {
 				setEnabled(true);
 			} else
 				setEnabled(false);
@@ -251,10 +244,8 @@ public class KTableActionHandler {
 
 		protected void selectAll(KTableModel model) {
 			Vector<Point> sel = new Vector<Point>();
-			for (int row = model.getFixedHeaderRowCount(); row < model
-					.getRowCount(); row++)
-				for (int col = model.getFixedHeaderColumnCount(); col < model
-						.getColumnCount(); col++) {
+			for (int row = model.getFixedHeaderRowCount(); row < model.getRowCount(); row++)
+				for (int col = model.getFixedHeaderColumnCount(); col < model.getColumnCount(); col++) {
 					Point cell = model.belongsToCell(col, row);
 					if (cell.x == col && cell.y == row)
 						sel.add(cell);
@@ -262,8 +253,7 @@ public class KTableActionHandler {
 			try {
 				m_table.setRedraw(false);
 				m_table.setSelection(new Point[] {}, false);
-				m_table.setSelection((Point[]) sel.toArray(new Point[] {}),
-						false);
+				m_table.setSelection((Point[]) sel.toArray(new Point[] {}), false);
 			} finally {
 				m_table.setRedraw(true);
 			}
@@ -279,16 +269,14 @@ public class KTableActionHandler {
 
 		public void run() {
 			if (m_table != null && !m_table.isDisposed()) {
-				pasteToSelection(getTextFromClipboard(),
-						m_table.getCellSelection());
+				pasteToSelection(getTextFromClipboard(), m_table.getCellSelection());
 			}
 		}
 
 		protected String getTextFromClipboard() {
 			Clipboard clipboard = new Clipboard(m_table.getDisplay());
 			try {
-				return clipboard.getContents(TextTransfer.getInstance())
-						.toString();
+				return clipboard.getContents(TextTransfer.getInstance()).toString();
 			} catch (Exception ex) {
 				return "";
 			} finally {
@@ -311,13 +299,10 @@ public class KTableActionHandler {
 				String[][] cellTexts = parseCellTexts(text);
 				for (int row = 0; row < cellTexts.length; row++)
 					for (int col = 0; col < cellTexts[row].length; col++) {
-						model.setContentAt(col + selection[0].x, row
-								+ selection[0].y, cellTexts[row][col]);
-						sel.add(new Point(col + selection[0].x, row
-								+ selection[0].y));
+						model.setContentAt(col + selection[0].x, row + selection[0].y, cellTexts[row][col]);
+						sel.add(new Point(col + selection[0].x, row + selection[0].y));
 					}
-				m_table.setSelection((Point[]) sel.toArray(new Point[] {}),
-						false);
+				m_table.setSelection((Point[]) sel.toArray(new Point[] {}), false);
 			} finally {
 				m_table.setRedraw(true);
 			}

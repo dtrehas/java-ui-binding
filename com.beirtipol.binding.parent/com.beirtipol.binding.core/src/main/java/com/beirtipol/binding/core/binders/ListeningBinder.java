@@ -18,8 +18,7 @@ import com.beirtipol.binding.core.util.IFreeable;
  * @author O041484
  * @param <B>
  */
-public class ListeningBinder<D extends IDelegate, B extends AbstractBinder<D>, T>
-		extends AbstractBinder<D> implements PropertyChangeListener, IFreeable {
+public class ListeningBinder<D extends IDelegate, B extends AbstractBinder<D>, T> extends AbstractBinder<D> implements PropertyChangeListener, IFreeable {
 	private PropertyChangeSupport changeSupport;
 	protected final IStaticObjectFormattedAccessor<T> accessor;
 	private final B binder;

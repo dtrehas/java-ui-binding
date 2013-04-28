@@ -38,8 +38,7 @@ public class BarDiagramCellRenderer extends DefaultCellRenderer {
 	 * de.kupzog.ktable.KTableCellRenderer#getOptimalWidth(org.eclipse.swt.graphics
 	 * .GC, int, int, java.lang.Object, boolean)
 	 */
-	public int getOptimalWidth(GC gc, int col, int row, Object content,
-			boolean fixed, KTableModel model) {
+	public int getOptimalWidth(GC gc, int col, int row, Object content, boolean fixed, KTableModel model) {
 		return 20;
 	}
 
@@ -51,27 +50,22 @@ public class BarDiagramCellRenderer extends DefaultCellRenderer {
 	 * @see de.kupzog.ktable.KTableCellRenderer#drawCell(GC, Rectangle, int,
 	 *      int, Object, boolean, boolean, boolean, KTableModel)
 	 */
-	public void drawCell(GC gc, Rectangle rect, int col, int row,
-			Object content, boolean focus, boolean fixed, boolean clicked,
-			KTableModel model) {
+	public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, boolean focus, boolean fixed, boolean clicked, KTableModel model) {
 
 		if (focus && (m_Style & INDICATION_FOCUS) != 0) {
-			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY,
-					COLOR_LINE_LIGHTGRAY);
+			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY, COLOR_LINE_LIGHTGRAY);
 			drawBar(gc, rect, content, COLOR_BGFOCUS, getForeground());
 			gc.drawFocus(rect.x, rect.y, rect.width, rect.height);
 
 		} else if (focus && (m_Style & INDICATION_FOCUS_ROW) != 0) {
-			rect = drawDefaultSolidCellLine(gc, rect, COLOR_BGROWFOCUS,
-					COLOR_BGROWFOCUS);
+			rect = drawDefaultSolidCellLine(gc, rect, COLOR_BGROWFOCUS, COLOR_BGROWFOCUS);
 			Color defaultBg = COLOR_BACKGROUND;
 			setDefaultBackground(COLOR_BGROWFOCUS);
 			drawBar(gc, rect, content, getBackground(), getForeground());
 			setDefaultBackground(defaultBg);
 
 		} else {
-			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY,
-					COLOR_LINE_LIGHTGRAY);
+			rect = drawDefaultSolidCellLine(gc, rect, COLOR_LINE_LIGHTGRAY, COLOR_LINE_LIGHTGRAY);
 			drawBar(gc, rect, content, getBackground(), getForeground());
 		}
 	}
@@ -82,15 +76,13 @@ public class BarDiagramCellRenderer extends DefaultCellRenderer {
 	 * @param m_fraction
 	 * @param background
 	 */
-	protected void drawGradientBar(GC gc, Rectangle rect, float m_fraction,
-			Color background, Color foreground) {
+	protected void drawGradientBar(GC gc, Rectangle rect, float m_fraction, Color background, Color foreground) {
 		int barWidth = Math.round(rect.width * m_fraction);
 		gc.setForeground(background);
 		gc.setBackground(foreground);
 		gc.fillGradientRectangle(rect.x, rect.y, barWidth, rect.height, false);
 		gc.setBackground(COLOR_BACKGROUND);
-		gc.fillRectangle(rect.x + barWidth, rect.y, rect.width - barWidth,
-				rect.height);
+		gc.fillRectangle(rect.x + barWidth, rect.y, rect.width - barWidth, rect.height);
 	}
 
 	/**
@@ -100,14 +92,12 @@ public class BarDiagramCellRenderer extends DefaultCellRenderer {
 	 * @param foreground
 	 * @param m_fraction
 	 */
-	protected void drawNormalBar(GC gc, Rectangle rect, Color background,
-			Color foreground, float m_fraction) {
+	protected void drawNormalBar(GC gc, Rectangle rect, Color background, Color foreground, float m_fraction) {
 		int barWidth = Math.round(rect.width * m_fraction);
 		gc.setBackground(foreground);
 		gc.fillRectangle(rect.x, rect.y, barWidth, rect.height);
 		gc.setBackground(background);
-		gc.fillRectangle(rect.x + barWidth, rect.y, rect.width - barWidth,
-				rect.height);
+		gc.fillRectangle(rect.x + barWidth, rect.y, rect.width - barWidth, rect.height);
 	}
 
 	/**
@@ -116,8 +106,7 @@ public class BarDiagramCellRenderer extends DefaultCellRenderer {
 	 * @param m_fraction
 	 * @param background
 	 */
-	protected void drawBar(GC gc, Rectangle rect, Object content,
-			Color background, Color foreground) {
+	protected void drawBar(GC gc, Rectangle rect, Object content, Color background, Color foreground) {
 		float m_fraction;
 		if (content instanceof Float)
 			m_fraction = ((Float) content).floatValue();

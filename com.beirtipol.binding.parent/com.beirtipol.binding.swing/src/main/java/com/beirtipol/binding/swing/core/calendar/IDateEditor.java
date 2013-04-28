@@ -159,8 +159,7 @@ public interface IDateEditor {
 	 * @param listener
 	 *            the property change listener.
 	 */
-	public void addPropertyChangeListener(String propertyName,
-			PropertyChangeListener listener);
+	public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener);
 
 	/**
 	 * Removes a property change listener.
@@ -179,6 +178,5 @@ public interface IDateEditor {
 	 * @param listener
 	 *            the listener
 	 */
-	public void removePropertyChangeListener(String propertyName,
-			PropertyChangeListener listener);
+	public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener);
 }

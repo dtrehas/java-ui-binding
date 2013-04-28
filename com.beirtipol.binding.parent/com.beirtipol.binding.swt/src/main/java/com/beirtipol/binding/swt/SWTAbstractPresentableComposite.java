@@ -6,8 +6,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import com.beirtipol.binding.core.binders.IPresenter;
 
-public abstract class SWTAbstractPresentableComposite<P extends IPresenter>
-		extends Composite {
+public abstract class SWTAbstractPresentableComposite<P extends IPresenter> extends Composite {
 	private AtomicBoolean isInitialised = new AtomicBoolean(false);
 
 	public SWTAbstractPresentableComposite(Composite parent, int style) {

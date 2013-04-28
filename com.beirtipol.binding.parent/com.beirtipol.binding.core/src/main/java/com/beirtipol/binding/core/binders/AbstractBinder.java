@@ -12,8 +12,7 @@ import com.beirtipol.binding.core.delegates.IDelegate;
  * @author O041484
  * @param <Delegate>
  */
-public abstract class AbstractBinder<Delegate extends IDelegate> implements
-		IBasicBinder<Delegate> {
+public abstract class AbstractBinder<Delegate extends IDelegate> implements IBasicBinder<Delegate> {
 	protected Delegate delegate;
 
 	protected IBooleanModel visibleModel;

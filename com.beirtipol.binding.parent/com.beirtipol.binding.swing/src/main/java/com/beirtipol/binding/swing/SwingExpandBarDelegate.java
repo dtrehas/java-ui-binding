@@ -21,8 +21,7 @@ import com.beirtipol.binding.core.delegates.IExpandBarDelegate;
 import com.beirtipol.binding.core.delegates.IPresentableComponentDelegate;
 
 public abstract class SwingExpandBarDelegate implements IExpandBarDelegate {
-	private static final Logger LOG = Logger
-			.getLogger(SwingExpandBarDelegate.class);
+	private static final Logger LOG = Logger.getLogger(SwingExpandBarDelegate.class);
 
 	private final JXTaskPaneContainer control;
 	private final Map<IExpandItemBinder, JXTaskPane> binders = new HashMap<IExpandItemBinder, JXTaskPane>();
@@ -33,20 +32,15 @@ public abstract class SwingExpandBarDelegate implements IExpandBarDelegate {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public void setExpandItemBinders(
-			final Collection<IExpandItemBinder> newBinders) {
+	public void setExpandItemBinders(final Collection<IExpandItemBinder> newBinders) {
 		SwingUtilities.invokeLater(new Runnable() {
 
 			@Override
 			public void run() {
-				Collection<IExpandItemBinder> bindersToRemove = CollectionUtils
-						.subtract(SwingExpandBarDelegate.this.binders.keySet(),
-								newBinders);
-				for (IExpandItemBinder eiBinder : SwingExpandBarDelegate.this.binders
-						.keySet()) {
+				Collection<IExpandItemBinder> bindersToRemove = CollectionUtils.subtract(SwingExpandBarDelegate.this.binders.keySet(), newBinders);
+				for (IExpandItemBinder eiBinder : SwingExpandBarDelegate.this.binders.keySet()) {
 					if (bindersToRemove.contains(eiBinder)) {
-						JXTaskPane jxTaskPane = SwingExpandBarDelegate.this.binders
-								.get(eiBinder);
+						JXTaskPane jxTaskPane = SwingExpandBarDelegate.this.binders.get(eiBinder);
 						control.remove(jxTaskPane);
 						eiBinder.getDelegate().free();
 						eiBinder.setDelegate(null);
@@ -56,40 +50,31 @@ public abstract class SwingExpandBarDelegate implements IExpandBarDelegate {
 					SwingExpandBarDelegate.this.binders.remove(eiBinder);
 				}
 
-				Collection<IExpandItemBinder> newNewBinders = CollectionUtils
-						.subtract(newBinders,
-								SwingExpandBarDelegate.this.binders.keySet());
+				Collection<IExpandItemBinder> newNewBinders = CollectionUtils.subtract(newBinders, SwingExpandBarDelegate.this.binders.keySet());
 				for (IExpandItemBinder eiBinder : newNewBinders) {
 					JXTaskPane taskPane = new JXTaskPane();
 					BasicTaskPaneUI taskPaneUI = new BasicTaskPaneUI();
 					taskPane.setUI(taskPaneUI);
 
 					taskPane.setLayout(new MigLayout("insets 0 0 0 0"));
-					taskPane.getContentPane().setLayout(
-							new MigLayout("insets 0 0 0 0"));
+					taskPane.getContentPane().setLayout(new MigLayout("insets 0 0 0 0"));
 
 					// Animation is very slow on a busy screen.
 					taskPane.setAnimated(false);
 
-					SwingExpandItemDelegate delegate = new SwingExpandItemDelegate(
-							taskPane);
+					SwingExpandItemDelegate delegate = new SwingExpandItemDelegate(taskPane);
 					eiBinder.setDelegate(delegate);
 
-					IPresentableComponentBinder componentBinder = eiBinder
-							.getComponentBinder();
+					IPresentableComponentBinder componentBinder = eiBinder.getComponentBinder();
 
 					if (componentBinder.getPresenter() == null) {
-						LOG.info("No presenter found for "
-								+ eiBinder.getTitle() + " binder;");
+						LOG.info("No presenter found for " + eiBinder.getTitle() + " binder;");
 						continue;
 					}
 
 					AbstractPresentableSwingPanel taskPaneComponent = createExpandItemComponent(componentBinder);
-					taskPane.getContentPane().add(
-							taskPaneComponent.getSwingComponent());
-					taskPane.getContentPane().setBackground(
-							taskPaneComponent.getSwingComponent()
-									.getBackground());
+					taskPane.getContentPane().add(taskPaneComponent.getSwingComponent());
+					taskPane.getContentPane().setBackground(taskPaneComponent.getSwingComponent().getBackground());
 
 					IPresentableComponentDelegate componentDelegate = getComponentDelegate(taskPaneComponent);
 					componentBinder.setDelegate(componentDelegate);
@@ -100,8 +85,7 @@ public abstract class SwingExpandBarDelegate implements IExpandBarDelegate {
 					SwingExpandBarDelegate.this.binders.put(eiBinder, taskPane);
 				}
 				control.updateUI();
-				for (IExpandItemBinder binder : SwingExpandBarDelegate.this.binders
-						.keySet()) {
+				for (IExpandItemBinder binder : SwingExpandBarDelegate.this.binders.keySet()) {
 					binder.updateUI();
 				}
 			}
@@ -109,10 +93,8 @@ public abstract class SwingExpandBarDelegate implements IExpandBarDelegate {
 
 	}
 
-	protected abstract IPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(
-			AbstractPresentableSwingPanel<? extends IPresenter> panel);
+	protected abstract IPresentableComponentDelegate<? extends IPresenter> getComponentDelegate(AbstractPresentableSwingPanel<? extends IPresenter> panel);
 
 	@SuppressWarnings("rawtypes")
-	protected abstract AbstractPresentableSwingPanel<? extends IPresenter> createExpandItemComponent(
-			IPresentableComponentBinder componentBinder);
+	protected abstract AbstractPresentableSwingPanel<? extends IPresenter> createExpandItemComponent(IPresentableComponentBinder componentBinder);
 }

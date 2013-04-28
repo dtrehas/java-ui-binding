@@ -5,8 +5,7 @@ public class ColorConverter {
 		if (swtColor == null) {
 			return null;
 		}
-		java.awt.Color awtColor = new java.awt.Color(swtColor.getRed(),
-				swtColor.getGreen(), swtColor.getBlue());
+		java.awt.Color awtColor = new java.awt.Color(swtColor.getRed(), swtColor.getGreen(), swtColor.getBlue());
 		return awtColor;
 	}
 
@@ -14,7 +13,6 @@ public class ColorConverter {
 		if (awtColor == null) {
 			return null;
 		}
-		return SWTResourceManager.getColor(awtColor.getRed(),
-				awtColor.getGreen(), awtColor.getBlue());
+		return SWTResourceManager.getColor(awtColor.getRed(), awtColor.getGreen(), awtColor.getBlue());
 	}
 }

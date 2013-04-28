@@ -29,8 +29,7 @@ import de.kupzog.ktable.KTableCellEditor;
 
 public class ComboCellEditor extends KTableCellEditor {
 	private CCombo m_Combo;
-	private final Cursor m_ArrowCursor = new Cursor(Display.getDefault(),
-			SWT.CURSOR_ARROW);
+	private final Cursor m_ArrowCursor = new Cursor(Display.getDefault(), SWT.CURSOR_ARROW);
 
 	private final IComboBinder binder;
 
@@ -77,23 +76,18 @@ public class ComboCellEditor extends KTableCellEditor {
 			 */
 			Object content = null;
 			try {
-				Field adapterField = AutoCompleteField.class
-						.getDeclaredField("adapter");
+				Field adapterField = AutoCompleteField.class.getDeclaredField("adapter");
 				adapterField.setAccessible(true);
-				ContentProposalAdapter adapter = (ContentProposalAdapter) adapterField
-						.get(m_autoCompleteField);
+				ContentProposalAdapter adapter = (ContentProposalAdapter) adapterField.get(m_autoCompleteField);
 				Field popupField = adapter.getClass().getDeclaredField("popup");
 				popupField.setAccessible(true);
 				Object popup = popupField.get(adapter);
 				if (popup != null) {
-					Method method = popup.getClass().getDeclaredMethod(
-							"getSelectedProposal", new Class[] {});
+					Method method = popup.getClass().getDeclaredMethod("getSelectedProposal", new Class[] {});
 					method.setAccessible(true);
-					IContentProposal result = (IContentProposal) method.invoke(
-							popup, new Object[] {});
+					IContentProposal result = (IContentProposal) method.invoke(popup, new Object[] {});
 					for (Object item : binder.getAvailableItems()) {
-						if (binder.getItemBinder().convert(item)
-								.equalsIgnoreCase(result.getContent())) {
+						if (binder.getItemBinder().convert(item).equalsIgnoreCase(result.getContent())) {
 							content = item;
 							break;
 						}
@@ -109,8 +103,7 @@ public class ComboCellEditor extends KTableCellEditor {
 			 * by the binder.
 			 */
 			if (content == null) {
-				content = SWTSelectionUtils.getSingleSelection(myViewer
-						.getSelection());
+				content = SWTSelectionUtils.getSingleSelection(myViewer.getSelection());
 			}
 			/**
 			 * Since nothing selected and nothing proposed, just use the text
@@ -138,8 +131,7 @@ public class ComboCellEditor extends KTableCellEditor {
 	@SuppressWarnings("unchecked")
 	protected Control createControl() {
 		m_Combo = new CCombo(m_Table, SWT.NONE);
-		m_Combo.setBackground(Display.getCurrent().getSystemColor(
-				SWT.COLOR_LIST_BACKGROUND));
+		m_Combo.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_LIST_BACKGROUND));
 		m_Combo.addKeyListener(keyListener);
 		m_Combo.addTraverseListener(travListener);
 		m_Combo.setCursor(m_ArrowCursor);
@@ -152,19 +144,16 @@ public class ComboCellEditor extends KTableCellEditor {
 		}
 		String[] proposals = new String[binder.getAvailableItems().length];
 		for (int i = 0; i < binder.getAvailableItems().length; i++) {
-			proposals[i] = binder.getItemBinder().convert(
-					binder.getAvailableItems()[i]);
+			proposals[i] = binder.getItemBinder().convert(binder.getAvailableItems()[i]);
 		}
-		m_autoCompleteField = new AutoCompleteField(m_Combo,
-				new CComboContentAdapter(), proposals);
+		m_autoCompleteField = new AutoCompleteField(m_Combo, new CComboContentAdapter(), proposals);
 
 		return m_Combo;
 	}
 
 	@Override
 	public void setBounds(Rectangle rect) {
-		super.setBounds(new Rectangle(rect.x, rect.y + 1, rect.width,
-				rect.height - 2));
+		super.setBounds(new Rectangle(rect.x, rect.y + 1, rect.width, rect.height - 2));
 	}
 
 	@Override

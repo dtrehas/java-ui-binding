@@ -17,8 +17,7 @@ import com.beirtipol.binding.swing.AbstractPresentableSwingPanel;
 import com.beirtipol.binding.swing.SwingButtonDelegate;
 import com.beirtipol.binding.swing.core.dialog.SwingPresentableDialogDelegate;
 
-public class SwingPresentableDialogDemo extends
-		AbstractPresentableSwingPanel<SwingPresentableDialogDemo.Presenter> {
+public class SwingPresentableDialogDemo extends AbstractPresentableSwingPanel<SwingPresentableDialogDemo.Presenter> {
 	private JButton btnOpenDialog;
 	private SwingButtonDelegate openDialogDelegate;
 	private SwingPresentableDialogDelegate<SwingButtonBinderDemo.Presenter> dialogDelegate;
@@ -44,8 +43,7 @@ public class SwingPresentableDialogDemo extends
 		// Delegates
 		{
 			openDialogDelegate = new SwingButtonDelegate(btnOpenDialog);
-			dialogDelegate = new SwingPresentableDialogDelegate<SwingButtonBinderDemo.Presenter>(
-					dialog, swingButtonBinderDemo);
+			dialogDelegate = new SwingPresentableDialogDelegate<SwingButtonBinderDemo.Presenter>(dialog, swingButtonBinderDemo);
 		}
 		return result;
 	}

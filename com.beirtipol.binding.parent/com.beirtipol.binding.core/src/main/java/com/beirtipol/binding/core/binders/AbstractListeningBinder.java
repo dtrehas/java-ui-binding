@@ -19,8 +19,7 @@ import com.beirtipol.binding.core.util.IFreeable;
  * @param <T>
  */
 @SuppressWarnings("rawtypes")
-public abstract class AbstractListeningBinder<T extends IDelegate> extends
-		AbstractBinder<T> implements PropertyChangeListener, IFreeable {
+public abstract class AbstractListeningBinder<T extends IDelegate> extends AbstractBinder<T> implements PropertyChangeListener, IFreeable {
 	private PropertyChangeSupport changeSupport;
 	protected final IStaticObjectFormattedAccessor accessor;
 

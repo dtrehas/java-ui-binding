@@ -54,8 +54,7 @@ import javax.swing.event.ChangeListener;
  * @version $LastChangedRevision: 85 $
  * @version $LastChangedDate: 2006-04-28 13:50:52 +0200 (Fr, 28 Apr 2006) $
  */
-public class JSpinField extends JPanel implements ChangeListener,
-		CaretListener, ActionListener, FocusListener {
+public class JSpinField extends JPanel implements ChangeListener, CaretListener, ActionListener, FocusListener {
 	private static final long serialVersionUID = 1694904792717740650L;
 
 	protected JSpinner spinner;
@@ -107,8 +106,7 @@ public class JSpinField extends JPanel implements ChangeListener,
 
 			public Dimension getPreferredSize() {
 				Dimension size = super.getPreferredSize();
-				return new Dimension(size.width,
-						textField.getPreferredSize().height);
+				return new Dimension(size.width, textField.getPreferredSize().height);
 			}
 		};
 		spinner.setEditor(textField);
@@ -145,8 +143,7 @@ public class JSpinField extends JPanel implements ChangeListener,
 	 * @param updateTextField
 	 *            true if text field should be updated
 	 */
-	protected void setValue(int newValue, boolean updateTextField,
-			boolean firePropertyChange) {
+	protected void setValue(int newValue, boolean updateTextField, boolean firePropertyChange) {
 		int oldValue = value;
 		if (newValue < min) {
 			value = min;
@@ -321,8 +318,7 @@ public class JSpinField extends JPanel implements ChangeListener,
 		 * to a TextField.inactiveBackground.
 		 */
 		if (!enabled) {
-			textField.setBackground(UIManager
-					.getColor("TextField.inactiveBackground"));
+			textField.setBackground(UIManager.getColor("TextField.inactiveBackground"));
 		}
 	}
 

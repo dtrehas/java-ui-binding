@@ -22,8 +22,7 @@ import com.beirtipol.binding.swt.SWTAbstractPresentableComposite;
 import com.beirtipol.binding.swt.SWTTreeTableDelegate;
 import com.beirtipol.binding.swt.demo.SWTTreeTableBinderDemo.Presenter;
 
-public class SWTTreeTableBinderDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTTreeTableBinderDemo extends SWTAbstractPresentableComposite<Presenter> {
 
 	private TreeViewer treeViewer;
 	private SWTTreeTableDelegate delegate;
@@ -71,8 +70,7 @@ public class SWTTreeTableBinderDemo extends
 				case 1:
 					return ((ITypedTreeNode) node).getType();
 				case 2:
-					return ObjectUtils.toString(((ITypedTreeNode) node)
-							.getValue());
+					return ObjectUtils.toString(((ITypedTreeNode) node).getValue());
 				default:
 					return "[NULL]";
 				}
@@ -119,10 +117,8 @@ public class SWTTreeTableBinderDemo extends
 		Shell shell = new Shell(display);
 		shell.setText("SWT");
 		shell.setLayout(new FillLayout());
-		SWTTreeTableBinderDemo comp = new SWTTreeTableBinderDemo(shell,
-				SWT.NONE);
-		ITypedTreeNode treeNode = TreeNodeFactory.createTreeNode(null,
-				"Display", display, new BasicReflectionTreeNodeIDContext());
+		SWTTreeTableBinderDemo comp = new SWTTreeTableBinderDemo(shell, SWT.NONE);
+		ITypedTreeNode treeNode = TreeNodeFactory.createTreeNode(null, "Display", display, new BasicReflectionTreeNodeIDContext());
 		Presenter presenter = comp.new Presenter(treeNode);
 		comp.setPresenter(presenter);
 		shell.open();

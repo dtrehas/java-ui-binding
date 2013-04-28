@@ -57,10 +57,8 @@ public class KTableCellEditorCheckbox2 extends KTableCellEditorCheckbox {
 	 *             if an invalid input is given.
 	 */
 	public KTableCellEditorCheckbox2(Point activeArea, int hAlign, int vAlign) {
-		if (activeArea == null || !isValidHAlignment(hAlign)
-				|| !isValidVAlignment(vAlign))
-			throw new ClassCastException(
-					"Check the parameters given to KTableCellEditorCheckbox2!");
+		if (activeArea == null || !isValidHAlignment(hAlign) || !isValidVAlignment(vAlign))
+			throw new ClassCastException("Check the parameters given to KTableCellEditorCheckbox2!");
 
 		m_Active = activeArea;
 		m_hAlign = hAlign;
@@ -75,9 +73,7 @@ public class KTableCellEditorCheckbox2 extends KTableCellEditorCheckbox {
 	 * @return True if the alignment value is valid.
 	 */
 	private boolean isValidHAlignment(int align) {
-		if (align == SWTX.ALIGN_HORIZONTAL_CENTER
-				|| align == SWTX.ALIGN_HORIZONTAL_LEFT
-				|| align == SWTX.ALIGN_HORIZONTAL_RIGHT)
+		if (align == SWTX.ALIGN_HORIZONTAL_CENTER || align == SWTX.ALIGN_HORIZONTAL_LEFT || align == SWTX.ALIGN_HORIZONTAL_RIGHT)
 			return true;
 		return false;
 	}
@@ -90,9 +86,7 @@ public class KTableCellEditorCheckbox2 extends KTableCellEditorCheckbox {
 	 * @return True if the alignment value is valid.
 	 */
 	private boolean isValidVAlignment(int align) {
-		if (align == SWTX.ALIGN_VERTICAL_TOP
-				|| align == SWTX.ALIGN_VERTICAL_CENTER
-				|| align == SWTX.ALIGN_VERTICAL_BOTTOM)
+		if (align == SWTX.ALIGN_VERTICAL_TOP || align == SWTX.ALIGN_VERTICAL_CENTER || align == SWTX.ALIGN_VERTICAL_BOTTOM)
 			return true;
 		return false;
 	}
@@ -108,8 +102,7 @@ public class KTableCellEditorCheckbox2 extends KTableCellEditorCheckbox {
 	 *            The point where the mouseclick occured.
 	 * @return Returns true if the editor activation should happen.
 	 */
-	public boolean isApplicable(int eventType, KTable table, int col, int row,
-			Point clickLocation, String keyInput, int stateMask) {
+	public boolean isApplicable(int eventType, KTable table, int col, int row, Point clickLocation, String keyInput, int stateMask) {
 		if (eventType == SINGLECLICK) {
 			// compute active location inside the cellBoundary:
 			Rectangle active = new Rectangle(0, 0, m_Active.x, m_Active.y);
@@ -125,16 +118,14 @@ public class KTableCellEditorCheckbox2 extends KTableCellEditorCheckbox {
 				active.x = cellBoundary.x + cellBoundary.width - active.width;
 			else
 				// center
-				active.x = cellBoundary.x + (cellBoundary.width - active.width)
-						/ 2;
+				active.x = cellBoundary.x + (cellBoundary.width - active.width) / 2;
 
 			if (m_vAlign == SWTX.ALIGN_VERTICAL_TOP)
 				active.y = cellBoundary.y;
 			else if (m_vAlign == SWTX.ALIGN_VERTICAL_BOTTOM)
 				active.y = cellBoundary.y + cellBoundary.height - active.height;
 			else
-				active.y = cellBoundary.y
-						+ (cellBoundary.height - active.height) / 2;
+				active.y = cellBoundary.y + (cellBoundary.height - active.height) / 2;
 
 			// check if clickLocation is inside the specified active area:
 			if (active.contains(clickLocation))

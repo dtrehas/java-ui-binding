@@ -11,18 +11,15 @@ import com.beirtipol.binding.core.binders.widget.ICheckBoxBinder;
 import com.beirtipol.binding.core.binders.widget.IComboBinder;
 import com.beirtipol.binding.core.binders.widget.ITextBinder;
 
-public abstract class AbstractExtendedTableBinder extends AbstractTableBinder
-		implements IExtendedTableBinder {
+public abstract class AbstractExtendedTableBinder extends AbstractTableBinder implements IExtendedTableBinder {
 
 	@Override
 	public void setValue(int col, int row, Object value) {
 		IBasicBinder<?> dataCellBinder = getDataCellBinder(col, row);
 		if (dataCellBinder instanceof ITextBinder) {
-			((ITextBinder) dataCellBinder).setTextIntoModel(ObjectUtils
-					.toString(value));
+			((ITextBinder) dataCellBinder).setTextIntoModel(ObjectUtils.toString(value));
 		} else if (dataCellBinder instanceof ICheckBoxBinder) {
-			((ICheckBoxBinder) dataCellBinder).setCheckedIntoModel(Boolean
-					.parseBoolean(ObjectUtils.toString(value)));
+			((ICheckBoxBinder) dataCellBinder).setCheckedIntoModel(Boolean.parseBoolean(ObjectUtils.toString(value)));
 		} else if (dataCellBinder instanceof IButtonBinder) {
 			((IButtonBinder) dataCellBinder).pressed();
 		} else if (dataCellBinder instanceof IComboBinder) {

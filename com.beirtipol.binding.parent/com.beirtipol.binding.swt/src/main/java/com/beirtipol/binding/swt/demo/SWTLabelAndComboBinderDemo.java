@@ -25,8 +25,7 @@ import com.beirtipol.binding.swt.SWTComboDelegate;
 import com.beirtipol.binding.swt.SWTLabelDelegate;
 import com.beirtipol.binding.swt.demo.SWTLabelAndComboBinderDemo.Presenter;
 
-public class SWTLabelAndComboBinderDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTLabelAndComboBinderDemo extends SWTAbstractPresentableComposite<Presenter> {
 	private Combo cmbColor;
 	private SWTComboDelegate colorDelegate;
 
@@ -41,13 +40,11 @@ public class SWTLabelAndComboBinderDemo extends
 		// Widgets
 		{
 			colorLabel = new Label(this, SWT.NONE);
-			colorLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-					false, 1, 1));
+			colorLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 			colorLabel.setText("Color:");
 
 			cmbColor = new Combo(this, SWT.READ_ONLY);
-			cmbColor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-					false, 1, 1));
+			cmbColor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		}
 		// Delegates
 		{
@@ -158,8 +155,7 @@ public class SWTLabelAndComboBinderDemo extends
 		Shell shell = new Shell(display);
 		shell.setText("SWT");
 		shell.setLayout(new FillLayout());
-		SWTLabelAndComboBinderDemo comp = new SWTLabelAndComboBinderDemo(shell,
-				SWT.NONE);
+		SWTLabelAndComboBinderDemo comp = new SWTLabelAndComboBinderDemo(shell, SWT.NONE);
 		Presenter presenter = comp.new Presenter();
 		comp.setPresenter(presenter);
 		shell.open();

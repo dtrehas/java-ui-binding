@@ -113,8 +113,7 @@ public class JDateChooser extends JPanel implements PropertyChangeListener {
 	 *            the placeholer charachter, e.g. '_'
 	 */
 	public JDateChooser(String datePattern, String maskPattern, char placeholder) {
-		this(null, datePattern, new JTextFieldDateEditor(datePattern,
-				maskPattern, placeholder), false);
+		this(null, datePattern, new JTextFieldDateEditor(datePattern, maskPattern, placeholder), false);
 	}
 
 	/**
@@ -129,8 +128,7 @@ public class JDateChooser extends JPanel implements PropertyChangeListener {
 	 *            the dateEditor to be used used to display the date. if null, a
 	 *            JTextFieldDateEditor is used.
 	 */
-	public JDateChooser(Date date, String dateFormatString,
-			IDateEditor dateEditor, boolean useTableCellLayout) {
+	public JDateChooser(Date date, String dateFormatString, IDateEditor dateEditor, boolean useTableCellLayout) {
 		this.useTableCellLayout = useTableCellLayout;
 		setName("JDateChooser");
 
@@ -172,8 +170,7 @@ public class JDateChooser extends JPanel implements PropertyChangeListener {
 			setDate(jCalendar.getCalendar().getTime());
 		} else if (propertyChangeEvent.getPropertyName().equals("date")) {
 			if (propertyChangeEvent.getSource() == dateEditor) {
-				firePropertyChange("date", propertyChangeEvent.getOldValue(),
-						propertyChangeEvent.getNewValue());
+				firePropertyChange("date", propertyChangeEvent.getOldValue(), propertyChangeEvent.getNewValue());
 			} else {
 				setDate((Date) propertyChangeEvent.getNewValue());
 			}
@@ -308,8 +305,7 @@ public class JDateChooser extends JPanel implements PropertyChangeListener {
 	 */
 	public void setSelectableDateRange(Date min, Date max) {
 		jCalendar.setSelectableDateRange(min, max);
-		dateEditor.setSelectableDateRange(jCalendar.getMinSelectableDate(),
-				jCalendar.getMaxSelectableDate());
+		dateEditor.setSelectableDateRange(jCalendar.getMinSelectableDate(), jCalendar.getMaxSelectableDate());
 	}
 
 	/**
@@ -366,8 +362,7 @@ public class JDateChooser extends JPanel implements PropertyChangeListener {
 	 * @param dateFormatString
 	 * @param dateEditor
 	 */
-	private void createDateEditor(Date date, String dateFormatString,
-			IDateEditor dateEditor) {
+	private void createDateEditor(Date date, String dateFormatString, IDateEditor dateEditor) {
 		this.dateEditor = dateEditor;
 
 		if (this.dateEditor == null) {
@@ -427,29 +422,25 @@ public class JDateChooser extends JPanel implements PropertyChangeListener {
 	private void createDialog() {
 		// Calendar.
 		jCalendar = new JCalendar(createCalendar());
-		jCalendar
-				.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+		jCalendar.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
 		jCalendar.getDayChooser().addPropertyChangeListener("day", this);
 		jCalendar.getMonthChooser().addPropertyChangeListener("month", this);
 		jCalendar.getYearChooser().addPropertyChangeListener("year", this);
 
-		jCalendar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-				KeyStroke.getKeyStroke("ESCAPE"), "rollbackDateAction");
+		jCalendar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "rollbackDateAction");
 
-		jCalendar.getActionMap().put("rollbackDateAction",
-				new AbstractAction() {
-					/**
+		jCalendar.getActionMap().put("rollbackDateAction", new AbstractAction() {
+			/**
              *
              */
-					@Override
-					public void actionPerformed(ActionEvent actionEvent) {
-						rollbackDate();
-					}
-				});
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				rollbackDate();
+			}
+		});
 
-		jCalendar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-				KeyStroke.getKeyStroke("control ENTER"), "commitDateAction");
+		jCalendar.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("control ENTER"), "commitDateAction");
 
 		jCalendar.getActionMap().put("commitDateAction", new AbstractAction() {
 			/**
@@ -531,16 +522,12 @@ public class JDateChooser extends JPanel implements PropertyChangeListener {
 			if (source != null && source.isShowing()) {
 				createDialog();
 				dialog.setLocationRelativeTo(source);
-				dialog.setLocation(
-						source.getLocationOnScreen().x + source.getWidth(),
-						source.getLocationOnScreen().y + source.getHeight());
+				dialog.setLocation(source.getLocationOnScreen().x + source.getWidth(), source.getLocationOnScreen().y + source.getHeight());
 				dialog.setVisible(true);
 
 				jCalendar.requestFocus();
 
-				Dimension dialogPreferredSize = new Dimension(
-						jCalendar.getPreferredSize().width,
-						jCalendar.getPreferredSize().height + 5);
+				Dimension dialogPreferredSize = new Dimension(jCalendar.getPreferredSize().width, jCalendar.getPreferredSize().height + 5);
 				dialog.setSize(dialogPreferredSize);
 				dialog.setPreferredSize(dialogPreferredSize);
 				dialog.setMinimumSize(dialogPreferredSize);

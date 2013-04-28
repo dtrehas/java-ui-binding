@@ -17,10 +17,10 @@ import com.beirtipol.binding.core.pcs.NestedPropertyChangeListener;
 import com.beirtipol.binding.core.pcs.NestedPropertyChangeSupport;
 
 public class WorkingNestedChangeSupportTest implements IBindable {
-	private NestedPropertyChangeSupport	changeSupport;
+	private NestedPropertyChangeSupport changeSupport;
 
-	public static final String			FLD_INNER_OBJ	= "innerObj";
-	private WorkingChangeSupportTest	innerObj;
+	public static final String FLD_INNER_OBJ = "innerObj";
+	private WorkingChangeSupportTest innerObj;
 
 	@Override
 	public PropertyChangeSupport changeSupport() {

@@ -5,11 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import com.beirtipol.binding.core.delegates.ICheckBoxDelegate;
 
-public abstract class AbstractCheckboxBinder extends
-		AbstractWidgetBinder<ICheckBoxDelegate> implements ICheckBoxBinder {
+public abstract class AbstractCheckboxBinder extends AbstractWidgetBinder<ICheckBoxDelegate> implements ICheckBoxBinder {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(AbstractCheckboxBinder.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractCheckboxBinder.class);
 	private final String initialText;
 
 	public AbstractCheckboxBinder() {

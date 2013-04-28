@@ -156,8 +156,7 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 	 * @param weekOfYearVisible
 	 *            true, if weeks of year shall be visible
 	 */
-	public JCalendar(Date date, Locale locale, boolean monthSpinner,
-			boolean weekOfYearVisible) {
+	public JCalendar(Date date, Locale locale, boolean monthSpinner, boolean weekOfYearVisible) {
 
 		setName("JCalendar");
 		setBackground(Color.white);
@@ -292,8 +291,7 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 			Calendar c = (Calendar) calendar.clone();
 
 			if (evt.getPropertyName().equals("day")) {
-				c.set(Calendar.DAY_OF_MONTH,
-						((Integer) evt.getNewValue()).intValue());
+				c.set(Calendar.DAY_OF_MONTH, ((Integer) evt.getNewValue()).intValue());
 				setCalendar(c, false);
 			} else if (evt.getPropertyName().equals("month")) {
 				c.set(Calendar.MONTH, ((Integer) evt.getNewValue()).intValue());
@@ -464,8 +462,7 @@ public class JCalendar extends JPanel implements PropertyChangeListener {
 	 * @param decorationBackgroundVisible
 	 *            true, if the decoration background should be visible.
 	 */
-	public void setDecorationBackgroundVisible(
-			boolean decorationBackgroundVisible) {
+	public void setDecorationBackgroundVisible(boolean decorationBackgroundVisible) {
 		dayChooser.setDecorationBackgroundVisible(decorationBackgroundVisible);
 		setLocale(locale); // hack for doing complete new layout :)
 	}

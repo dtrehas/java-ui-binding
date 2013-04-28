@@ -19,13 +19,12 @@ public class SwingExpandItemDelegate implements IExpandItemDelegate {
 
 	@Override
 	public void addExpandListener(final IExpandItemBinder binder) {
-		control.addPropertyChangeListener("collapsed",
-				new PropertyChangeListener() {
-					@Override
-					public void propertyChange(PropertyChangeEvent evt) {
-						binder.setExpandedIntoModel(!control.isCollapsed());
-					}
-				});
+		control.addPropertyChangeListener("collapsed", new PropertyChangeListener() {
+			@Override
+			public void propertyChange(PropertyChangeEvent evt) {
+				binder.setExpandedIntoModel(!control.isCollapsed());
+			}
+		});
 	}
 
 	@Override

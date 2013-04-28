@@ -52,8 +52,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Widget;
 
-public class SWTDayChooser extends Composite implements MouseListener,
-		FocusListener, TraverseListener, KeyListener {
+public class SWTDayChooser extends Composite implements MouseListener, FocusListener, TraverseListener, KeyListener {
 	/**
 	 * Style constant for making Sundays red.
 	 */
@@ -89,12 +88,9 @@ public class SWTDayChooser extends Composite implements MouseListener,
 		setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
 
 		otherMonthColor = new Color(getDisplay(), 128, 128, 128);
-		activeSelectionBackground = getDisplay().getSystemColor(
-				SWT.COLOR_LIST_SELECTION);
-		inactiveSelectionBackground = getDisplay().getSystemColor(
-				SWT.COLOR_GRAY);
-		activeSelectionForeground = getDisplay().getSystemColor(
-				SWT.COLOR_LIST_SELECTION_TEXT);
+		activeSelectionBackground = getDisplay().getSystemColor(SWT.COLOR_LIST_SELECTION);
+		inactiveSelectionBackground = getDisplay().getSystemColor(SWT.COLOR_GRAY);
+		activeSelectionForeground = getDisplay().getSystemColor(SWT.COLOR_LIST_SELECTION_TEXT);
 		inactiveSelectionForeground = getForeground();
 
 		locale = Locale.getDefault();
@@ -137,8 +133,7 @@ public class SWTDayChooser extends Composite implements MouseListener,
 		for (int i = 0; i < days.length; i++) {
 			DayControl day = new DayControl(this);
 			days[i] = day;
-			day.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL
-					| GridData.VERTICAL_ALIGN_FILL));
+			day.setLayoutData(new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_FILL));
 			day.addMouseListener(this);
 		}
 
@@ -199,10 +194,8 @@ public class SWTDayChooser extends Composite implements MouseListener,
 			Label label = dayTitles[i];
 			label.setText(dayNames[d]);
 			label.setBackground(getBackground());
-			if (d == Calendar.SUNDAY && (style & RED_SUNDAY) != 0
-					|| d == Calendar.SATURDAY && (style & RED_SATURDAY) != 0) {
-				label.setForeground(getDisplay().getSystemColor(
-						SWT.COLOR_DARK_RED));
+			if (d == Calendar.SUNDAY && (style & RED_SUNDAY) != 0 || d == Calendar.SATURDAY && (style & RED_SATURDAY) != 0) {
+				label.setForeground(getDisplay().getSystemColor(SWT.COLOR_DARK_RED));
 			} else {
 				label.setForeground(getForeground());
 			}
@@ -231,22 +224,17 @@ public class SWTDayChooser extends Composite implements MouseListener,
 		Color foregroundColor = getForeground();
 		for (int i = 0; i < days.length; cal.add(Calendar.DAY_OF_MONTH, 1)) {
 			DayControl dayControl = days[i++];
-			dayControl
-					.setText(Integer.toString(cal.get(Calendar.DAY_OF_MONTH)));
+			dayControl.setText(Integer.toString(cal.get(Calendar.DAY_OF_MONTH)));
 			if (isSameDay(cal, today)) {
-				dayControl.setBorderColor(getDisplay().getSystemColor(
-						SWT.COLOR_BLACK));
+				dayControl.setBorderColor(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 			} else {
 				dayControl.setBorderColor(getBackground());
 			}
 
 			if (isSameMonth(cal, calendar)) {
 				int d = cal.get(Calendar.DAY_OF_WEEK);
-				if (d == Calendar.SUNDAY && (style & RED_SUNDAY) != 0
-						|| d == Calendar.SATURDAY
-						&& (style & RED_SATURDAY) != 0) {
-					dayControl.setForeground(getDisplay().getSystemColor(
-							SWT.COLOR_DARK_RED));
+				if (d == Calendar.SUNDAY && (style & RED_SUNDAY) != 0 || d == Calendar.SATURDAY && (style & RED_SATURDAY) != 0) {
+					dayControl.setForeground(getDisplay().getSystemColor(SWT.COLOR_DARK_RED));
 				} else {
 					dayControl.setForeground(foregroundColor);
 				}
@@ -264,13 +252,11 @@ public class SWTDayChooser extends Composite implements MouseListener,
 	}
 
 	private static boolean isSameDay(Calendar cal1, Calendar cal2) {
-		return cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR)
-				&& cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+		return cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) && cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
 	}
 
 	private static boolean isSameMonth(Calendar cal1, Calendar cal2) {
-		return cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
-				&& cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
+		return cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) && cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR);
 	}
 
 	public void setMonth(int month) {
@@ -450,15 +436,13 @@ public class SWTDayChooser extends Composite implements MouseListener,
 
 	private void selectDay(int day) {
 		calendar.get(Calendar.DAY_OF_YEAR); // Force calendar update
-		if (day >= calendar.getActualMinimum(Calendar.DAY_OF_MONTH)
-				&& day <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+		if (day >= calendar.getActualMinimum(Calendar.DAY_OF_MONTH) && day <= calendar.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 			int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 			// Stay on the same month.
 			DayControl selectedDay = getSelectedDayControl();
 			selectedDay.setBackground(getBackground());
 			if (dayOfWeek == Calendar.SUNDAY) {
-				selectedDay.setForeground(getDisplay().getSystemColor(
-						SWT.COLOR_DARK_RED));
+				selectedDay.setForeground(getDisplay().getSystemColor(SWT.COLOR_DARK_RED));
 			} else {
 				selectedDay.setForeground(getForeground());
 			}
@@ -483,13 +467,11 @@ public class SWTDayChooser extends Composite implements MouseListener,
 	}
 
 	private Color getSelectionBackgroundColor() {
-		return isFocusControl() ? activeSelectionBackground
-				: inactiveSelectionBackground;
+		return isFocusControl() ? activeSelectionBackground : inactiveSelectionBackground;
 	}
 
 	private Color getSelectionForegroundColor() {
-		return isFocusControl() ? activeSelectionForeground
-				: inactiveSelectionForeground;
+		return isFocusControl() ? activeSelectionForeground : inactiveSelectionForeground;
 	}
 
 	/*
@@ -499,8 +481,7 @@ public class SWTDayChooser extends Composite implements MouseListener,
 	 */
 	@Override
 	public boolean isFocusControl() {
-		for (Control control = getDisplay().getFocusControl(); control != null; control = control
-				.getParent()) {
+		for (Control control = getDisplay().getFocusControl(); control != null; control = control.getParent()) {
 			if (control == this) {
 				return true;
 			}
@@ -519,8 +500,7 @@ public class SWTDayChooser extends Composite implements MouseListener,
 
 	private void dateChanged() {
 		if (!listeners.isEmpty()) {
-			SWTCalendarListener[] listenersArray = new SWTCalendarListener[listeners
-					.size()];
+			SWTCalendarListener[] listenersArray = new SWTCalendarListener[listeners.size()];
 			listeners.toArray(listenersArray);
 			for (int i = 0; i < listenersArray.length; i++) {
 				Event event = new Event();
@@ -587,8 +567,7 @@ public class SWTDayChooser extends Composite implements MouseListener,
 			filler.addListener(SWT.MouseDoubleClick, this);
 
 			label = new DayLabel(filler, SWT.RIGHT | SWT.NO_FOCUS);
-			label.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL
-					| GridData.HORIZONTAL_ALIGN_CENTER));
+			label.setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_CENTER));
 			label.addListener(SWT.MouseDown, this);
 			label.addListener(SWT.MouseUp, this);
 			label.addListener(SWT.MouseDoubleClick, this);

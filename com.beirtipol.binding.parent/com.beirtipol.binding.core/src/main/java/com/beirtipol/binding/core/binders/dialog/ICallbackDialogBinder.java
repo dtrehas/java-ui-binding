@@ -9,8 +9,7 @@ import com.beirtipol.binding.core.delegates.IDialogDelegate;
  * @param <T>
  *            The type of object returned via the callback from the dialog
  */
-public interface ICallbackDialogBinder<T, D extends IDialogDelegate> extends
-		IDialogBinder<D> {
+public interface ICallbackDialogBinder<T, D extends IDialogDelegate> extends IDialogBinder<D> {
 	/**
 	 * Provides a callback from the dialog to the binder once the dialog has
 	 * been closed.

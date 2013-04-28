@@ -3,8 +3,7 @@ package com.beirtipol.binding.core.binders.component;
 import com.beirtipol.binding.core.binders.AbstractBinder;
 import com.beirtipol.binding.core.delegates.IExpandItemDelegate;
 
-public abstract class AbstractExpandItemBinder extends
-		AbstractBinder<IExpandItemDelegate> implements IExpandItemBinder {
+public abstract class AbstractExpandItemBinder extends AbstractBinder<IExpandItemDelegate> implements IExpandItemBinder {
 	protected boolean isExpanded = true;
 	protected boolean isSelected;
 

@@ -15,8 +15,7 @@ import com.beirtipol.binding.core.delegates.IPresentableDialogDelegate;
  * @param <P>
  *            The type of presenter to be set on the dialog.
  */
-public interface IPresentableDialogBinder<P extends IPresenter> extends
-		IDialogBinder<IPresentableDialogDelegate<P>> {
+public interface IPresentableDialogBinder<P extends IPresenter> extends IDialogBinder<IPresentableDialogDelegate<P>> {
 	public Color getForeground();
 
 	public Color getBackground();

@@ -4,8 +4,7 @@ import java.awt.Color;
 
 import com.beirtipol.binding.core.delegates.IComboDelegate;
 
-public abstract class AbstractComboBinder extends
-		AbstractWidgetBinder<IComboDelegate> implements IComboBinder {
+public abstract class AbstractComboBinder extends AbstractWidgetBinder<IComboDelegate> implements IComboBinder {
 	@Override
 	public void setDelegate(IComboDelegate delegate) {
 		super.setDelegate(delegate);

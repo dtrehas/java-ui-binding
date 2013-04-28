@@ -107,8 +107,7 @@ public class MenuScroller {
 	 * @throws IllegalArgumentException
 	 *             if scrollCount or interval is 0 or negative
 	 */
-	public static MenuScroller setScrollerFor(JMenu menu, int scrollCount,
-			int interval) {
+	public static MenuScroller setScrollerFor(JMenu menu, int scrollCount, int interval) {
 		return new MenuScroller(menu, scrollCount, interval);
 	}
 
@@ -126,8 +125,7 @@ public class MenuScroller {
 	 * @throws IllegalArgumentException
 	 *             if scrollCount or interval is 0 or negative
 	 */
-	public static MenuScroller setScrollerFor(JPopupMenu menu, int scrollCount,
-			int interval) {
+	public static MenuScroller setScrollerFor(JPopupMenu menu, int scrollCount, int interval) {
 		return new MenuScroller(menu, scrollCount, interval);
 	}
 
@@ -151,10 +149,8 @@ public class MenuScroller {
 	 *             topFixedCount or bottomFixedCount is negative
 	 * @return the MenuScroller
 	 */
-	public static MenuScroller setScrollerFor(JMenu menu, int scrollCount,
-			int interval, int topFixedCount, int bottomFixedCount) {
-		return new MenuScroller(menu, scrollCount, interval, topFixedCount,
-				bottomFixedCount);
+	public static MenuScroller setScrollerFor(JMenu menu, int scrollCount, int interval, int topFixedCount, int bottomFixedCount) {
+		return new MenuScroller(menu, scrollCount, interval, topFixedCount, bottomFixedCount);
 	}
 
 	/**
@@ -178,10 +174,8 @@ public class MenuScroller {
 	 *             topFixedCount or bottomFixedCount is negative
 	 * @return the MenuScroller
 	 */
-	public static MenuScroller setScrollerFor(JPopupMenu menu, int scrollCount,
-			int interval, int topFixedCount, int bottomFixedCount) {
-		return new MenuScroller(menu, scrollCount, interval, topFixedCount,
-				bottomFixedCount);
+	public static MenuScroller setScrollerFor(JPopupMenu menu, int scrollCount, int interval, int topFixedCount, int bottomFixedCount) {
+		return new MenuScroller(menu, scrollCount, interval, topFixedCount, bottomFixedCount);
 	}
 
 	/**
@@ -296,10 +290,8 @@ public class MenuScroller {
 	 *             if scrollCount or interval is 0 or negative or if
 	 *             topFixedCount or bottomFixedCount is negative
 	 */
-	public MenuScroller(JMenu menu, int scrollCount, int interval,
-			int topFixedCount, int bottomFixedCount) {
-		this(menu.getPopupMenu(), scrollCount, interval, topFixedCount,
-				bottomFixedCount);
+	public MenuScroller(JMenu menu, int scrollCount, int interval, int topFixedCount, int bottomFixedCount) {
+		this(menu.getPopupMenu(), scrollCount, interval, topFixedCount, bottomFixedCount);
 	}
 
 	/**
@@ -322,15 +314,12 @@ public class MenuScroller {
 	 *             if scrollCount or interval is 0 or negative or if
 	 *             topFixedCount or bottomFixedCount is negative
 	 */
-	public MenuScroller(JPopupMenu menu, int scrollCount, int interval,
-			int topFixedCount, int bottomFixedCount) {
+	public MenuScroller(JPopupMenu menu, int scrollCount, int interval, int topFixedCount, int bottomFixedCount) {
 		if (scrollCount <= 0 || interval <= 0) {
-			throw new IllegalArgumentException(
-					"scrollCount and interval must be greater than 0");
+			throw new IllegalArgumentException("scrollCount and interval must be greater than 0");
 		}
 		if (topFixedCount < 0 || bottomFixedCount < 0) {
-			throw new IllegalArgumentException(
-					"topFixedCount and bottomFixedCount cannot be negative");
+			throw new IllegalArgumentException("topFixedCount and bottomFixedCount cannot be negative");
 		}
 
 		upItem = new MenuScrollItem(MenuIcon.UP, -1);
@@ -363,8 +352,7 @@ public class MenuScroller {
 	 */
 	public void setInterval(int interval) {
 		if (interval <= 0) {
-			throw new IllegalArgumentException(
-					"interval must be greater than 0");
+			throw new IllegalArgumentException("interval must be greater than 0");
 		}
 		upItem.setInterval(interval);
 		downItem.setInterval(interval);
@@ -390,8 +378,7 @@ public class MenuScroller {
 	 */
 	public void setScrollCount(int scrollCount) {
 		if (scrollCount <= 0) {
-			throw new IllegalArgumentException(
-					"scrollCount must be greater than 0");
+			throw new IllegalArgumentException("scrollCount must be greater than 0");
 		}
 		this.scrollCount = scrollCount;
 		MenuSelectionManager.defaultManager().clearSelectedPath();
@@ -499,12 +486,10 @@ public class MenuScroller {
 	private void refreshMenu() {
 		if (menuItems != null && menuItems.length > 0) {
 			firstIndex = Math.max(topFixedCount, firstIndex);
-			firstIndex = Math.min(menuItems.length - bottomFixedCount
-					- scrollCount, firstIndex);
+			firstIndex = Math.min(menuItems.length - bottomFixedCount - scrollCount, firstIndex);
 
 			upItem.setEnabled(firstIndex > topFixedCount);
-			downItem.setEnabled(firstIndex + scrollCount < menuItems.length
-					- bottomFixedCount);
+			downItem.setEnabled(firstIndex + scrollCount < menuItems.length - bottomFixedCount);
 
 			menu.removeAll();
 			for (int i = 0; i < topFixedCount; i++) {
@@ -552,15 +537,11 @@ public class MenuScroller {
 
 		private void setMenuItems() {
 			menuItems = menu.getComponents();
-			if (keepVisibleIndex >= topFixedCount
-					&& keepVisibleIndex <= menuItems.length - bottomFixedCount
-					&& (keepVisibleIndex > firstIndex + scrollCount || keepVisibleIndex < firstIndex)) {
+			if (keepVisibleIndex >= topFixedCount && keepVisibleIndex <= menuItems.length - bottomFixedCount && (keepVisibleIndex > firstIndex + scrollCount || keepVisibleIndex < firstIndex)) {
 				firstIndex = Math.min(firstIndex, keepVisibleIndex);
-				firstIndex = Math.max(firstIndex, keepVisibleIndex
-						- scrollCount + 1);
+				firstIndex = Math.max(firstIndex, keepVisibleIndex - scrollCount + 1);
 			}
-			if (menuItems.length > topFixedCount + scrollCount
-					+ bottomFixedCount) {
+			if (menuItems.length > topFixedCount + scrollCount + bottomFixedCount) {
 				refreshMenu();
 			}
 		}
@@ -626,8 +607,7 @@ public class MenuScroller {
 		@Override
 		public void paintIcon(Component c, Graphics g, int x, int y) {
 			Dimension size = c.getSize();
-			Graphics g2 = g.create(size.width / 2 - 5, size.height / 2 - 5, 10,
-					10);
+			Graphics g2 = g.create(size.width / 2 - 5, size.height / 2 - 5, 10, 10);
 			g2.setColor(Color.GRAY);
 			g2.drawPolygon(xPoints, yPoints, 3);
 			if (c.isEnabled()) {

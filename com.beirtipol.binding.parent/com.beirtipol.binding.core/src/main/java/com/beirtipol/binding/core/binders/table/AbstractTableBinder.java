@@ -6,8 +6,7 @@ import java.util.List;
 import com.beirtipol.binding.core.binders.AbstractBinder;
 import com.beirtipol.binding.core.delegates.ITableDelegate;
 
-public abstract class AbstractTableBinder extends
-		AbstractBinder<ITableDelegate> implements ITableBinder {
+public abstract class AbstractTableBinder extends AbstractBinder<ITableDelegate> implements ITableBinder {
 	@Override
 	public void updateUI() {
 		ITableDelegate delegate = getDelegate();

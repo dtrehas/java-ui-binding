@@ -16,8 +16,7 @@ import com.beirtipol.binding.swt.SWTAbstractPresentableComposite;
 import com.beirtipol.binding.swt.SWTButtonDelegate;
 import com.beirtipol.binding.swt.demo.SWTButtonBinderDemo.Presenter;
 
-public class SWTButtonBinderDemo extends
-		SWTAbstractPresentableComposite<Presenter> {
+public class SWTButtonBinderDemo extends SWTAbstractPresentableComposite<Presenter> {
 	private Button btnCount;
 	private SWTButtonDelegate btnCountDelegate;
 
@@ -32,8 +31,7 @@ public class SWTButtonBinderDemo extends
 		// Widgets
 		{
 			btnCount = new Button(this, SWT.NONE);
-			btnCount.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-					false, 1, 1));
+			btnCount.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		}
 		// Delegates
 		{

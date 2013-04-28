@@ -49,8 +49,7 @@ public class QKTable extends KTable {
 	 * @param parent
 	 */
 	public QKTable(Composite parent) {
-		this(parent, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWTX.EDIT_ON_KEY
-				| SWTX.MARK_FOCUS_HEADERS);
+		this(parent, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL | SWTX.EDIT_ON_KEY | SWTX.MARK_FOCUS_HEADERS);
 	}
 
 	/**
@@ -62,38 +61,26 @@ public class QKTable extends KTable {
 	public QKTable(Composite parent, int style) {
 		super(parent, style);
 
-		Image crossCursor = SWTX.loadImageResource(getDisplay(),
-				"/icons/cross_win32.gif");
-		Image row_resizeCursor = SWTX.loadImageResource(getDisplay(),
-				"/icons/row_resize_win32.gif");
-		Image column_resizeCursor = SWTX.loadImageResource(getDisplay(),
-				"/icons/column_resize_win32.gif");
+		Image crossCursor = SWTX.loadImageResource(getDisplay(), "/icons/cross_win32.gif");
+		Image row_resizeCursor = SWTX.loadImageResource(getDisplay(), "/icons/row_resize_win32.gif");
+		Image column_resizeCursor = SWTX.loadImageResource(getDisplay(), "/icons/column_resize_win32.gif");
 
 		Rectangle crossBound = crossCursor.getBounds();
 		Rectangle rowresizeBound = row_resizeCursor.getBounds();
 		Rectangle columnresizeBound = column_resizeCursor.getBounds();
 
 		Point crossSize = new Point(crossBound.width / 2, crossBound.height / 2);
-		Point rowresizeSize = new Point(rowresizeBound.width / 2,
-				rowresizeBound.height / 2);
-		Point columnresizeSize = new Point(columnresizeBound.width / 2,
-				columnresizeBound.height / 2);
+		Point rowresizeSize = new Point(rowresizeBound.width / 2, rowresizeBound.height / 2);
+		Point columnresizeSize = new Point(columnresizeBound.width / 2, columnresizeBound.height / 2);
 
-		setDefaultCursor(new Cursor(getDisplay(), crossCursor.getImageData(),
-				crossSize.x, crossSize.y), crossSize);
-		setDefaultRowResizeCursor(new Cursor(getDisplay(),
-				row_resizeCursor.getImageData(), rowresizeSize.x,
-				rowresizeSize.y));
-		setDefaultColumnResizeCursor(new Cursor(getDisplay(),
-				column_resizeCursor.getImageData(), columnresizeSize.x,
-				columnresizeSize.y));
+		setDefaultCursor(new Cursor(getDisplay(), crossCursor.getImageData(), crossSize.x, crossSize.y), crossSize);
+		setDefaultRowResizeCursor(new Cursor(getDisplay(), row_resizeCursor.getImageData(), rowresizeSize.x, rowresizeSize.y));
+		setDefaultColumnResizeCursor(new Cursor(getDisplay(), column_resizeCursor.getImageData(), columnresizeSize.x, columnresizeSize.y));
 
 		addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
-				if (m_MainFocusRow > m_Model.getRowCount() - 1
-						&& arg0.stateMask != SWT.CTRL
-						&& arg0.stateMask != SWT.SHIFT) {
+				if (m_MainFocusRow > m_Model.getRowCount() - 1 && arg0.stateMask != SWT.CTRL && arg0.stateMask != SWT.SHIFT) {
 					m_FocusRow = m_Model.getRowCount() - 1;
 					m_MainFocusRow = m_Model.getRowCount() - 1;
 					focusCell(m_MainFocusCol, m_Model.getRowCount() - 1, 0);
@@ -102,29 +89,23 @@ public class QKTable extends KTable {
 				if (arg0.stateMask == SWT.CTRL) {
 					if (arg0.keyCode == SWT.ARROW_RIGHT) {
 						clearSelection();
-						setSelection(m_Model.getColumnCount() - 1,
-								m_MainFocusRow, true);
-						focusCell(m_Model.getColumnCount() - 1, m_MainFocusRow,
-								0);
+						setSelection(m_Model.getColumnCount() - 1, m_MainFocusRow, true);
+						focusCell(m_Model.getColumnCount() - 1, m_MainFocusRow, 0);
 					}
 					if (arg0.keyCode == SWT.ARROW_LEFT) {
 						clearSelection();
-						int headerColCount = m_Model
-								.getFixedHeaderColumnCount()
-								+ m_Model.getFixedSelectableColumnCount();
+						int headerColCount = m_Model.getFixedHeaderColumnCount() + m_Model.getFixedSelectableColumnCount();
 						setSelection(headerColCount, m_MainFocusRow, true);
 						focusCell(headerColCount, m_MainFocusRow, 0);
 					}
 					if (arg0.keyCode == SWT.ARROW_DOWN) {
 						clearSelection();
-						setSelection(m_MainFocusCol, m_Model.getRowCount() - 1,
-								true);
+						setSelection(m_MainFocusCol, m_Model.getRowCount() - 1, true);
 						focusCell(m_MainFocusCol, m_Model.getRowCount() - 1, 0);
 					}
 					if (arg0.keyCode == SWT.ARROW_UP) {
 						clearSelection();
-						int rowHeaderCount = m_Model.getFixedHeaderRowCount()
-								+ m_Model.getFixedSelectableRowCount();
+						int rowHeaderCount = m_Model.getFixedHeaderRowCount() + m_Model.getFixedSelectableRowCount();
 						setSelection(m_MainFocusCol, rowHeaderCount, true);
 						focusCell(m_MainFocusCol, rowHeaderCount, 0);
 					}
@@ -144,9 +125,7 @@ public class QKTable extends KTable {
 						}
 						clearSelection();
 						setSelection(selection.toArray(new Point[0]), true);
-						m_FocusRow = m_MainFocusRow = m_Model
-								.getFixedHeaderRowCount()
-								+ m_Model.getFixedSelectableRowCount();
+						m_FocusRow = m_MainFocusRow = m_Model.getFixedHeaderRowCount() + m_Model.getFixedSelectableRowCount();
 						m_MainFocusCol = start;
 						m_FocusCol = end;
 					}
@@ -164,9 +143,7 @@ public class QKTable extends KTable {
 						}
 						clearSelection();
 						setSelection(selection.toArray(new Point[0]), true);
-						m_FocusCol = m_MainFocusCol = m_Model
-								.getFixedHeaderColumnCount()
-								+ m_Model.getFixedSelectableColumnCount();
+						m_FocusCol = m_MainFocusCol = m_Model.getFixedHeaderColumnCount() + m_Model.getFixedSelectableColumnCount();
 						m_MainFocusRow = start;
 						m_FocusRow = end;
 					}
@@ -179,10 +156,8 @@ public class QKTable extends KTable {
 						}
 						clearSelection();
 						setSelection(selection.toArray(new Point[0]), true);
-						m_MainFocusRow = m_Model.getFixedHeaderRowCount()
-								+ m_Model.getFixedSelectableRowCount();
-						m_MainFocusCol = m_Model.getFixedHeaderColumnCount()
-								+ m_Model.getFixedSelectableColumnCount();
+						m_MainFocusRow = m_Model.getFixedHeaderRowCount() + m_Model.getFixedSelectableRowCount();
+						m_MainFocusCol = m_Model.getFixedHeaderColumnCount() + m_Model.getFixedSelectableColumnCount();
 						m_FocusRow = m_Model.getRowCount() - 1;
 						m_FocusCol = m_Model.getColumnCount() - 1;
 					}
@@ -193,10 +168,8 @@ public class QKTable extends KTable {
 						int columnCount = m_Model.getColumnCount();
 						List<Point> selection = new ArrayList<Point>();
 						for (int i = m_MainFocusCol; i < columnCount; i++) {
-							int startRowIdx = Math.min(m_MainFocusRow,
-									m_FocusRow);
-							int endRowIdx = Math
-									.max(m_MainFocusRow, m_FocusRow);
+							int startRowIdx = Math.min(m_MainFocusRow, m_FocusRow);
+							int endRowIdx = Math.max(m_MainFocusRow, m_FocusRow);
 
 							for (int j = startRowIdx; j <= endRowIdx; j++) {
 								selection.add(new Point(i, j));
@@ -208,14 +181,11 @@ public class QKTable extends KTable {
 						m_FocusCol = columnCount - 1;
 						m_FocusRow = tempFocusRow;
 					} else if (arg0.keyCode == SWT.ARROW_LEFT) {
-						int firstDataCol = m_Model.getFixedHeaderColumnCount()
-								+ m_Model.getFixedSelectableColumnCount();
+						int firstDataCol = m_Model.getFixedHeaderColumnCount() + m_Model.getFixedSelectableColumnCount();
 						List<Point> selection = new ArrayList<Point>();
 						for (int i = m_MainFocusCol; i >= firstDataCol; i--) {
-							int startRowIdx = Math.min(m_MainFocusRow,
-									m_FocusRow);
-							int endRowIdx = Math
-									.max(m_MainFocusRow, m_FocusRow);
+							int startRowIdx = Math.min(m_MainFocusRow, m_FocusRow);
+							int endRowIdx = Math.max(m_MainFocusRow, m_FocusRow);
 
 							for (int j = startRowIdx; j <= endRowIdx; j++) {
 								selection.add(new Point(i, j));
@@ -230,10 +200,8 @@ public class QKTable extends KTable {
 						int rowCount = m_Model.getRowCount();
 						List<Point> selection = new ArrayList<Point>();
 						for (int i = m_MainFocusRow; i < rowCount; i++) {
-							int startColIdx = Math.min(m_MainFocusCol,
-									m_FocusCol);
-							int endColIdx = Math
-									.max(m_MainFocusCol, m_FocusCol);
+							int startColIdx = Math.min(m_MainFocusCol, m_FocusCol);
+							int endColIdx = Math.max(m_MainFocusCol, m_FocusCol);
 
 							for (int j = startColIdx; j <= endColIdx; j++) {
 								selection.add(new Point(j, i));
@@ -245,14 +213,11 @@ public class QKTable extends KTable {
 						m_FocusRow = rowCount - 1;
 						m_FocusCol = tempFocusCol;
 					} else if (arg0.keyCode == SWT.ARROW_UP) {
-						int firstDataRow = m_Model.getFixedHeaderRowCount()
-								+ m_Model.getFixedSelectableRowCount();
+						int firstDataRow = m_Model.getFixedHeaderRowCount() + m_Model.getFixedSelectableRowCount();
 						List<Point> selection = new ArrayList<Point>();
 						for (int i = m_MainFocusRow; i >= firstDataRow; i--) {
-							int startColIdx = Math.min(m_MainFocusCol,
-									m_FocusCol);
-							int endColIdx = Math
-									.max(m_MainFocusCol, m_FocusCol);
+							int startColIdx = Math.min(m_MainFocusCol, m_FocusCol);
+							int endColIdx = Math.max(m_MainFocusCol, m_FocusCol);
 
 							for (int j = startColIdx; j <= endColIdx; j++) {
 								selection.add(new Point(j, i));
@@ -301,22 +266,19 @@ public class QKTable extends KTable {
 						tableSize.y -= getHorizontalBar().getSize().y;
 					}
 
-					if ((point.x < 0 && point.y < 0)
-							|| (!isCellFullyVisible(point.x, point.y) && e.x >= tableSize.x)) {
+					if ((point.x < 0 && point.y < 0) || (!isCellFullyVisible(point.x, point.y) && e.x >= tableSize.x)) {
 						// Mouse has moved outside the cells, time to find out
 						// where we are
 						int columnCount = getModel().getColumnCount();
 						if (e.x >= tableSize.x && m_LeftColumn < columnCount) {
-							int i = getVisibleCells().x
-									+ getVisibleCells().width;
+							int i = getVisibleCells().x + getVisibleCells().width;
 							if (i == columnCount) {
 								redraw();
 								return;
 							}
 							m_LeftColumn++;
 						}
-						if (e.y >= tableSize.y
-								&& m_TopRow < getModel().getRowCount()) {
+						if (e.y >= tableSize.y && m_TopRow < getModel().getRowCount()) {
 							m_TopRow++;
 						}
 
@@ -328,20 +290,15 @@ public class QKTable extends KTable {
 								mouseMove(e);
 							}
 						});
-					} else if (isHeaderCell(point.x, point.y)
-							|| isFixedCell(point.x, point.y)) {
+					} else if (isHeaderCell(point.x, point.y) || isFixedCell(point.x, point.y)) {
 						KTableModel model = getModel();
-						int headerRowCount = model.getFixedHeaderRowCount()
-								+ model.getFixedSelectableRowCount();
-						int headerColCount = model.getFixedHeaderColumnCount()
-								+ model.getFixedSelectableColumnCount();
+						int headerRowCount = model.getFixedHeaderRowCount() + model.getFixedSelectableRowCount();
+						int headerColCount = model.getFixedHeaderColumnCount() + model.getFixedSelectableColumnCount();
 
-						if (point.y < headerRowCount
-								&& m_TopRow >= model.getRowCount()) {
+						if (point.y < headerRowCount && m_TopRow >= model.getRowCount()) {
 							m_TopRow--;
 						}
-						if (point.x < headerColCount
-								&& m_LeftColumn >= model.getColumnCount()) {
+						if (point.x < headerColCount && m_LeftColumn >= model.getColumnCount()) {
 							m_LeftColumn--;
 						}
 						redraw();
@@ -362,19 +319,17 @@ public class QKTable extends KTable {
 
 	public void syncTable(final QKTable tableToSync, final int style) {
 		if ((style & SWT.HORIZONTAL) == SWT.HORIZONTAL) {
-			tableToSync.getHorizontalBar().addSelectionListener(
-					new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							syncHorizontal(tableToSync);
-						}
-					});
+			tableToSync.getHorizontalBar().addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					syncHorizontal(tableToSync);
+				}
+			});
 
 			tableToSync.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent arg0) {
-					if (arg0.keyCode == SWT.ARROW_LEFT
-							|| arg0.keyCode == SWT.ARROW_RIGHT) {
+					if (arg0.keyCode == SWT.ARROW_LEFT || arg0.keyCode == SWT.ARROW_RIGHT) {
 						syncHorizontal(tableToSync);
 					}
 				}
@@ -382,19 +337,17 @@ public class QKTable extends KTable {
 		}
 
 		if ((style & SWT.VERTICAL) == SWT.VERTICAL) {
-			tableToSync.getVerticalBar().addSelectionListener(
-					new SelectionAdapter() {
-						@Override
-						public void widgetSelected(SelectionEvent e) {
-							syncVertical(tableToSync);
-						}
-					});
+			tableToSync.getVerticalBar().addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent e) {
+					syncVertical(tableToSync);
+				}
+			});
 
 			tableToSync.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyPressed(KeyEvent arg0) {
-					if (arg0.keyCode == SWT.ARROW_UP
-							|| arg0.keyCode == SWT.ARROW_DOWN) {
+					if (arg0.keyCode == SWT.ARROW_UP || arg0.keyCode == SWT.ARROW_DOWN) {
 						syncVertical(tableToSync);
 					}
 				}
@@ -472,8 +425,7 @@ public class QKTable extends KTable {
 		if (e.keyCode == SWT.F2) {
 			e.character = ' ';
 		}
-		if (e.character == ' '
-				&& ((e.stateMask & SWT.CTRL) == SWT.CTRL || (e.stateMask & SWT.SHIFT) == SWT.SHIFT)) {
+		if (e.character == ' ' && ((e.stateMask & SWT.CTRL) == SWT.CTRL || (e.stateMask & SWT.SHIFT) == SWT.SHIFT)) {
 			return;
 		}
 		super.onKeyDown(e);
@@ -501,10 +453,7 @@ public class QKTable extends KTable {
 	public void setSelection(int col, int row, boolean scroll) {
 		checkWidget();
 
-		if (col < m_Model.getColumnCount()
-				&& col >= m_Model.getFixedHeaderColumnCount()
-				&& row < m_Model.getRowCount()
-				&& row >= m_Model.getFixedHeaderRowCount()) {
+		if (col < m_Model.getColumnCount() && col >= m_Model.getFixedHeaderColumnCount() && row < m_Model.getRowCount() && row >= m_Model.getFixedHeaderRowCount()) {
 			focusCell(col, row, 0);
 			if (scroll) {
 				scrollToFocus();
@@ -535,8 +484,7 @@ public class QKTable extends KTable {
 		 * a non-fixed row is allowed and handled as a selection of a non-fixed
 		 * cell.
 		 */
-		if (row >= m_Model.getFixedHeaderRowCount()
-				&& (col >= m_Model.getFixedHeaderColumnCount() || isRowSelectMode())) {
+		if (row >= m_Model.getFixedHeaderRowCount() && (col >= m_Model.getFixedHeaderColumnCount() || isRowSelectMode())) {
 
 			if ((stateMask & SWT.CTRL) == 0 && (stateMask & SWT.SHIFT) == 0) {
 				// case: no modifier key
@@ -625,13 +573,11 @@ public class QKTable extends KTable {
 						Iterator rowIt = oldSelection.entrySet().iterator();
 						int min = 0, max = 0;
 						if (rowIt.hasNext()) {
-							min = ((Integer) ((Entry) rowIt.next()).getValue())
-									.intValue();
+							min = ((Integer) ((Entry) rowIt.next()).getValue()).intValue();
 							max = min;
 						}
 						while (rowIt.hasNext()) {
-							int r = ((Integer) ((Entry) rowIt.next())
-									.getValue()).intValue();
+							int r = ((Integer) ((Entry) rowIt.next()).getValue()).intValue();
 							if (r < min) {
 								min = r;
 							}
@@ -746,15 +692,13 @@ public class QKTable extends KTable {
 						// This makes sure that the highlighting of those
 						// fixed rows and columns happens.
 
-						if (isMultiSelectMode()
-								&& isHighlightSelectionInHeader()) {
+						if (isMultiSelectMode() && isHighlightSelectionInHeader()) {
 							redraw(-1, row, 1, 1);
 							redraw(col, -1, 1, 1);
 						}
 
 						if (!oldSelection.equals(m_Selection)) {
-							redraw(m_LeftColumn, min.y, max.x - m_LeftColumn
-									+ 1, max.y - min.y + 1);
+							redraw(m_LeftColumn, min.y, max.x - m_LeftColumn + 1, max.y - min.y + 1);
 							// notify non-fixed cell listeners
 							fireCellSelection(orig.x, orig.y, stateMask);
 						}

@@ -35,15 +35,12 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 	 * Small arrow pointing down. Can be used when displaying a sorting
 	 * indicator.
 	 */
-	public static final Image IMAGE_ARROWDOWN = SWTX.loadImageResource(
-			Display.getCurrent(), "/icons/arrow_down.gif");
+	public static final Image IMAGE_ARROWDOWN = SWTX.loadImageResource(Display.getCurrent(), "/icons/arrow_down.gif");
 
 	/** Small arrow pointing up. Can be used when displaying a sorting indicator */
-	public static final Image IMAGE_ARROWUP = SWTX.loadImageResource(
-			Display.getCurrent(), "/icons/arrow_up.gif");
+	public static final Image IMAGE_ARROWUP = SWTX.loadImageResource(Display.getCurrent(), "/icons/arrow_up.gif");
 
-	public static final Color COLOR_FIXEDBACKGROUND = Display.getCurrent()
-			.getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
+	public static final Color COLOR_FIXEDBACKGROUND = Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_BACKGROUND);
 
 	/**
 	 * A constructor that lets the caller specify the style.
@@ -75,9 +72,7 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 	 * @see de.kupzog.ktable.KTableCellRenderer#drawCell(GC, Rectangle, int,
 	 *      int, Object, boolean, boolean, boolean, KTableModel)
 	 */
-	public void drawCell(GC gc, Rectangle rect, int col, int row,
-			Object content, boolean focus, boolean fixed, boolean clicked,
-			KTableModel model) {
+	public void drawCell(GC gc, Rectangle rect, int col, int row, Object content, boolean focus, boolean fixed, boolean clicked, KTableModel model) {
 
 		// set up the colors:
 		Color bgColor = getBackground();
@@ -98,17 +93,14 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 
 		// STYLE_FLAT:
 		if ((m_Style & STYLE_FLAT) != 0) {
-			rect = drawDefaultSolidCellLine(gc, rect, bottomBorderColor,
-					rightBorderColor);
+			rect = drawDefaultSolidCellLine(gc, rect, bottomBorderColor, rightBorderColor);
 
 			// draw content:
 
-			drawCellContent(gc, rect, col, content, model, bgColor, fgColor,
-					clicked);
+			drawCellContent(gc, rect, col, content, model, bgColor, fgColor, clicked);
 
 		} else { // STYLE_PUSH
-			drawCellButton(gc, rect, "", clicked
-					&& (m_Style & INDICATION_CLICKED) != 0);
+			drawCellButton(gc, rect, "", clicked && (m_Style & INDICATION_CLICKED) != 0);
 
 			// push style border is drawn, exclude:
 			rect.x += 2;
@@ -117,8 +109,7 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 			rect.height -= 5;
 
 			// draw content:
-			drawCellContent(gc, rect, col, content, model, bgColor, fgColor,
-					clicked);
+			drawCellContent(gc, rect, col, content, model, bgColor, fgColor, clicked);
 		}
 	}
 
@@ -126,16 +117,12 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 	 * Check for sort indicator and delegate content drawing to
 	 * drawCellContent()
 	 */
-	private void drawCellContent(GC gc, Rectangle rect, int col,
-			Object content, KTableModel model, Color bgColor, Color fgColor,
-			boolean clicked) {
+	private void drawCellContent(GC gc, Rectangle rect, int col, Object content, KTableModel model, Color bgColor, Color fgColor, boolean clicked) {
 
 		Image indicator = null;
 		int x = 0, y = 0;
 
-		if ((m_Style & INDICATION_SORT) != 0
-				&& model instanceof KTableSortedModel
-				&& ((KTableSortedModel) model).getSortColumn() == col) {
+		if ((m_Style & INDICATION_SORT) != 0 && model instanceof KTableSortedModel && ((KTableSortedModel) model).getSortColumn() == col) {
 			int sort = ((KTableSortedModel) model).getSortState();
 			if (sort == KTableSortComparator.SORT_UP)
 				indicator = IMAGE_ARROWDOWN;
@@ -143,8 +130,7 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 				indicator = IMAGE_ARROWUP;
 
 			if (indicator != null) {
-				int contentLength = rect.x + 11
-						+ gc.stringExtent(content.toString()).x;
+				int contentLength = rect.x + 11 + gc.stringExtent(content.toString()).x;
 				x = rect.x + rect.width - 8;
 				if (contentLength < x)
 					x = contentLength;
@@ -164,8 +150,7 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 
 		// draw sort indicator:
 		if (indicator != null) {
-			gc.fillRectangle(x, y, indicator.getBounds().width,
-					indicator.getBounds().height);
+			gc.fillRectangle(x, y, indicator.getBounds().width, indicator.getBounds().height);
 			gc.drawImage(indicator, x, y);
 		}
 	}
@@ -185,18 +170,14 @@ public class FixedCheckableCellRenderer extends CheckableCellRenderer {
 	 * @param pressed
 	 *            Wether the button should be painted as clicked/pressed or not.
 	 */
-	protected void drawCellButton(GC gc, Rectangle rect, String text,
-			boolean pressed) {
+	protected void drawCellButton(GC gc, Rectangle rect, String text, boolean pressed) {
 		rect.height += 1;
 		rect.width += 1;
-		gc.setForeground(Display.getCurrent().getSystemColor(
-				SWT.COLOR_LIST_FOREGROUND));
+		gc.setForeground(Display.getCurrent().getSystemColor(SWT.COLOR_LIST_FOREGROUND));
 		if (pressed) {
-			SWTX.drawButtonDown(gc, text, getAlignment(), null, getAlignment(),
-					rect);
+			SWTX.drawButtonDown(gc, text, getAlignment(), null, getAlignment(), rect);
 		} else {
-			SWTX.drawButtonUp(gc, text, getAlignment(), null, getAlignment(),
-					rect);
+			SWTX.drawButtonUp(gc, text, getAlignment(), null, getAlignment(), rect);
 		}
 	}
 

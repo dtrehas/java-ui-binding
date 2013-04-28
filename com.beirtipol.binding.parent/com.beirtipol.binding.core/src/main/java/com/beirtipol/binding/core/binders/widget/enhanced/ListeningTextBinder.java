@@ -9,8 +9,7 @@ import com.beirtipol.binding.core.util.BinderChangeSupport;
 import com.beirtipol.binding.core.util.IFreeable;
 import com.beirtipol.binding.core.util.StringStack;
 
-public class ListeningTextBinder<T> extends AbstractTextBinder implements
-		IFreeable, IListeningBinder {
+public class ListeningTextBinder<T> extends AbstractTextBinder implements IFreeable, IListeningBinder {
 	private final IStaticObjectFormattedAccessor<T> accessor;
 	private final BinderChangeSupport binderChangeSupport;
 

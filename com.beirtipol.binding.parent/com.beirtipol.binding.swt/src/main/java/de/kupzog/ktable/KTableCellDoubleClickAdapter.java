@@ -14,8 +14,7 @@ package de.kupzog.ktable;
 /**
  * @author Friederich Kupzog
  */
-public class KTableCellDoubleClickAdapter implements
-		KTableCellDoubleClickListener {
+public class KTableCellDoubleClickAdapter implements KTableCellDoubleClickListener {
 	/**
 	 * Is called if a non-fixed cell is selected (gets the focus).
 	 * 

@@ -40,8 +40,7 @@ public class NestedPropertyChangeSupport extends PropertyChangeSupport {
 		}
 		PropertyChangeSupport changeSupport = getPropertyChangeSupport(oldValue);
 		if (changeSupport != null) {
-			changeSupport.removePropertyChangeListener(fieldListenerMap
-					.get(oldValue));
+			changeSupport.removePropertyChangeListener(fieldListenerMap.get(oldValue));
 			fieldListenerMap.remove(oldValue);
 		}
 	}
@@ -63,8 +62,7 @@ public class NestedPropertyChangeSupport extends PropertyChangeSupport {
 
 		@Override
 		public void propertyChange(PropertyChangeEvent sourceEvent) {
-			NestedPropertyChangeEvent nestedEvent = new NestedPropertyChangeEvent(
-					sourceBean, fieldName, null, sourceBean, sourceEvent);
+			NestedPropertyChangeEvent nestedEvent = new NestedPropertyChangeEvent(sourceBean, fieldName, null, sourceBean, sourceEvent);
 			NestedPropertyChangeSupport.super.firePropertyChange(nestedEvent);
 		}
 	}

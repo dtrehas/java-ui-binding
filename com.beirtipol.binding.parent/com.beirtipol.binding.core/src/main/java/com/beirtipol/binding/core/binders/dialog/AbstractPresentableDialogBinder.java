@@ -6,8 +6,7 @@ import com.beirtipol.binding.core.binders.IPresenter;
 import com.beirtipol.binding.core.delegates.IPresentableDialogDelegate;
 import com.beirtipol.binding.core.util.IFreeable;
 
-public abstract class AbstractPresentableDialogBinder<P extends IPresenter>
-		implements IPresentableDialogBinder<P>, IFreeable {
+public abstract class AbstractPresentableDialogBinder<P extends IPresenter> implements IPresentableDialogBinder<P>, IFreeable {
 
 	private IPresentableDialogDelegate<P> delegate;
 

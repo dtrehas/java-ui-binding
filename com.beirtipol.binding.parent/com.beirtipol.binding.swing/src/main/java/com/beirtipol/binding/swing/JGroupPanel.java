@@ -16,9 +16,7 @@ public class JGroupPanel extends JPanel {
 		super();
 		setBackground(Color.WHITE);
 		setDoubleBuffered(true);
-		setBorder(BorderFactory.createTitledBorder(null, title,
-				TitledBorder.LEFT,
-				javax.swing.border.TitledBorder.DEFAULT_POSITION));
+		setBorder(BorderFactory.createTitledBorder(null, title, TitledBorder.LEFT, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 	}
 
 	public void setTitle(String title) {

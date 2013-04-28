@@ -37,13 +37,11 @@ public abstract class AbstractPresentableSwingPanel<P extends IPresenter> {
 		PlatformDefaults.setUnrelatedGap(defaultValue, defaultValue);
 		PlatformDefaults.setRelatedGap(defaultValue, defaultValue);
 		PlatformDefaults.setIndentGap(defaultValue, defaultValue);
-		PlatformDefaults.setDialogInsets(defaultValue, defaultValue,
-				defaultValue, defaultValue);
+		PlatformDefaults.setDialogInsets(defaultValue, defaultValue, defaultValue, defaultValue);
 		JPanel panel = new JPanel();
 		// Beirti added hidemode 3 as it's what we use everywhere
 
-		panel.setLayout(new MigLayout(
-				"insets 0 0 0 0, hidemode 3, gap 1px 1px, novisualpadding"));
+		panel.setLayout(new MigLayout("insets 0 0 0 0, hidemode 3, gap 1px 1px, novisualpadding"));
 		panel.setBackground(Color.WHITE);
 		panel.setDoubleBuffered(true);
 		return panel;

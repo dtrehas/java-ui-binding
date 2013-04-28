@@ -5,11 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import com.beirtipol.binding.core.delegates.IButtonDelegate;
 
-public abstract class AbstractButtonBinder extends
-		AbstractWidgetBinder<IButtonDelegate> implements IButtonBinder {
+public abstract class AbstractButtonBinder extends AbstractWidgetBinder<IButtonDelegate> implements IButtonBinder {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(AbstractButtonBinder.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractButtonBinder.class);
 	private final String initialText;
 
 	public AbstractButtonBinder() {
