@@ -14,6 +14,10 @@ public class NestedPropertyChangeEvent extends PropertyChangeEvent {
 		super(source, propertyName, oldValue, newValue);
 		this.sourceEvent = sourceEvent;
 	}
+	
+	public NestedPropertyChangeEvent(PropertyChangeEvent event){
+		this(event.getSource(), event.getPropertyName(), event.getOldValue(), event.getNewValue(), null);
+	}
 
 	public PropertyChangeEvent getSourceEvent() {
 		return sourceEvent;

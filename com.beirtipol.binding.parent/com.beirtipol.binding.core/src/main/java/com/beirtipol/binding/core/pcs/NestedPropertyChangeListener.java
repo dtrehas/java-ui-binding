@@ -27,6 +27,10 @@ public abstract class NestedPropertyChangeListener implements PropertyChangeList
 			if (matches) {
 				propertyChange((NestedPropertyChangeEvent) evt);
 			}
+		} else if (path.size() == 1 && path.peek().equals(evt.getPropertyName())) {
+			// If a NestedPropertyChangeListener with a path depth of 1 is
+			// added, we will get a normal event.
+			propertyChange(new NestedPropertyChangeEvent(evt));
 		}
 
 	}

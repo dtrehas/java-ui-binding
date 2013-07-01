@@ -1,4 +1,4 @@
-package com.beirtipol.core.util;
+package com.beirtipol.binding.core.util;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,0 +1,10 @@
+package com.beirtipol.binding.core.aop;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+@Retention (RetentionPolicy.RUNTIME)
+public @interface Bindable
+{
+	String fieldName();
+}

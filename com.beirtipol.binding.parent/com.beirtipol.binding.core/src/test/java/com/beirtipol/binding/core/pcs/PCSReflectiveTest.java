@@ -1,4 +1,4 @@
-package com.beirtipol.core.pcs;
+package com.beirtipol.binding.core.pcs;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -53,7 +53,6 @@ public class PCSReflectiveTest {
 
 			Object fieldValue = null;
 			Method getMethod = null;
-			// try {
 			List<Method> allDeclaredMethods = ReflectionUtils.getAllDeclaredMethods(clazz);
 			getterSearchLoop: for (Method getter : allDeclaredMethods) {
 				BindableMethod getterAnnotation = getter.getAnnotation(BindableMethod.class);
@@ -65,6 +64,7 @@ public class PCSReflectiveTest {
 					break getterSearchLoop;
 				}
 			}
+
 			if (getMethod == null) {
 				throw new PCSException("Could not detect 'get' method to mirror '" + method.getName() + "' in class '" + clazz.getName() + "'");
 			}
@@ -74,13 +74,6 @@ public class PCSReflectiveTest {
 			} catch (Exception e1) {
 				throw new PCSException("Error occurred invoking getter", e1);
 			}
-			// }
-			// catch(Exception err) {
-			// throw new
-			// PCSException("Could not detect 'get' method to mirror '" +
-			// method.getName() +
-			// "' in class '" + clazz.getName() + "'", err);
-			// }
 			if (fieldValue == null) {
 				throw new PCSException(clazz.getName() + "." + getMethod.getName() + " returned null. Please test with a fully populated object.");
 			}
@@ -102,10 +95,9 @@ public class PCSReflectiveTest {
 			Object newValue = null;
 
 			// We cannot set 'null' in a primitive method as it will barf.
-			// Subtract 1 in case the
-			// value has not been set in the test as primitive numbers will
-			// default to 0 if not
-			// initialised explicitly.
+			// Subtract 1 in case the value has not been set in the test as
+			// primitive numbers will default to 0 if not initialised
+			// explicitly.
 			if (fieldValue instanceof Integer) {
 				newValue = (Integer) fieldValue - 1 * -1;
 			} else if (fieldValue instanceof Double) {
@@ -130,19 +122,19 @@ public class PCSReflectiveTest {
 				method.setAccessible(true);
 				method.invoke(o, newValue);
 			} catch (Exception e) {
-				throw new PCSException("Error occurred calling " + clazz.getName() + "." + method.getName() + "(null)", e);
+				throw new PCSException("Error occurred calling " + clazz.getCanonicalName() + "." + method.getName() + "(null)", e);
 			}
 			try {
 				Object setValue = getMethod.invoke(o, new Object[0]);
 
 				if (setValue != null && !setValue.equals(newValue)) {
-					throw new PCSException("Field '" + fieldName + "' should have been set to '" + newValue + "' when calling '" + method.getName() + "' on class '" + clazz.getName() + "'");
+					throw new PCSException("Field '" + fieldName + "' should have been set to '" + newValue + "' when calling '" + method.getName() + "' on class '" + clazz.getCanonicalName() + "'");
 				}
 			} catch (Exception e1) {
 				throw new PCSException("Error occurred invoking getter", e1);
 			}
 			if (fieldChangeEvents.get(fieldName) == null) {
-				throw new PCSException("Expected that an event would be generated when calling  '" + method.getName() + "'.");
+				throw new PCSException("Expected that an event would be generated when calling  '" + method.getName() + "' on class '" + clazz.getCanonicalName() + "'");
 			}
 
 			try {
